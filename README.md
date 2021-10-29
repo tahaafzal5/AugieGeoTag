@@ -14,7 +14,7 @@ The workspace contains two folders by default, where:
 - Run `git clone https://github.com/tahaafzal5/AugieGeoTag.git`
 - Open the project in your favorite text editor
 
-## How to ru the program
+## How to run the program
 - < TO DO >
 
 # Making Changes
