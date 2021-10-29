@@ -7,12 +7,15 @@ The workspace contains two folders by default, where:
 - `lib`: the folder to maintain dependencies
 - `bin`: the compiled output files are generated here by default
 
-# Getting Started
+# Gitting Started
 
 ## How to clone this repo
 - Using the terminal, `cd` into the diretory where you want to clone this repo
 - Run `git clone https://github.com/tahaafzal5/AugieGeoTag.git`
 - Open the project in your favorite text editor
+
+## How to ru the program
+- < TO DO >
 
 # Making Changes
 
