@@ -40,3 +40,21 @@ Please make a new branch for each change you want to make. This way we can keep 
     - Add a title, comments, etc. describing what the changes you made are
     - Add the team members are reviewers from the pane on the right hand side
     - Click the `Create pull request` button on the bottom
+
+# Reviewing someone else's changes
+
+Whenever someone creates a new PR, do the following before accepting their changes:
+
+- Fetch the remote branches
+    - `git fetch`
+- Checkout the branch the PR is for
+    - `git checkout <their-branch-name>`
+- Review
+    - Review all the files that changed 
+    - Make sure the code makes sense
+    - Make sure the code does what it claims to do
+    - Make sure there are no typos, unnecessary code, misleading variable names or comments, etc
+    - Test out the code with normal cases, abnormal cases, and edge cases
+    - Use GitHub to make comments and give feedback if you have any
+        - Wait until changes are made by the developer and review them again using the steps above 
+- When satisfied, approve the PR and merge in the branch
