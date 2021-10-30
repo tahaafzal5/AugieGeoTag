@@ -7,7 +7,7 @@ The workspace contains two folders by default, where:
 - `lib`: the folder to maintain dependencies
 - `bin`: the compiled output files are generated here by default
 
-# Gitting Started
+# Getting Started
 
 ## How to clone this repo
 - Using the terminal, `cd` into the diretory where you want to clone this repo
@@ -18,6 +18,8 @@ The workspace contains two folders by default, where:
 - < TO DO >
 
 # Making Changes
+
+[Work Tracking for this project through GitHub](https://github.com/tahaafzal5/AugieGeoTag/projects/1)
 
 Please make a new branch for each change you want to make. This way we can keep the `master` branch clean and avoid conflicts.
 
