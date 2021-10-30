@@ -4,7 +4,7 @@
 
 # Folder Structure
 
-The workspace contains two folders by default, where:
+The workspace contains the following folders:
 
 - `assets`: the folder containing all the images (please add all your images here)
 - `src`: the folder containing all the code
