@@ -9,7 +9,7 @@ The workspace contains the following folders:
 - `assets`: the folder containing all the images (please add all your images here)
 - `src`: the folder containing all the code
 - `lib`: the folder to maintain dependencies
-- `bin`: the compiled output files are generated here by default
+- `bin`: the compiled output files are generated here by default (locally only)
 
 # Getting Started
 
