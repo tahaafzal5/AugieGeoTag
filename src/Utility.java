@@ -1,30 +1,41 @@
 public class Utility {
 
-    /* public ... void displayMenu(...) {
+    protected static void displayMenu() {
+        System.out.println("Augie GeoTag Menu:");
+        System.out.println("\t1. Open an image");
+        System.out.println("\t2. Add GeoTag");
+        System.out.println("\t3. Update GeoTag");
+        System.out.println("\t4. Remove GeoTag");
+        System.out.println("\t5. Help Menu");
+        System.out.println("\t6. About");
+        System.out.println("\t7. Exit");
+    }
+
+    /* protected static void displayHelpMenu() {
+        
+    } */
+
+    /* protected ... ... handleUserMenuChoice(...) {
         ...
     } */
 
-    /* public ... ... handleUserMenuChoice(...) {
+    /* protected ... void askConfirmation(...) {
+
+    } */
+
+    /* protected ... ... handleUserConfirmationChoice(...) {
         ...
     } */
 
-    /* public ... void askConfirmation(...) {
-
-    } */
-
-    /* public ... ... handleUserConfirmationChoice(...) {
+    /* protected ... void displayError(...) {
         ...
     } */
 
-    /* public ... void displayError(...) {
+    /* protected ... void displaySuccess(...) {
         ...
     } */
 
-    /* public ... void displaySuccess(...) {
-        ...
-    } */
-
-    /* public ... void displayProcessing(...) {
+    /* protected ... void displayProcessing(...) {
         ...
     } */
 }

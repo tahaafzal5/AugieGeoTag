@@ -1,37 +1,37 @@
-class GeoTagFunctions {
-    /* public ... boolean isJpeg(...) {
+public class GeoTagFunctions {
+    /* protected ... boolean isJpeg(...) {
         ...
     } */
 
-    /* public ... ... readImageMeta(...) {
+    /* protected ... ... readImageMeta(...) {
         ...
     } */
 
-    /* public ... boolean hasGeoTagData(...) {
+    /* protected ... boolean hasGeoTagData(...) {
         ...
     } */
 
-    /* public ... ... getGeoTagData(...) {
+    /* protected ... ... getGeoTagData(...) {
         ...
     } */
 
-    /* public ... void printGeoTagData(...) {
+    /* protected ... void printGeoTagData(...) {
         ...
     } */
 
-    /* public ... boolean updateGeoTagData(...) {
+    /* protected ... boolean updateGeoTagData(...) {
         ...
     } */
 
-    /* public ... ... writeGeoTagData(...) {
+    /* protected ... ... writeGeoTagData(...) {
         ...
     } */
 
-    /* public ... boolean removeGeoTagData(...) {
+    /* protected ... boolean removeGeoTagData(...) {
         ...
     } */
 
-    /* public ... boolean saveJpegImage(...) {
+    /* protected ... boolean saveJpegImage(...) {
         ...
     } */
 }
