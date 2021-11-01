@@ -46,6 +46,10 @@ Please make a new branch for each change you want to make. This way we can keep 
     - Add a title, comments, etc. describing what the changes you made are
     - Add the team members are reviewers from the pane on the right hand side
     - Click the `Create pull request` button on the bottom
+- After your changes have been reviewed and merged in
+    - Checkout the master branch by `git switch master`
+    - Pull the newest changes by `git pull`
+    - Make more changes by creating a new branch and all as done above.
 
 # Reviewing someone else's changes
 
