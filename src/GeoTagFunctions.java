@@ -7,18 +7,18 @@ public class GeoTagFunctions {
   	public static boolean isJpeg(File f) throws IOException, FileNotFoundException
   	{    
   		if(!f.exists()) throw new FileNotFoundException("File does not exists");
-          BufferedInputStream buff = new BufferedInputStream(new FileInputStream(f));
+        BufferedInputStream buff = new BufferedInputStream(new FileInputStream(f));
               
-          //read the marker to make sure it is a jpeg
-          byte[] file_marker = new byte[2];
-          buff.read(file_marker);
+        //read the marker to make sure it is a jpeg
+        byte[] file_marker = new byte[2];
+        buff.read(file_marker);
               
-          buff.close();
+        buff.close();
               
-         //check the file type and exif validation
-         if( (file_marker[0] & 0xFF) == 0xFF && (file_marker[1] & 0xFF) == 0xD8 )
-              return true;
-         else return false;
+        //check the file type and exif validation
+        if( (file_marker[0] & 0xFF) == 0xFF && (file_marker[1] & 0xFF) == 0xD8 )
+        	return true;
+        else return false;
   	}
 
     /* protected ... ... readImageMeta(...) {
