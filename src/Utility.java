@@ -37,7 +37,24 @@ public class Utility {
         ...
     } */
 
-    /* protected ... void displayProcessing(...) {
-        ...
-    } */
+    public static void displayProcessing(String type) {
+        switch (type) {
+            case "opening-image":
+                System.out.println("Opening image..."); break;
+            case "reading-metadata":
+                System.out.println("Reading image metadata..."); break;
+            case "checking-jpeg":
+                System.out.println("Checking if the image is a JPEG/JPG...");
+            case "reading-geotag":
+                System.out.println("Reading the geotag in the image..."); break;
+            case "removing-geotag":
+                System.out.println("Removing geotag from the image..."); break;
+            case "writing-metadata":
+                System.out.println("Writing the metadata in the image..."); break;
+            case "saving-image":
+                System.out.println("Saving the image..."); break;
+            default:
+                System.out.println("Processing...");
+        }
+    }
 }
