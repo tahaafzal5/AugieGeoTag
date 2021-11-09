@@ -2,23 +2,28 @@ import java.io.*;
 
 public class GeoTagFunctions {
     
-    //Throw: FileNotFoundException if the file does not exist. IOException if the program cannot read the file
-  	//Return: true if passed file is a JPEG/JPG; false other wise.
-  	public static boolean isJpeg(File f) throws IOException, FileNotFoundException
-  	{    
-  		if(!f.exists()) throw new FileNotFoundException("File does not exists");
-        BufferedInputStream buff = new BufferedInputStream(new FileInputStream(f));
-              
-        //read the marker to make sure it is a jpeg
-        byte[] file_marker = new byte[2];
-        buff.read(file_marker);
-              
-        buff.close();
-              
-        //check the file type and exif validation
-        if( (file_marker[0] & 0xFF) == 0xFF && (file_marker[1] & 0xFF) == 0xD8 )
-        	return true;
-        else return false;
+    //Throw: FileNotFoundException if the file does not exist and IOException if the program cannot read the file.
+  	//Return: true if passed file is a JPEG/JPG, false otherwise.
+  	public static boolean isJpeg(File file) {    
+        try {
+            BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(file));
+
+            //read the marker to make sure it is a jpeg
+            byte[] fileMarker = new byte[2];
+            bufferedInputStream.read(fileMarker);
+                
+            bufferedInputStream.close();
+                
+            //check the file type and exif validation
+            if ((fileMarker[0] & 0xFF) == 0xFF && (fileMarker[1] & 0xFF) == 0xD8)
+                return true;
+            else
+                return false;
+        }
+        catch (Exception exception) {
+            System.out.println(exception.getMessage());
+            return false;
+        }
   	}
 
     /* protected ... ... readImageMeta(...) {
