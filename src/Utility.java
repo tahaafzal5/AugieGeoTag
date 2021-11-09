@@ -33,9 +33,26 @@ public class Utility {
         ...
     } */
 
-    /* protected ... void displaySuccess(...) {
-        ...
-    } */
+    public static void displaySuccess(String type) {
+        switch (type) {
+            case "open-image":
+                System.out.println("Image opened successfully"); break;
+            case "read-metadata":
+                System.out.println("Metadata read successfully"); break;
+            case "check-jpeg":
+                System.out.println("Checked JPEG/JPG successfully"); break;
+            case "read-geotag":
+                System.out.println("Read geotag successfully"); break;
+            case "remove-geotag":
+                System.out.println("Removed geotag successfully"); break;
+            case "write-geotag":
+                System.out.println("Wrote geotag successfully"); break;
+            case "save-image":
+                System.out.println("Image saved successfully"); break;
+            default:
+                System.out.println("Success");
+        }
+    } 
 
     /* protected ... void displayProcessing(...) {
         ...
