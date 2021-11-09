@@ -5,7 +5,7 @@ import src.GeoTagFunctions;
 import java.util.*;
 import java.io.*;
 
-public class Tests {
+public class IsJpegTests {
     public static void main(String[] args) {
 
         // Testing isJpeg() method
