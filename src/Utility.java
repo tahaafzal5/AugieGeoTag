@@ -1,3 +1,5 @@
+package src;
+
 public class Utility {
 
     protected static void displayMenu() {
