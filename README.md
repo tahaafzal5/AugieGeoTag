@@ -6,10 +6,12 @@
 
 The workspace contains the following folders:
 
+- `.vscode`: the folder containing vscode configuration
 - `assets`: the folder containing all the images (please add all your images here)
-- `src`: the folder containing all the code
-- `lib`: the folder to maintain dependencies
 - `bin`: the compiled output files are generated here by default (locally only)
+- `lib`: the folder to maintain dependencies
+- `src`: the folder containing all the code
+- `tests`: the folder containing all the tests
 
 # Getting Started
 
