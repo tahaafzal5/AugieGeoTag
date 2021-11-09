@@ -17,8 +17,9 @@ public class Tests {
         ArrayList<String> assetsFiles = new ArrayList<>();
         ArrayList<Boolean> expectedAnswers = new ArrayList<>();
         
+        // for all the files in the assets folder of this project
         getAllFilesForFolder(assetsFolder, assetsFiles);
-        isJpegExpectedAnswers(expectedAnswers);
+        addExpectedAnswers(expectedAnswers);
         
         Boolean result;
         for (int i = 0; i < assetsFiles.size(); i++) {
@@ -26,9 +27,11 @@ public class Tests {
             result = GeoTagFunctions.isJpeg(new File(fileName));
             
             if (result.equals(expectedAnswers.get(i))) {
+                // tick mark
                 System.out.println("\u2713");
             }
             else {
+                // cross mark
                 System.out.println("Test failed \u2717");
             }
         }
@@ -44,7 +47,7 @@ public class Tests {
     }
     
     // for the isJpeg method
-    public static void isJpegExpectedAnswers(ArrayList<Boolean> expectedAnswers) {
+    public static void addExpectedAnswers(ArrayList<Boolean> expectedAnswers) {
         expectedAnswers.add(true); expectedAnswers.add(true); expectedAnswers.add(true); expectedAnswers.add(true); expectedAnswers.add(true); expectedAnswers.add(false); expectedAnswers.add(true); expectedAnswers.add(true); expectedAnswers.add(true); expectedAnswers.add(true); expectedAnswers.add(true); expectedAnswers.add(false);
     }
 }
