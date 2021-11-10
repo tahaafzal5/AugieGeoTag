@@ -5,13 +5,11 @@ import java.io.*;
 import org.apache.commons.imaging.Imaging;
 import org.apache.commons.imaging.common.ImageMetadata;
 import org.apache.commons.imaging.formats.jpeg.JpegImageMetadata;
-import org.apache.commons.imaging.formats.jpeg.exif.ExifRewriter;
 import org.apache.commons.imaging.formats.tiff.TiffImageMetadata;
-import org.apache.commons.imaging.formats.tiff.write.TiffOutputSet;
 
 public class GeoTagFunctions {
     
-	private static TiffImageMetadata exif;
+	private static TiffImageMetadata exif = null;
 	
   	//Return: true if passed file is a JPEG/JPG, false otherwise.
     //Output: Error message if the file reading process contains error.
@@ -41,17 +39,18 @@ public class GeoTagFunctions {
     //Return: true if metadata read successfully
     //Output: error message if program throw Exception
     public static boolean readImageMeta(File jpeg) {
-        try{
+        try {
             //Get Metadata
             final ImageMetadata metadata = Imaging.getMetadata(jpeg);
             final JpegImageMetadata jpegMetadata = (JpegImageMetadata) metadata;
             
-            if ( jpegMetadata != null )
+            if (jpegMetadata != null)
                 exif = jpegMetadata.getExif();
 
             return true;
-        } catch(Exception exception) {
+        } catch (Exception exception) {
             System.out.println(jpeg.getName() + ": " + exception.getMessage());
+            
             return false;
         }
     }
