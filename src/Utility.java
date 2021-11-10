@@ -44,7 +44,7 @@ public class Utility {
             case "read-metadata":
                 System.out.println("Reading image metadata..."); break;
             case "check-jpeg":
-                System.out.println("Checking if the image is a JPEG/JPG...");
+                System.out.println("Checking if the image is a JPEG/JPG..."); break;
             case "read-geotag":
                 System.out.println("Reading the geotag in the image..."); break;
             case "remove-geotag":
