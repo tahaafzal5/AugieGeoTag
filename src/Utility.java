@@ -33,7 +33,7 @@ public class Utility {
         else if (choice == "7")
             System.exit(0);
         else {
-            System.out.println("Invalid option. Please enter option 1-7.")
+            System.out.println("Invalid option. Please enter option 1-7.");
             displayMenu();
         }
     } 
