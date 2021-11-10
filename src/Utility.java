@@ -17,9 +17,26 @@ public class Utility {
         
     } */
 
-    /* protected ... ... handleUserMenuChoice(...) {
-        ...
-    } */
+    protected static void handleUserMenuChoice(String choice) {
+        if (choice == "1")
+            openJpegImage();
+        else if (choice == "2")
+            writeGeoTagData();
+        else if (choice == "3")
+            updateGeoTagData();
+        else if (choice == "4")
+            removeGeoTagData();
+        else if (choice == "5")
+            displayMenu();
+        else if (choice == "6")
+            aboutProgram();
+        else if (choice == "7")
+            System.exit(0);
+        else {
+            System.out.println("Invalid option. Please enter option 1-7.")
+            displayMenu();
+        }
+    } 
 
     /* protected ... void askConfirmation(...) {
 
