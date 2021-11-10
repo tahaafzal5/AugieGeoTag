@@ -29,9 +29,22 @@ public class Utility {
         ...
     } */
 
-    /* protected ... void displayError(...) {
-        ...
-    } */
+    public static void displayErrorMethod(String type){
+        switch (type) {
+            case "check-jpeg": 
+                System.out.println("Error opening image, check that you uploaded an acceptable file format (JPEG/JPG)"); break;
+            case "check-exists":
+                System.out.println("File not found, please open a valid image"); break;
+            case "check-multiple":
+                System.out.println("Error: You are attempting to open more than 1 image, please open only one image at a time"); break;
+            case "remove-geotag":
+                System.out.println("Error: Geotag does not exist on given image, please open a different image"); break;
+            case "update-geotag": 
+                System.out.println("Error: Geotag does not exist on given image, please open a different image"); break;
+            case "add-geotag":
+                System.out.println("Error: Geotag already exists on given image, please open a different image"); break;
+        }
+    }
 
     public static void displaySuccess(String type) {
         switch (type) {
