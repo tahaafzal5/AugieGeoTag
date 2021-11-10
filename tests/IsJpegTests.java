@@ -28,11 +28,11 @@ public class IsJpegTests {
             
             if (result.equals(expectedAnswers.get(i))) {
                 // tick mark
-                System.out.println("\u2713");
+                System.out.printf("%-30s %c \n", assetsFiles.get(i), '\u2713');
             }
             else {
                 // cross mark
-                System.out.println("Test failed \u2717");
+                System.out.printf("%-30s %c \n", assetsFiles.get(i), '\u2717');
             }
         }
         System.out.println("Done testing isJpeg method");
