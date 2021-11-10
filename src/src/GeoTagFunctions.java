@@ -30,7 +30,7 @@ public class GeoTagFunctions {
             return (fileMarker[0] & 0xFF) == 0xFF && (fileMarker[1] & 0xFF) == 0xD8;
         }
         catch (Exception exception) {
-            System.out.println(exception.getMessage());
+            System.out.println(file.getName() + ": " + exception.getMessage());
             return false;
         }
   	}
@@ -49,7 +49,7 @@ public class GeoTagFunctions {
 
             return true;
         } catch(Exception exception) {
-            System.out.println(exception.getMessage());
+            System.out.println(jpeg.getName() + ": " + exception.getMessage());
             return false;
         }
     }
