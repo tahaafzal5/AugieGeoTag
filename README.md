@@ -40,9 +40,11 @@ Please make a new branch for each change you want to make. This way we can keep 
     - `git add <file-name>` or `git add .` to stage all changes
 - Commit your changes with a meaningful commit message
     - `git commit -m "your message"`
-- To create a new branch on remote and push your changes for the first time
-    - `git push -u origin <your-branch-name>`
-    - If making changes to a branch that exists on remote already, you will just have to do `git push <your-branch-name>`
+- Rebase on master before pushing changes
+    - While being on your branch that you made changes in, `git rebase master`
+    - `git commit -m <message-about-rebasing>`
+- To create a new branch on remote and push your changes
+    - `git push origin <your-branch-name>`
 - Go to the [GitHub page for this repo](https://github.com/tahaafzal5/AugieGeoTag) and create a Pull Request (PR) to get your changes merged in 
     - Click on the `Compare & pull request` button
     - Add a title, comments, etc. describing what the changes you made are
