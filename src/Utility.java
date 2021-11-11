@@ -15,15 +15,18 @@ public class Utility {
         
     } */
 
-    protected static void handleUserMenuChoice(String choice) {
+    protected static void handleUserMenuChoice() {
+        Scanner input = new Scanner(System.in); 
+        System.out.println("Please enter selection: ");
+        String choice = input.nextLine(); 
         if (choice == "1")
-            openJpegImage();
+            GeoTagFunctions.openJpegImage();
         else if (choice == "2")
-            writeGeoTagData();
+            GeoTagFunctions.writeGeoTagData();
         else if (choice == "3")
-            updateGeoTagData();
+            GeoTagFunctions.updateGeoTagData();
         else if (choice == "4")
-            removeGeoTagData();
+            GeoTagFunctions.removeGeoTagData();
         else if (choice == "5")
             displayMenu();
         else if (choice == "6")
