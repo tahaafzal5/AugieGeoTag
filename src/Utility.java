@@ -15,27 +15,27 @@ public class Utility {
         
     } */
 
-    protected static void handleUserMenuChoice() {
-        Scanner input = new Scanner(System.in); 
-        System.out.println("Please enter selection: ");
-        String choice = input.nextLine(); 
-        if (choice == "1")
-            GeoTagFunctions.openJpegImage();
-        else if (choice == "2")
-            GeoTagFunctions.writeGeoTagData();
-        else if (choice == "3")
-            GeoTagFunctions.updateGeoTagData();
-        else if (choice == "4")
-            GeoTagFunctions.removeGeoTagData();
-        else if (choice == "5")
-            displayMenu();
-        else if (choice == "6")
-            aboutProgram();
-        else if (choice == "7")
-            System.exit(0);
-        else {
-            System.out.println("Invalid option. Please enter option 1-7.");
-            displayMenu();
+    protected static void handleUserMenuChoice(Scanner input) { 
+        System.out.print("Please enter selection: ");
+        int choice = 0; 
+        while (choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != 5 && choice != 6 && choice != 7) {
+            choice = input.nextInt();
+            switch (choice) {
+                case 1: GeoTagFunctions.openJpegImage();
+                        break;
+                case 2: GeoTagFunctions.writeGeoTagData();
+                        break;
+                case 3: GeoTagFunctions.updateGeoTagData();
+                        break;
+                case 4: GeoTagFunctions.removeGeoTagData();
+                        break;
+                case 5: displayMenu();
+                        break;
+                case 6: aboutProgram();
+                        break;
+                case 7: System.exit(0);
+                default: System.out.print("Invalid option. Please enter option 1-7: ");
+            }
         }
     } 
 
