@@ -20,7 +20,6 @@ public class Utility {
     } */
 
     protected static void handleUserMenuChoice(Scanner input) { 
-
         try {
             System.out.print("Please enter selection (1-7): ");
             int choice = 0; 
