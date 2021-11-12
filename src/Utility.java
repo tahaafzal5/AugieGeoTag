@@ -1,6 +1,10 @@
 package src;
 
+<<<<<<< HEAD
 import java.util.*;
+=======
+import java.util.Scanner;
+>>>>>>>  askUserConfirmation and handleUserConfirmationChoice are done
 
 public class Utility {
 
@@ -72,9 +76,21 @@ public class Utility {
 
     } */
 
-    /* protected ... ... handleUserConfirmationChoice(...) {
-        ...
-    } */
+     protected static boolean handleUserConfirmationChoice() {
+        Scanner input = new Scanner();
+        
+        System.out.println("Are you sure?");
+        System.out.println("'Y' for Yes. 'N' for No.");
+
+        String userResponse = input.nextLine().strip().toLowerCase();
+
+        if (userResponse.equals("y"))
+            return true;
+        else if (userResponse.equals("n"))
+            return false;
+        else
+            System.out.println("Wrong choice. Enter 'Y' for Yes. 'N' for No.");
+    } 
 
     /* protected ... void displayError(...) {
         ...
