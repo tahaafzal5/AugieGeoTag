@@ -15,7 +15,28 @@ public class Utility {
         System.out.println("\t7. Exit");
     }
 
+<<<<<<< HEAD
     /* protected static void displayHelpMenu() {
+=======
+    protected static void displayHelpMenu() {
+        Scanner displayHelpMenuScanner = new Scanner(System.in);
+        System.out.println("Help Menu:");
+        System.out.println("\t1. Open an image: This option allows you to select the specific image you would like");
+        System.out.println(" to edit the GeoTag of. It must be the exact file name including the file tag.");
+        System.out.println("\t2. Add GeoTag: This option allows you to add a GeoTag to the image you opened");
+        System.out.println("in option 1. It will ask for a GeoTag in format of: ");
+        System.out.println("\t3. Update GeoTag: This option allows you to remove an original GeoTag, and add a new one.");
+        System.out.println(" Also known as updating. It will ask for a GeoTag in format of:");
+        System.out.println("\t4. Remove GeoTag: This function allows you to remove the GeoTag on the image you opened in option 1.");
+        System.out.println("\t6. About: This GeoTag editing program was developed by Taha, Taire, Zach, Tony, Sicheng and Zemenu.");
+        System.out.println("Press Enter key to return to main menu.");
+        if (displayHelpMenuScanner.nextLine().equals("")) {
+            displayMenu();
+        }
+        else {
+            displayHelpMenu();
+        }
+>>>>>>> fca0e99 (Updated on Taha's comments)
         
     } */
 
