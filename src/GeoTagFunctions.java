@@ -80,7 +80,7 @@ public class GeoTagFunctions {
     //Pre: latitude and longtitude should be passed as two double value.
     //Return: return true if geotag is successfully written. false otherwise.
     //Output: a image with new geotag written in. If the wrriten process failed, no change would happen
-    public static boolean writeGeoTagData(File jpeg, File result, double latitude, double longtitude) {
+    public static boolean updateGeoTagData(File jpeg, File result, double latitude, double longtitude) {
         try {
             TiffOutputSet outputSet = null;
             
