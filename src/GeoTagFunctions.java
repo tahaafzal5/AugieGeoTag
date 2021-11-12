@@ -1,6 +1,7 @@
 package src;
 
 import java.io.*;
+import java.util.*;
 
 import org.apache.commons.imaging.Imaging;
 import org.apache.commons.imaging.common.ImageMetadata;
@@ -10,6 +11,34 @@ import org.apache.commons.imaging.formats.tiff.TiffImageMetadata;
 public class GeoTagFunctions {
     
 	private static TiffImageMetadata exif = null;
+
+    public static boolean openImage() {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter the file name (including the extension): ");
+        String fileName = input.nextLine().strip().toLowerCase();
+        
+        try {
+            File inputFile = new File("./assets/" + fileName);
+            
+            if (inputFile.exists()) {
+                Utility.displayProcessing("open-image");
+                Utility.displaySuccess("open-image");
+                
+                return true;
+            }
+            else {
+                System.out.println("Image not found"); // To be replaced by Utility.displayError("open-image");
+            }
+        } 
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        finally {
+            input.close();
+        }
+        return false;
+    }
 	
   	//Return: true if passed file is a JPEG/JPG, false otherwise.
     //Output: Error message if the file reading process contains error.
