@@ -17,13 +17,13 @@ public class GeoTagFunctions {
         try {
             BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(file));
 
-            //read the marker
+            // read the marker
             byte[] fileMarker = new byte[2];
             bufferedInputStream.read(fileMarker);
                 
             bufferedInputStream.close();
                 
-            //check the file type
+            // check the file type
             if ((fileMarker[0] & 0xFF) == 0xFF && (fileMarker[1] & 0xFF) == 0xD8)
                 return true;
             else
@@ -31,13 +31,15 @@ public class GeoTagFunctions {
         }
         catch (Exception exception) {
             System.out.println(exception.getMessage());
+
             return false;
         }
   	}
 
-    //Pre: it will return true even if metadata does not exist.
-    //Return: true if metadata read successfully
+    //Pre: file passed in as argument should be JPEG/JPG
+    //Return: true if metadata read successfully, false otherwise
     //Output: error message if program throw Exception
+    //Reminder: exif might be a null. It is important to check it because there might be no metadata.
     public static boolean readImageMeta(File jpeg) {
         try {
             //Get Metadata
@@ -48,7 +50,8 @@ public class GeoTagFunctions {
                 exif = jpegMetadata.getExif();
 
             return true;
-        } catch (Exception exception) {
+        } 
+        catch (Exception exception) {
             System.out.println(jpeg.getName() + ": " + exception.getMessage());
             
             return false;
