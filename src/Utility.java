@@ -121,4 +121,12 @@ public class Utility {
                 System.out.println("Processing...");
         }
     }
+
+    // Desc: One of the options in the menu
+    // Output: Displays basic information about this program
+    public static void aboutProgram() {
+        System.out.println("\nAugie GeoTag lets you add, edit, and remove GeoTag data from your JPEG/JPG images.");
+        System.out.println("GitHub repo: https://github.com/tahaafzal5/AugieGeoTag");
+        System.out.println("This program was developed by Taha, Taire, Zach, Tony, Sicheng and Zemenu.\n");
+    }
 }
