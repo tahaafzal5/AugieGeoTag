@@ -41,7 +41,10 @@ Please make a new branch for each change you want to make. This way we can keep 
 - Commit your changes with a meaningful commit message
     - `git commit -m "your message"`
 - Rebase on master before pushing changes
-    - While being on your branch that you made changes in, `git rebase master`
+    - Switch to master by `git switch master`
+    - Pull recent changes on master by `git pull`
+    - Switch back to your branch by `git switch <your-branch-name>`
+    - `git rebase master`
     - `git commit -m <message-about-rebasing>`
 - To create a new branch on remote and push your changes
     - `git push origin <your-branch-name>`
