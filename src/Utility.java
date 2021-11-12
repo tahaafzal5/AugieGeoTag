@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Utility {
 
+    // Output: Basic menu of the program to let the user do essential tasks
     protected static void displayMenu() {
         System.out.println("Augie GeoTag Menu:");
         System.out.println("\t1. Open an image");
@@ -19,6 +20,7 @@ public class Utility {
         
     } */
 
+    // Desc: depending on the user's choice from the main menu, this method calls the appropriate function
     protected static void handleUserMenuChoice(Scanner input) { 
         try {
             System.out.print("Please enter selection (1-7): ");
