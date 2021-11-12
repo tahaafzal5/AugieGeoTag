@@ -1,10 +1,6 @@
 package src;
 
-<<<<<<< HEAD
-import java.util.*;
-=======
 import java.util.Scanner;
->>>>>>>  askUserConfirmation and handleUserConfirmationChoice are done
 
 public class Utility {
 
