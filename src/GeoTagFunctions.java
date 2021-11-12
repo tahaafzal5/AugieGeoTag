@@ -39,6 +39,7 @@ public class GeoTagFunctions {
     //Pre: file passed in as argument should be JPEG/JPG
     //Return: true if metadata read successfully, false otherwise
     //Output: error message if program throw Exception
+    //Reminder: exif might be a null. It is important to check it because there might be no metadata.
     public static boolean readImageMeta(File jpeg) {
         try {
             //Get Metadata
