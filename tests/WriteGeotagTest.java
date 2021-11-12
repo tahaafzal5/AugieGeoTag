@@ -21,7 +21,7 @@ public class WriteGeotagTest {
 			GeoTagFunctions.readImageMeta(jpeg);
             		File result = new File("./results/NE_" + jpeg.getName());
         	
-        		if ( GeoTagFunctions.writeGeoTagData(jpeg, result, latitude, longtitude) )
+        		if ( GeoTagFunctions.updateGeoTagData(jpeg, result, latitude, longtitude) )
                 		System.out.printf("%-30s %c \n", jpeg.getName(), '\u2713');
         	
         		result = new File("./results/SW_" + jpeg.getName());
