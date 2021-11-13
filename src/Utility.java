@@ -16,25 +16,26 @@ public class Utility {
         System.out.println("\t7. Exit");
     }
 
-    protected static void displayHelpMenu() {
-        Scanner displayHelpMenuScanner = new Scanner(System.in);
-        
+    protected static void displayHelpMenu(Scanner input) {
         System.out.println("Help Menu:");
-        System.out.println("\t1. Open an image: This option allows you to select the specific image you would like");
-        System.out.println(" to edit the GeoTag of. It must be the exact file name including the file tag.");
-        System.out.println("\t2. Add GeoTag: This option allows you to add a GeoTag to the image you opened");
-        System.out.println("in option 1. It will ask for a GeoTag in format of: ");
-        System.out.println("\t3. Update GeoTag: This option allows you to remove an original GeoTag, and add a new one.");
-        System.out.println(" Also known as updating. It will ask for a GeoTag in format of:");
-        System.out.println("\t4. Remove GeoTag: This function allows you to remove the GeoTag on the image you opened in option 1.");
-        System.out.println("\t6. About: This GeoTag editing program was developed by Taha, Taire, Zach, Tony, Sicheng and Zemenu.");
-        System.out.println("Press Enter key to return to main menu.");
+
+        System.out.println("1. Open an image: This option allows you to select the specific image you would like");
+        System.out.println("\t\t  to edit the GeoTag of. It must be the exact file name including the file extension.");
+        System.out.println("2. Add GeoTag:\t  This option allows you to add a GeoTag to the image you opened with option 1.");
+        System.out.println("\t\t  It will ask for a GeoTag in format of: << to add >>");
+        System.out.println("3. Update GeoTag: This option allows you to remove an original GeoTag and add a new one on the image you opened with option 1.");
+        System.out.println("\t\t  It will ask for a GeoTag in format of: << to add >>");
+        System.out.println("4. Remove GeoTag: This function allows you to remove the GeoTag on the image you opened with option 1.");
+        System.out.println("5. Help Menu:\t  Shows this menu.");
+        System.out.println("6. About:\t  Shows the purpose, GitHub repo link, and the developer names for this project.");
         
-        if (displayHelpMenuScanner.nextLine().equals("")) {
+        System.out.println("\nPress Enter key to return to main menu.");
+        
+        if (input.nextLine().equals("")) {
             displayMenu();
         }
         else {
-            displayHelpMenu();
+            displayHelpMenu(input);
         }   
     }
 
@@ -54,7 +55,7 @@ public class Utility {
                             break;
                     case 4: System.out.println("GeoTagFunctions.removeGeoTagData() should be called when it is implemented");
                             break;
-                    case 5: displayMenu();
+                    case 5: displayHelpMenu(input);
                             break;
                     case 6: System.out.println("aboutProgram() should be called when it is implemented");
                             break;
