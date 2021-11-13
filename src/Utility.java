@@ -72,9 +72,7 @@ public class Utility {
 
     } */
 
-     protected static boolean handleUserConfirmationChoice() {
-        Scanner input = new Scanner();
-        
+     protected static boolean handleUserConfirmationChoice(Scanner input) {        
         System.out.println("Are you sure?");
         System.out.println("'Y' for Yes. 'N' for No.");
 
