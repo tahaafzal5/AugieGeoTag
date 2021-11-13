@@ -1,5 +1,6 @@
 package src;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Utility {
@@ -72,18 +73,24 @@ public class Utility {
 
     } */
 
-     protected static boolean handleUserConfirmationChoice(Scanner input) {        
+    // Pre: an open and working Scanner object
+    // Input: 'y' for yes and 'n' for no to confirm action
+    // Output: message for the user asking if they are sure. Another message if wrong choice is entered
+    // Return: true if user confirms action, false otherwises
+    protected static boolean handleUserConfirmationChoice(Scanner input) {        
         System.out.println("Are you sure?");
         System.out.println("'Y' for Yes. 'N' for No.");
-
-        String userResponse = input.nextLine().strip().toLowerCase();
-
-        if (userResponse.equals("y"))
-            return true;
-        else if (userResponse.equals("n"))
-            return false;
-        else
-            System.out.println("Wrong choice. Enter 'Y' for Yes. 'N' for No.");
+        
+        while (true) {
+            Character userResponse = input.nextLine().strip().toLowerCase().charAt(0);
+    
+            if (userResponse == 'y')
+                return true;
+            else if (userResponse == 'n')
+                return false;
+            else
+                System.out.println("Wrong choice. Enter 'Y' for Yes. 'N' for No.");
+        }
     } 
 
     /* protected ... void displayError(...) {
