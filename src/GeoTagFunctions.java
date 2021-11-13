@@ -16,32 +16,51 @@ public class GeoTagFunctions {
     
 	private static TiffImageMetadata exif = null;
 
-    public static boolean openImage() {
-        Scanner input = new Scanner(System.in);
-
-        System.out.print("Enter the file name (including the extension): ");
+    // Pre: an open and working scanner
+    // Return: a String array ["true", "<fileName>"] if the file exists, ["false", null] if it does not
+    // Output: meaningful message for user to enter a file name, about processing, and success or failure
+    public static String[] fileExists(Scanner input) {
+    System.out.print("Enter the file name (including the extension): ");
         String fileName = input.nextLine().strip().toLowerCase();
+
+        String[] result = new String[2];
         
         try {
             File inputFile = new File("./assets/" + fileName);
             
+            Utility.displayProcessing("find-file");
             if (inputFile.exists()) {
-                Utility.displayProcessing("open-image");
-                Utility.displaySuccess("open-image");
+                Utility.displaySuccess("find-file");
                 
-                return true;
+                result[0] = "true";
+                result[1] = fileName;
+
+                return result;
             }
             else {
-                System.out.println("Image not found"); // To be replaced by Utility.displayError("open-image");
+                System.out.println("Image not found"); // To be replaced by Utility.displayError("find-file");
+                
+                result[0] = "false";
+                result[1] = null;
             }
         } 
         catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        finally {
-            input.close();
-        }
-        return false;
+
+        return result;
+    }
+
+    // Pre: should be only called when it is confirmed that the file exists in the assets folder of this project
+    // Return: the file the user wants to open
+    // Output: meaningful messages about processing and success when opening the file
+    public static File openFile(String fileName) {
+        File file = new File("./assets/" + fileName);
+        
+        Utility.displayProcessing("open-file");
+        Utility.displaySuccess("open-file");
+
+        return file;
     }
 	
   	//Return: true if passed file is a JPEG/JPG, false otherwise.
