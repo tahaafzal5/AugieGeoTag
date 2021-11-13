@@ -17,7 +17,7 @@ public class GeoTagFunctions {
 	private static TiffImageMetadata exif = null;
 
     // Pre: an open and working scanner
-    // Return: the file the user wants to open
+    // Return: the file the user wants to open if it exists, null otherwise
     // Output: meaningful messages about processing and success when opening the file
     public static File openFile(Scanner input) {
         System.out.print("Enter the file name (including the extension): ");
