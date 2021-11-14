@@ -180,7 +180,7 @@ public class GeoTagFunctions {
             return saveJpegImage(jpeg, result, outputSet);           	
         }
         catch (Exception exception) {
-            Utility.displayError("remove-geotag");
+            Utility.displayError("update-geotag");
         	result.delete();
         	System.out.println(jpeg.getName() + ": " + exception.getMessage());
 
