@@ -99,8 +99,10 @@ public class Utility {
 
     public static void displaySuccess(String type) {
         switch (type) {
-            case "open-image":
-                System.out.println("Image opened successfully"); break;
+            case "find-file":
+                System.out.println("File found successfully"); break;
+            case "open-file":
+                System.out.println("File opened successfully"); break;
             case "read-metadata":
                 System.out.println("Metadata read successfully"); break;
             case "check-jpeg":
@@ -120,8 +122,10 @@ public class Utility {
 
     public static void displayProcessing(String type) {
         switch (type) {
-            case "open-image":
-                System.out.println("Opening image..."); break;
+            case "find-file":
+                System.out.println("Finding file..."); break;
+            case "open-file":
+                System.out.println("Opening file..."); break;
             case "read-metadata":
                 System.out.println("Reading image metadata..."); break;
             case "check-jpeg":
