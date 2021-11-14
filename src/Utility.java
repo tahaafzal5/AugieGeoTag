@@ -16,6 +16,8 @@ public class Utility {
         System.out.println("\t7. Exit");
     }
 
+    // Pre: an open and working Scanner object
+    // Output: Shows a help menu about Augie GeoTag explaining what each menu option does
     protected static void displayHelpMenu(Scanner input) {
         System.out.println("Help Menu:");
 
@@ -39,10 +41,12 @@ public class Utility {
         }   
     }
 
+    // Pre: an open and working Scanner object
     // Desc: depending on the user's choice from the main menu, this method calls the appropriate function
     protected static void handleUserMenuChoice(Scanner input) { 
         try {
             System.out.print("Please enter selection (1-7): ");
+
             int choice = 0; 
             while (choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != 5 && choice != 6 && choice != 7) {
                 choice = input.nextInt();
@@ -57,10 +61,12 @@ public class Utility {
                             break;
                     case 5: displayHelpMenu(input);
                             break;
-                    case 6: System.out.println("aboutProgram() should be called when it is implemented");
+                    case 6: aboutProgram();
                             break;
                     case 7: System.exit(0);
-                    default: System.out.print("Invalid option. Please enter option 1-7: ");
+
+                    default:
+                        System.out.print("Invalid option. Please enter option 1-7: ");
                 }
             }
         }
@@ -77,7 +83,7 @@ public class Utility {
     // Input: 'y' for yes and 'n' for no to confirm action
     // Output: message for the user asking if they are sure. Another message if wrong choice is entered
     // Return: true if user confirms action, false otherwises
-    protected static boolean handleUserConfirmationChoice(Scanner input) {        
+    protected static boolean handleUserConfirmationChoice(Scanner input) {  
         System.out.println("Are you sure?");
         System.out.println("'Y' for Yes. 'N' for No.");
         
@@ -93,10 +99,12 @@ public class Utility {
         }
     }
 
-    public static void displayErrorMethod(String type){
+    // Pre: the argument type must be one of the cases in the switch-cases to get a meaningful message
+    // Output: a meaningful message based on the error type
+    public static void displayError(String type) {
         switch (type) {
             case "find-file":
-                System.out.println("Error: can't find the file you are trying to open"); break;
+                System.out.println("Error: the file you are trying to open does not exist in this project's assets folder"); break;
             case "open-file":
                 System.out.println("Error: can't open the file you are trying to open"); break;
             case "check-jpeg": 
@@ -117,6 +125,8 @@ public class Utility {
         }
     }
 
+    // Pre: the argument type must be one of the cases in the switch-cases to get a meaningful message
+    // Output: a meaningful message based on the success type
     public static void displaySuccess(String type) {
         switch (type) {
             case "find-file":
@@ -135,11 +145,14 @@ public class Utility {
                 System.out.println("Wrote geotag successfully"); break;
             case "save-image":
                 System.out.println("Image saved successfully"); break;
+
             default:
                 System.out.println("Success");
         }
     } 
 
+    // Pre: the argument type must be one of the cases in the switch-cases to get a meaningful message
+    // Output: a meaningful message based on the processing type
     public static void displayProcessing(String type) {
         switch (type) {
             case "find-file":
@@ -158,6 +171,7 @@ public class Utility {
                 System.out.println("Writing the metadata in the image..."); break;
             case "save-image":
                 System.out.println("Saving the image..."); break;
+
             default:
                 System.out.println("Processing...");
         }
