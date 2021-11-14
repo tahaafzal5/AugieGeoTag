@@ -189,7 +189,7 @@ public class GeoTagFunctions {
     }
     
     // Pre: open files
-    // Output: a jpeg file with new exif in outputSet is written.
+    // Output: a jpeg file with new exif in outputSet is written. Nothing would change if method failed
     private static boolean saveJpegImage(File jpeg, File result, TiffOutputSet outputSet){
         try {
             // set up output stream
@@ -206,6 +206,7 @@ public class GeoTagFunctions {
         } 
         catch (Exception e) {
             Utility.displayError("save-image");
+            result.delete();
             System.out.println(jpeg.getName() + ": " + e.getMessage());
             
             return false;
