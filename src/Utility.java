@@ -95,6 +95,7 @@ public class Utility {
 
     public static void displayErrorMethod(String type){
         switch (type) {
+<<<<<<< HEAD
             case "find-file":
                 System.out.println("Error: can't find the file you are trying to open"); break;
             case "open-file":
@@ -114,6 +115,20 @@ public class Utility {
             
             default:
                 System.out.println("Error");
+=======
+            case "check-jpeg": 
+                System.out.println("Error opening image, check that you uploaded an acceptable file format (JPEG/JPG)"); break;
+            case "check-exists":
+                System.out.println("File not found, please open a valid image"); break;
+            case "check-multiple":
+                System.out.println("Error: You are attempting to open more than 1 image, please open only one image at a time"); break;
+            case "remove-geotag":
+                System.out.println("Error: Geotag does not exist on given image, please open a different image"); break;
+            case "update-geotag": 
+                System.out.println("Error: Geotag does not exist on given image, please open a different image"); break;
+            case "add-geotag":
+                System.out.println("Error: Geotag already exists on given image, please open a different image"); break;
+>>>>>>> fdd3660bbf1fdde3fce47c14d09541d0083d09d9
         }
     }
 
