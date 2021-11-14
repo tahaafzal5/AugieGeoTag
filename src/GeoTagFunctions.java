@@ -16,7 +16,7 @@ public class GeoTagFunctions {
     
 	private static TiffImageMetadata exif = null;
 
-    // Pre: an open and working scanner
+    // Pre: an open and working Scanner object
     // Return: the file the user wants to open if it exists, null otherwise
     // Output: meaningful messages about processing and success when opening the file
     public static File openFile(Scanner input) {
@@ -33,18 +33,20 @@ public class GeoTagFunctions {
                 return file;
             }
             else {
-                System.out.println("File not found"); // To be replaced by Utility.displayError("find-file");
+                Utility.displayError("find-file");
             }
         } 
         catch (Exception e) {
+            Utility.displayError("find-file");
             System.out.println(e.getMessage());
         }
 
         return null;
     }
 	
-  	//Return: true if passed file is a JPEG/JPG, false otherwise.
-    //Output: Error message if the file reading process contains error.
+    // Pre: an open file
+  	// Return: true if passed file is a JPEG/JPG, false otherwise.
+    // Output: Error message if the file reading process contains error.
   	public static boolean isJpeg(File file) {    
         try {
             BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(file));
@@ -56,35 +58,49 @@ public class GeoTagFunctions {
             bufferedInputStream.close();
                 
             // check the file type
-            if ((fileMarker[0] & 0xFF) == 0xFF && (fileMarker[1] & 0xFF) == 0xD8)
+            Utility.displayProcessing("check-jpeg");
+            if ((fileMarker[0] & 0xFF) == 0xFF && (fileMarker[1] & 0xFF) == 0xD8) {
+                Utility.displaySuccess("check-jpeg");
+
                 return true;
-            else
+            }
+            else {
+                Utility.displayError("check-jpeg");
+                
                 return false;
+            }
         }
         catch (Exception exception) {
+            Utility.displayError("check-jpeg");
             System.out.println(exception.getMessage());
 
             return false;
         }
   	}
 
-    //Pre: file passed in as argument should be JPEG/JPG
-    //Return: true if metadata read successfully, false otherwise
-    //Output: error message if program throw Exception
-    //Reminder: exif might be a null. It is important to check it because there might be no metadata.
+    // Pre: file passed in as argument should be JPEG/JPG
+    // Return: true if metadata read successfully, false otherwise
+    // Output: error message if program throw Exception
+    // Reminder: exif might be a null. It is important to check it because there might be no metadata.
     public static boolean readImageMeta(File jpeg) {
         try {
-            //Get Metadata
+            // get Metadata
             final ImageMetadata metadata = Imaging.getMetadata(jpeg);
             final JpegImageMetadata jpegMetadata = (JpegImageMetadata) metadata;
             
-            if (jpegMetadata != null)
+            Utility.displayProcessing("read-metadata");
+            if (jpegMetadata != null) {
                 exif = jpegMetadata.getExif();
+            }
+
+            Utility.displaySuccess("read-metadata");
 
             return true;
         } 
         catch (Exception exception) {
             System.out.println(jpeg.getName() + ": " + exception.getMessage());
+
+            Utility.displayError("read-metadata");
             return false;
         }
     }
@@ -105,9 +121,9 @@ public class GeoTagFunctions {
         ...
     } */
     
-    //Pre: latitude and longtitude should be passed as two double value.
-    //Return: return true if geotag is successfully written. false otherwise.
-    //Output: a image with new geotag written in. If the wrriten process failed, no change would happen
+    // Pre: latitude and longtitude should be passed as two double value
+    // Return: return true if geotag is successfully written. false otherwise
+    // Output: a image with new geotag written in. If the writing process failed, no change would happen
     public static boolean updateGeoTagData(File jpeg, File result, double latitude, double longtitude) {
         try {
             TiffOutputSet outputSet = null;
@@ -117,35 +133,50 @@ public class GeoTagFunctions {
             if (exif != null) {
                 //get a copy of exif data to be muted.
                 outputSet = exif.getOutputSet();
-            } else {
+            } 
+            else {
             	outputSet = new TiffOutputSet();
             }
             
+            Utility.displayProcessing("update-geotag");
             outputSet.setGPSInDegrees(longtitude, latitude);
             
+            Utility.displaySuccess("update-geotag");
             return saveJpegImage(jpeg, result, outputSet);           	
         }
         catch (Exception exception) {
+            Utility.displayError("update-geotag");
         	result.delete();
         	System.out.println(jpeg.getName() + ": " + exception.getMessage());
+
         	return false;
         }
     }
     
-    //throw: ImageReadException and ImageWriteException would be thrown if ExifWriter 
-    //		 has problem on reading and writing image. IOException would be thrown depends
-    //		 on buffered output stream
-    //Output: a jpeg file with new exif in outputSet is written.
-    private static boolean saveJpegImage(File jpeg, File result, TiffOutputSet outputSet) 
-    		throws ImageReadException, ImageWriteException, IOException {
-    	
-    	//Set up output stream
-    	FileOutputStream fos = new FileOutputStream(result);
-        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fos);
+    // Pre: open files
+    // Throw: ImageReadException and ImageWriteException would be thrown if ExifWriter 
+    //		  has problem on reading and writing image. IOException would be thrown depends
+    //		  on buffered output stream
+    // Output: a jpeg file with new exif in outputSet is written.
+    private static boolean saveJpegImage(File jpeg, File result, TiffOutputSet outputSet) throws ImageReadException, ImageWriteException, IOException {
+        try {
+            // set up output stream
+            FileOutputStream fos = new FileOutputStream(result);
+            BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fos);
+                
+            // write exif meradata into new jpeg/jpg file
+            Utility.displayProcessing("save-image");
+            new ExifRewriter().updateExifMetadataLossless(jpeg, bufferedOutputStream, outputSet);
             
-        //write exif meradata into new jpeg/jpg file.
-        new ExifRewriter().updateExifMetadataLossless(jpeg, bufferedOutputStream, outputSet);
-             
-        return true;
+            Utility.displaySuccess("save-image");
+            
+            return true;
+        } 
+        catch (Exception e) {
+            Utility.displayError("save-image");
+            System.out.println(e.getMessage());
+            
+            return false;
+        }
     }
 }
