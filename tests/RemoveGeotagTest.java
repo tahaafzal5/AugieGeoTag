@@ -13,9 +13,8 @@ public class RemoveGeotagTest {
         resultsFolder.mkdir();
         	
         for (File jpeg : assetsFolder.listFiles()) {
-        	File result = new File("./results/" + jpeg.getName());
         	
-        	if ( GeoTagFunctions.removeGeoTagData(jpeg, result) )
+        	if ( GeoTagFunctions.removeGeoTagData(jpeg) )
         		System.out.printf("%-30s %c \n", jpeg.getName(), '\u2713');
         }
 	}

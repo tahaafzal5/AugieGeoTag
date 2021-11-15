@@ -120,9 +120,13 @@ public class GeoTagFunctions {
     // Output: a image without geotag. If the writing process failed, no change would happen
     public static boolean updateGeoTagData(File jpeg, double latitude, double longtitude) {
     	File resultsFolder = new File("./assets/results");
-        if (!resultsFolder.exists()) resultsFolder.mkdir();
-    	File result = new File("./assets/results/" + jpeg.getName());
-    	return updateGeoTagData(jpeg, result, latitude, longtitude);
+        
+        if (!resultsFolder.exists())
+            resultsFolder.mkdir();
+    	
+        File result = new File("./assets/results/" + jpeg.getName());
+    	
+        return updateGeoTagData(jpeg, result, latitude, longtitude);
     }
     
     // Pre: This function save image in results folder under asserts
@@ -130,15 +134,19 @@ public class GeoTagFunctions {
     // Output: a image without geotag. If the writing process failed, no change would happen
     public static boolean removeGeoTagData(File jpeg) {
     	File resultsFolder = new File("./assets/results");
-        if (!resultsFolder.exists()) resultsFolder.mkdir();
+
+        if (!resultsFolder.exists())
+            resultsFolder.mkdir();
+
     	File result = new File("./assets/results/" + jpeg.getName());
-    	return removeGeoTagData(jpeg, result);
+    	
+        return removeGeoTagData(jpeg, result);
     }
     
     // Pre: this method will not fail if there is not geotag in image
     // Return: return true if geotag is successfully removed. false otherwise
     // Output: a image without geotag. If the writing process failed, no change would happen
-    public static boolean removeGeoTagData(File jpeg, File result) {
+    private static boolean removeGeoTagData(File jpeg, File result) {
     	try {
     		final int LATITUDE_REFERENCE_TAG = 1;
     	    final int LATITUDE_TAG = 2;
@@ -153,7 +161,8 @@ public class GeoTagFunctions {
     		if (exif != null) {
                 //get a copy of exif data to be muted.
                 outputSet = exif.getOutputSet();
-            } else {
+            } 
+            else {
             	outputSet = new TiffOutputSet();
             	
             	//avoid empty exif data that cause null pointer error in output
@@ -162,17 +171,21 @@ public class GeoTagFunctions {
     		
     		//Remove latitude and longtitude value.
     		Utility.displayProcessing("remove-geotag");
+
     		outputSet.removeField(LATITUDE_REFERENCE_TAG);
             outputSet.removeField(LATITUDE_TAG);
             outputSet.removeField(LONGTITUDE_REFERENCE_TAG);
             outputSet.removeField(LONGTITUDE_TAG);
+            
             Utility.displaySuccess("remove-geotag");
             
             return saveJpegImage(jpeg, result, outputSet);           	
-    	} catch (Exception exception) {
+    	}
+        catch (Exception exception) {
     		Utility.displayError("remove-geotag");
         	result.delete();
-        	System.out.println(jpeg.getName() + ": " + exception.getMessage());
+        	
+            System.out.println(jpeg.getName() + ": " + exception.getMessage());
     		return false;
     	}
     }
