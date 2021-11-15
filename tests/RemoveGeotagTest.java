@@ -13,7 +13,6 @@ public class RemoveGeotagTest {
         resultsFolder.mkdir();
         	
         for (File jpeg : assetsFolder.listFiles()) {
-        	GeoTagFunctions.readImageMeta(jpeg);
         	File result = new File("./results/" + jpeg.getName());
         	
         	if ( GeoTagFunctions.removeGeoTagData(jpeg, result) )

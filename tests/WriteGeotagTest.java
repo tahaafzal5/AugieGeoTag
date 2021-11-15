@@ -18,7 +18,6 @@ public class WriteGeotagTest {
         double longtitude = 120.0 + 40.0 / 60 + 20.89 / 3600;
         
         for (File jpeg : assetsFolder.listFiles()) {
-        	GeoTagFunctions.readImageMeta(jpeg);
             File result = new File("./results/NE_" + jpeg.getName());
         	
         	if ( GeoTagFunctions.updateGeoTagData(jpeg, result, latitude, longtitude) )
