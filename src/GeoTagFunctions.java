@@ -15,11 +15,6 @@ import org.apache.commons.imaging.formats.tiff.write.TiffOutputSet;
 public class GeoTagFunctions {
     
 	private static TiffImageMetadata exif = null;
-	
-	private static final int LATITUDE_REFERENCE_TAG = 1;
-    private static final int LATITUDE_TAG = 2;
-    private static final int LONGTITUDE_REFERENCE_TAG = 3;
-    private static final int LONGTITUDE_TAG = 4;
 
     // Pre: an open and working Scanner object
     // Return: the file the user wants to open if it exists, null otherwise
@@ -127,7 +122,15 @@ public class GeoTagFunctions {
     // Output: a image without geotag. If the writing process failed, no change would happen
     public static boolean removeGeoTagData(File jpeg, File result) {
     	try {
-    		TiffOutputSet outputSet = null;
+    		final int LATITUDE_REFERENCE_TAG = 1;
+    	    final int LATITUDE_TAG = 2;
+    	    final int LONGTITUDE_REFERENCE_TAG = 3;
+    	    final int LONGTITUDE_TAG = 4;
+    		
+    	    //copy the original information
+    	    GeoTagFunctions.readImageMeta(jpeg);
+    		
+    	    TiffOutputSet outputSet = null;
     		
     		if (exif != null) {
                 //get a copy of exif data to be muted.
@@ -161,7 +164,10 @@ public class GeoTagFunctions {
     // Output: a image with new geotag written in. If the writing process failed, no change would happen
     public static boolean updateGeoTagData(File jpeg, File result, double latitude, double longtitude) {
         try {
-            TiffOutputSet outputSet = null;
+        	//copy the original information
+    	    GeoTagFunctions.readImageMeta(jpeg);
+        	
+    	    TiffOutputSet outputSet = null;
             
             // if file does not contain any exif metadata, we create an empty
             // set of exif metadata. Otherwise, we keep all of the other existing tags.
@@ -180,7 +186,7 @@ public class GeoTagFunctions {
             return saveJpegImage(jpeg, result, outputSet);           	
         }
         catch (Exception exception) {
-            Utility.displayError("remove-geotag");
+            Utility.displayError("update-geotag");
         	result.delete();
         	System.out.println(jpeg.getName() + ": " + exception.getMessage());
 
