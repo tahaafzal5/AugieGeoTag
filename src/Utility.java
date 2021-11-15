@@ -134,6 +134,8 @@ public class Utility {
                 System.out.println("Error: GeoTag does not exist on given image, please open a different image or try adding the GeoTag"); break;
             case "add-geotag":
                 System.out.println("Error: GeoTag already exists on given image, please open a different image or try updating the GeoTag"); break;
+            case "save-image":
+            	System.out.println("Error: can't output the image"); break;
             
             default:
                 System.out.println("Error");

@@ -3,8 +3,6 @@ package src;
 import java.io.*;
 import java.util.*;
 
-import org.apache.commons.imaging.ImageReadException;
-import org.apache.commons.imaging.ImageWriteException;
 import org.apache.commons.imaging.Imaging;
 import org.apache.commons.imaging.common.ImageMetadata;
 import org.apache.commons.imaging.formats.jpeg.JpegImageMetadata;
@@ -116,17 +114,91 @@ public class GeoTagFunctions {
     /* protected ... void printGeoTagData(...) {
         ...
     } */
+    
+    // Pre: This function save image in results folder under asserts
+    // Return: return true if geotag is successfully updated. false otherwise
+    // Output: a image without geotag. If the writing process failed, no change would happen
+    public static boolean updateGeoTagData(File jpeg, double latitude, double longtitude) {
+    	File resultsFolder = new File("./assets/results");
+        
+        if (!resultsFolder.exists())
+            resultsFolder.mkdir();
+    	
+        File result = new File("./assets/results/" + jpeg.getName());
+    	
+        return updateGeoTagData(jpeg, result, latitude, longtitude);
+    }
+    
+    // Pre: This function save image in results folder under asserts
+    // Return: return true if geotag is successfully removed. false otherwise
+    // Output: a image without geotag. If the writing process failed, no change would happen
+    public static boolean removeGeoTagData(File jpeg) {
+    	File resultsFolder = new File("./assets/results");
 
-    /* protected ... ... removeGeoTagData(...) {
-        ...
-    } */
+        if (!resultsFolder.exists())
+            resultsFolder.mkdir();
+
+    	File result = new File("./assets/results/" + jpeg.getName());
+    	
+        return removeGeoTagData(jpeg, result);
+    }
+    
+    // Pre: this method will not fail if there is not geotag in image
+    // Return: return true if geotag is successfully removed. false otherwise
+    // Output: a image without geotag. If the writing process failed, no change would happen
+    private static boolean removeGeoTagData(File jpeg, File result) {
+    	try {
+    		final int LATITUDE_REFERENCE_TAG = 1;
+    	    final int LATITUDE_TAG = 2;
+    	    final int LONGTITUDE_REFERENCE_TAG = 3;
+    	    final int LONGTITUDE_TAG = 4;
+    		
+    	    //copy the original information
+    	    GeoTagFunctions.readImageMeta(jpeg);
+    		
+    	    TiffOutputSet outputSet = null;
+    		
+    		if (exif != null) {
+                //get a copy of exif data to be muted.
+                outputSet = exif.getOutputSet();
+            } 
+            else {
+            	outputSet = new TiffOutputSet();
+            	
+            	//avoid empty exif data that cause null pointer error in output
+            	outputSet.getOrCreateExifDirectory();
+            }
+    		
+    		//Remove latitude and longtitude value.
+    		Utility.displayProcessing("remove-geotag");
+
+    		outputSet.removeField(LATITUDE_REFERENCE_TAG);
+            outputSet.removeField(LATITUDE_TAG);
+            outputSet.removeField(LONGTITUDE_REFERENCE_TAG);
+            outputSet.removeField(LONGTITUDE_TAG);
+            
+            Utility.displaySuccess("remove-geotag");
+            
+            return saveJpegImage(jpeg, result, outputSet);           	
+    	}
+        catch (Exception exception) {
+    		Utility.displayError("remove-geotag");
+        	result.delete();
+        	
+            System.out.println(jpeg.getName() + ": " + exception.getMessage());
+    		return false;
+    	}
+    }
     
     // Pre: latitude and longtitude should be passed as two double value
     // Return: return true if geotag is successfully written. false otherwise
     // Output: a image with new geotag written in. If the writing process failed, no change would happen
     public static boolean updateGeoTagData(File jpeg, File result, double latitude, double longtitude) {
         try {
-            TiffOutputSet outputSet = null;
+        	//copy the original information
+    	    GeoTagFunctions.readImageMeta(jpeg);
+        	
+    	    TiffOutputSet outputSet = null;
             
             // if file does not contain any exif metadata, we create an empty
             // set of exif metadata. Otherwise, we keep all of the other existing tags.
@@ -140,8 +212,8 @@ public class GeoTagFunctions {
             
             Utility.displayProcessing("update-geotag");
             outputSet.setGPSInDegrees(longtitude, latitude);
-            
             Utility.displaySuccess("update-geotag");
+            
             return saveJpegImage(jpeg, result, outputSet);           	
         }
         catch (Exception exception) {
@@ -154,11 +226,8 @@ public class GeoTagFunctions {
     }
     
     // Pre: open files
-    // Throw: ImageReadException and ImageWriteException would be thrown if ExifWriter 
-    //		  has problem on reading and writing image. IOException would be thrown depends
-    //		  on buffered output stream
-    // Output: a jpeg file with new exif in outputSet is written.
-    private static boolean saveJpegImage(File jpeg, File result, TiffOutputSet outputSet) throws ImageReadException, ImageWriteException, IOException {
+    // Output: a jpeg file with new exif in outputSet is written. Nothing would change if method failed
+    private static boolean saveJpegImage(File jpeg, File result, TiffOutputSet outputSet){
         try {
             // set up output stream
             FileOutputStream fos = new FileOutputStream(result);
@@ -174,7 +243,8 @@ public class GeoTagFunctions {
         } 
         catch (Exception e) {
             Utility.displayError("save-image");
-            System.out.println(e.getMessage());
+            result.delete();
+            System.out.println(jpeg.getName() + ": " + e.getMessage());
             
             return false;
         }
