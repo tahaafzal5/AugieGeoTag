@@ -75,10 +75,25 @@ public class Utility {
         }
     } 
 
-    /* protected ... void askConfirmation(...) {
-
-    } */
-
+    void askConfirmation(String type) {
+        switch (type) {
+            case "find-file":
+                System.out.println("Are you sure you want to find the file?"); break;
+            case "open-file":
+                System.out.println("Are you sure you want to open the file?"); break;
+            case "read-geotag":
+                System.out.println("Are you sure you want to read the GeoTag?"); break;
+            case "remove-geotag":
+                System.out.println("Are you sure you want to remove the GeoTag?"); break;
+            case "write-geotag":
+                System.out.println("Are you sure you want to write a GeoTag?"); break;
+            case "save-image":
+                System.out.println("Are you sure you want to save the image?"); break;
+            default:
+                System.out.println("Are you sure you want to do this?");
+        }
+    }
+    
     // Pre: an open and working Scanner object
     // Input: 'y' for yes and 'n' for no to confirm action
     // Output: message for the user asking if they are sure. Another message if wrong choice is entered
