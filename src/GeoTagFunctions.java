@@ -3,8 +3,6 @@ package src;
 import java.io.*;
 import java.util.*;
 
-import org.apache.commons.imaging.ImageReadException;
-import org.apache.commons.imaging.ImageWriteException;
 import org.apache.commons.imaging.Imaging;
 import org.apache.commons.imaging.common.ImageMetadata;
 import org.apache.commons.imaging.formats.jpeg.JpegImageMetadata;
@@ -116,6 +114,26 @@ public class GeoTagFunctions {
     /* protected ... void printGeoTagData(...) {
         ...
     } */
+    
+    // Pre: This function save image in results folder under asserts
+    // Return: return true if geotag is successfully updated. false otherwise
+    // Output: a image without geotag. If the writing process failed, no change would happen
+    public static boolean updateGeoTagData(File jpeg, double latitude, double longtitude) {
+    	File resultsFolder = new File("./assets/results");
+        if (!resultsFolder.exists()) resultsFolder.mkdir();
+    	File result = new File("./assets/results/" + jpeg.getName());
+    	return updateGeoTagData(jpeg, result, latitude, longtitude);
+    }
+    
+    // Pre: This function save image in results folder under asserts
+    // Return: return true if geotag is successfully removed. false otherwise
+    // Output: a image without geotag. If the writing process failed, no change would happen
+    public static boolean removeGeoTagData(File jpeg) {
+    	File resultsFolder = new File("./assets/results");
+        if (!resultsFolder.exists()) resultsFolder.mkdir();
+    	File result = new File("./assets/results/" + jpeg.getName());
+    	return removeGeoTagData(jpeg, result);
+    }
     
     // Pre: this method will not fail if there is not geotag in image
     // Return: return true if geotag is successfully removed. false otherwise
