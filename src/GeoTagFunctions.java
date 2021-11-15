@@ -102,6 +102,53 @@ public class GeoTagFunctions {
             return false;
         }
     }
+    
+    //Pre: each should be separated by white space (example: 100 30 20.99 N)
+    //Return: a double that represents passed latitude or longitude coordinate
+    //  	  N and E would be a positive value. S and W would be negative value.
+    //Reminder: Null pointer would be returned if format is wrong.
+    //Support format example:
+    //	  100 30 20.99 N
+    //	  100 40.99 S
+    //	  100.88 W
+    public static Double getCoordinate(String input) {
+    	final int MINUTES_PER_DEGREE = 60;
+    	final int SECONDS_PER_DEGREE = 3600;
+    	
+    	double result = 0;
+    	
+    	Scanner coordScanner = new Scanner(input);
+    	
+    	//get degree
+    	if ( coordScanner.hasNextDouble() )
+    		result += coordScanner.nextDouble();
+    	else {
+    		coordScanner.close();
+    		return null;
+    	}
+    	
+    	//get minute if it exists
+    	if( coordScanner.hasNextDouble() )
+    		result += coordScanner.nextDouble() / MINUTES_PER_DEGREE;
+    	
+    	//get second if it exists
+    	if( coordScanner.hasNextDouble() )
+    		result += coordScanner.nextDouble() / SECONDS_PER_DEGREE;
+    	
+    	//if the direction is N or E, result should be positive.
+    	//if the direction is S or W, result should be negative.
+    	if( coordScanner.hasNext()) {
+    		String direction = coordScanner.next();
+    		if (direction.equals("S") || direction.equals("W"))
+    			result = -result;
+    	}else {
+    		coordScanner.close();
+    		return null;
+    	}
+    		
+    	coordScanner.close();
+    	return result;
+    }
 
     /* protected ... boolean hasGeoTagData(...) {
         ...
@@ -118,7 +165,7 @@ public class GeoTagFunctions {
     // Pre: This function save image in results folder under asserts
     // Return: return true if geotag is successfully updated. false otherwise
     // Output: a image without geotag. If the writing process failed, no change would happen
-    public static boolean updateGeoTagData(File jpeg, double latitude, double longtitude) {
+    public static boolean updateGeoTagData(File jpeg, double latitude, double longitude) {
     	File resultsFolder = new File("./assets/results");
         
         if (!resultsFolder.exists())
@@ -126,7 +173,7 @@ public class GeoTagFunctions {
     	
         File result = new File("./assets/results/" + jpeg.getName());
     	
-        return updateGeoTagData(jpeg, result, latitude, longtitude);
+        return updateGeoTagData(jpeg, result, latitude, longitude);
     }
     
     // Pre: This function save image in results folder under asserts
@@ -146,7 +193,7 @@ public class GeoTagFunctions {
     // Pre: this method will not fail if there is not geotag in image
     // Return: return true if geotag is successfully removed. false otherwise
     // Output: a image without geotag. If the writing process failed, no change would happen
-    private static boolean removeGeoTagData(File jpeg, File result) {
+    public static boolean removeGeoTagData(File jpeg, File result) {
     	try {
     		final int LATITUDE_REFERENCE_TAG = 1;
     	    final int LATITUDE_TAG = 2;
@@ -169,7 +216,7 @@ public class GeoTagFunctions {
             	outputSet.getOrCreateExifDirectory();
             }
     		
-    		//Remove latitude and longtitude value.
+    		//Remove latitude and longitude value.
     		Utility.displayProcessing("remove-geotag");
 
     		outputSet.removeField(LATITUDE_REFERENCE_TAG);
@@ -190,10 +237,10 @@ public class GeoTagFunctions {
     	}
     }
     
-    // Pre: latitude and longtitude should be passed as two double value
+    // Pre: latitude and longitude should be passed as two double value
     // Return: return true if geotag is successfully written. false otherwise
     // Output: a image with new geotag written in. If the writing process failed, no change would happen
-    public static boolean updateGeoTagData(File jpeg, File result, double latitude, double longtitude) {
+    public static boolean updateGeoTagData(File jpeg, File result, double latitude, double longitude) {
         try {
         	//copy the original information
     	    GeoTagFunctions.readImageMeta(jpeg);
@@ -211,7 +258,7 @@ public class GeoTagFunctions {
             }
             
             Utility.displayProcessing("update-geotag");
-            outputSet.setGPSInDegrees(longtitude, latitude);
+            outputSet.setGPSInDegrees(longitude, latitude);
             Utility.displaySuccess("update-geotag");
             
             return saveJpegImage(jpeg, result, outputSet);           	
@@ -233,7 +280,7 @@ public class GeoTagFunctions {
             FileOutputStream fos = new FileOutputStream(result);
             BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fos);
                 
-            // write exif meradata into new jpeg/jpg file
+            // write exif metadata into new jpeg/jpg file
             Utility.displayProcessing("save-image");
             new ExifRewriter().updateExifMetadataLossless(jpeg, bufferedOutputStream, outputSet);
             
