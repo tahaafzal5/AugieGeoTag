@@ -103,15 +103,45 @@ public class GeoTagFunctions {
         }
     }
     
-    // Pre: each should be separated by white space (example: 100 30 20.99 N)
-    // Return: a double that represents passed latitude or longitude coordinate
-    //  	   N and E would be a positive value. S and W would be negative value.
-    // Reminder: Null pointer would be returned if format is wrong.
-    // Support format example:
+    //Return: null if latitude is not with -90 to 90.
+    //        a Double value if it is a valid latitude
+    public static Double getLatitude(String input)
+    {
+        Double latitude = getCoordinate(input);
+        if(latitude == null)
+            return null;
+        if(latitude < -90 || latitude > 90)
+            return null;
+        return latitude;
+    }
+
+    //Return: null if latitude is not with -90 to 90.
+    //        a Double value if it is a valid latitude
+    public static Double getLongitude(String input)
+    {
+        Double longitude = getCoordinate(input);
+        if(longitude == null)
+            return null;
+        if(longitude < -180 || longitude > 180)
+            return null;
+        return longitude;
+    }
+
+    //Pre: each should be separated by white space (example: 100 30 20.99 N)
+    //Return: a double that represents passed latitude or longitude coordinate
+    //  	  N and E would be a positive value. S and W would be negative value.
+    //Reminder: Null pointer would be returned if format is wrong.
+    //Support format example:
     //	  100 30 20.99 N
     //	  100 40.99 S
     //	  100.88 W
-    public static Double getCoordinate(String input) {
+    //    100 30 20.99  (you can type in positive or negative to represent the direction)
+    //    -100 -30 -20.99
+    //	  100 40.99
+    //    -100 -40.99
+    //	  100.88
+    //	  -100.88
+    private static Double getCoordinate(String input) {
     	final int MINUTES_PER_DEGREE = 60;
     	final int SECONDS_PER_DEGREE = 3600;
     	
@@ -119,37 +149,30 @@ public class GeoTagFunctions {
     	
     	Scanner coordScanner = new Scanner(input);
     	
-    	// get degree
-    	if (coordScanner.hasNextDouble())
+    	//get degree
+    	if ( coordScanner.hasNextDouble() )
     		result += coordScanner.nextDouble();
     	else {
     		coordScanner.close();
-    		
-            return null;
+    		return null;
     	}
     	
-    	// get minute if it exists
-    	if (coordScanner.hasNextDouble())
+    	//get minute if it exists
+    	if( coordScanner.hasNextDouble() )
     		result += coordScanner.nextDouble() / MINUTES_PER_DEGREE;
     	
-    	// get second if it exists
-    	if (coordScanner.hasNextDouble())
+    	//get second if it exists
+    	if( coordScanner.hasNextDouble() )
     		result += coordScanner.nextDouble() / SECONDS_PER_DEGREE;
     	
-    	// if the direction is N or E, result should be positive
-    	// if the direction is S or W, result should be negative
-    	if (coordScanner.hasNext()) {
+    	//if the direction is N or E, result should be positive.
+    	//if the direction is S or W, result should be negative.
+    	if( coordScanner.hasNext()) {
     		String direction = coordScanner.next();
-
     		if (direction.equals("S") || direction.equals("W"))
     			result = -result;
-    	}
-        else {
-    		coordScanner.close();
-    		
-            return null;
-    	}
-    		
+        }
+
     	coordScanner.close();
     	return result;
     }
