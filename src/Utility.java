@@ -97,7 +97,7 @@ public class Utility {
     // Pre: an open and working Scanner object
     // Input: 'y' for yes and 'n' for no to confirm action
     // Output: message for the user asking if they are sure. Another message if wrong choice is entered
-    // Return: true if user confirms action, false otherwises
+    // Return: true if user confirms action, false otherwise
     protected static boolean handleUserConfirmationChoice(Scanner input) {  
         System.out.println("Are you sure?");
         System.out.println("'Y' for Yes. 'N' for No.");
