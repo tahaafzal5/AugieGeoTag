@@ -15,6 +15,7 @@ import org.apache.commons.imaging.formats.tiff.TiffImageMetadata.GPSInfo;
 public class GeoTagFunctions {
     
 	private static TiffImageMetadata exif = null;
+    private static TiffImageMetadata geotag = null;
 
     // Pre: an open and working Scanner object
     // Return: the file the user wants to open if it exists, null otherwise
@@ -238,9 +239,16 @@ public class GeoTagFunctions {
         return geotag;
     }
 
-    /* protected ... ... getGeoTagData(...) {
-        ...
-    } */
+    //Pre: Image is a jpeg
+    //Return: Object containing geotag data 
+    protected static String getGeoTagData(File jpeg) {
+        if (hasGeoTagData(jpeg) == true) {
+            TiffOutputSet outputSet = exif.getOutputSet();
+            geotag = outputSet.getGPS();
+            return geotag;
+        }
+        else return null;
+    } 
 
     /* protected ... void printGeoTagData(...) {
         ...
