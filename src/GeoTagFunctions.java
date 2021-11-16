@@ -117,7 +117,7 @@ public class GeoTagFunctions {
         return latitude;
     }
 
-    //Return: null if longitude is not with -90 to 90.
+    //Return: null if longitude is not with -180 to 180.
     //        a Double value if it is a valid longitude
     public static Double getLongitude(String input)
     {
