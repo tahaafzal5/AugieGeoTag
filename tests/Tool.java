@@ -2,7 +2,25 @@ package tests;
 
 import java.io.File;
 import src.GeoTagFunctions;
-
+/*
+	This is the test command line tool for write geotag and remove geotag.
+	
+	command type:
+	-m remove for remove geotag, update for update geotag (required)
+	-i name of input file or folder in assets folder (required)
+	-o output file name (optional)
+	-la latitude as a String (required when you select to update geotag)
+	-lo longtitude as a String (required when you select to update geotag)
+	-help print help menu
+	
+	remove geotag command sample:
+	-m remove -i <file path under assets>
+	-m remove -i <file path under assets> -o <output file name>
+	update geotag command sample:
+	-m update -i <file path under assets> -la <latitude> -lo <longitude>
+	-m update -i <file path under assets> -o <output file name> -la <latitude> -lo <longitude>
+	**input flag order does not matter**
+*/
 public class Tool {
 	
 	//Pre: this is a command line tool for jpeg processing
@@ -59,11 +77,11 @@ public class Tool {
 						System.exit(0);
 					}	
 					String latitude_info = "";
-					while(position + 1 < args.length && args[position + 1].charAt(0) != '-') {
+					while(position + 1 < args.length && !isCommand(args[position + 1])) {
 						latitude_info += args[position + 1] + " ";
 						position += 1;
 					}
-					latitude = GeoTagFunctions.getCoordinate(latitude_info.trim());
+					latitude = GeoTagFunctions.getLatitude(latitude_info.trim());
 					if(latitude == null) {
 						System.out.println("Error latitude format.");
 						System.exit(0);
@@ -78,11 +96,11 @@ public class Tool {
 						System.exit(0);
 					}
 					String longitude_info = "";
-					while(position + 1 < args.length && args[position + 1].charAt(0) != '-') {
+					while(position + 1 < args.length && !isCommand(args[position + 1])) {
 						longitude_info += args[position + 1] + " ";
 						position += 1;
 					}
-					longitude = GeoTagFunctions.getCoordinate(longitude_info.trim());
+					longitude = GeoTagFunctions.getLongitude(longitude_info.trim());
 					if(longitude == null) {
 						System.out.println("Error longtitude format.");
 						System.exit(0);
@@ -97,6 +115,12 @@ public class Tool {
 					System.out.println("-o output file name (only for single file processing)");
 					System.out.println("-la latitude as a String");
 					System.out.println("-lo longtitude as a String");
+					System.out.println("remove geotag:");
+					System.out.println("-m remove -i <file path under assets>");
+					System.out.println("-m remove -i <file path under assets> -o <output file name>");
+					System.out.println("update geotag:");
+					System.out.println("-m update -i <file path under assets> -la <latitude> -lo <longitude>");
+					System.out.println("-m update -i <file path under assets> -o <output file name> -la <latitude> -lo <longitude>");
 					System.exit(0);
 				default:
 					System.out.println("Error on command type " + args[position]);
@@ -169,4 +193,14 @@ public class Tool {
 			System.out.println("Missing argument mode");
 	}
 
+	public static boolean isCommand(String cmd){
+		switch(cmd)
+		{
+			case "-m": case "-i": case "-o":
+			case "-la": case "-lo": case"-help":
+				return true;
+			default:
+				return false;
+		}
+	}
 }
