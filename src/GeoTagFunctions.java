@@ -3,12 +3,14 @@ package src;
 import java.io.*;
 import java.util.*;
 
+import org.apache.commons.imaging.ImageReadException;
 import org.apache.commons.imaging.Imaging;
 import org.apache.commons.imaging.common.ImageMetadata;
 import org.apache.commons.imaging.formats.jpeg.JpegImageMetadata;
 import org.apache.commons.imaging.formats.jpeg.exif.ExifRewriter;
 import org.apache.commons.imaging.formats.tiff.TiffImageMetadata;
 import org.apache.commons.imaging.formats.tiff.write.TiffOutputSet;
+import org.apache.commons.imaging.formats.tiff.TiffImageMetadata.GPSInfo;
 
 public class GeoTagFunctions {
     
@@ -154,9 +156,20 @@ public class GeoTagFunctions {
     	return result;
     }
 
-    /* protected ... boolean hasGeoTagData(...) {
-        ...
-    } */
+    protected static GPSInfo hasGeoTagData(File jpeg) throws ImageReadException{
+        
+        Utility.displayProcessing("read-geotag");
+        readImageMeta(jpeg);
+        final GPSInfo geotag = exif.getGPS();
+        if (geotag != null) {
+            Utility.displaySuccess("read-geotag");
+            return geotag;
+        }
+        else {
+            Utility.displayError("read-geotag");
+            return null;
+        }
+    }
 
     /* protected ... ... getGeoTagData(...) {
         ...
