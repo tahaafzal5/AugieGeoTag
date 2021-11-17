@@ -107,11 +107,29 @@ public class GeoTagFunctions {
     //        a Double value if it is a valid latitude
     public static Double getLatitude(String input)
     {
-        Double latitude = getCoordinate(input);
+        //check direction if exists
+    	Scanner coordScanner = new Scanner(input);
+    	//skip all numeric value
+    	while(coordScanner.hasNextDouble())
+    		coordScanner.nextDouble();
+    	if(coordScanner.hasNext()) {
+    		char direction = coordScanner.next().toLowerCase().charAt(0);
+    		if(direction != 'n' && direction != 's') {
+    			System.out.println("Error direction: use N or S");
+    			coordScanner.close();
+    			return null;
+    		}
+    	}
+    	coordScanner.close();
+    	
+    	//range check
+    	Double latitude = getCoordinate(input);
         if(latitude == null)
             return null;
-        if(latitude < -90 || latitude > 90)
-            return null;
+        if(latitude < -90 || latitude > 90) {
+        	System.out.println("Latitude should be within -90 to 90");
+        	return null;
+        }
         return latitude;
     }
 
@@ -119,11 +137,28 @@ public class GeoTagFunctions {
     //        a Double value if it is a valid longitude
     public static Double getLongitude(String input)
     {
-        Double longitude = getCoordinate(input);
+    	//check direction if exists
+    	Scanner coordScanner = new Scanner(input);
+    	//skip all numeric value
+    	while(coordScanner.hasNextDouble())
+    		coordScanner.nextDouble();
+    	if(coordScanner.hasNext()) {
+    		char direction = coordScanner.next().toLowerCase().charAt(0);
+    		if(direction != 'e' && direction != 'w') {
+    			System.out.println("Error direction: use E or W");
+    			coordScanner.close();
+    			return null;
+    		}
+    	}
+    	coordScanner.close();
+    	
+    	Double longitude = getCoordinate(input);
         if(longitude == null)
-            return null;
-        if(longitude < -180 || longitude > 180)
-            return null;
+        	return null;
+        if(longitude < -180 || longitude > 180) {
+        	System.out.println("Longitude should be within -180 to 180");
+        	return null;
+        }
         return longitude;
     }
 
@@ -153,6 +188,7 @@ public class GeoTagFunctions {
     	if ( coordScanner.hasNextDouble() )
     		result += coordScanner.nextDouble();
     	else {
+    		System.out.println("Unable to read degree.");
     		coordScanner.close();
     		return null;
     	}
@@ -169,6 +205,11 @@ public class GeoTagFunctions {
     	//if the direction is S or W, result should be negative.
     	if( coordScanner.hasNext()) {
     		String direction = coordScanner.next();
+    		if (result < 0) {
+    			System.out.println("Please use either negative value or directon reference.");
+    			coordScanner.close();
+    			return null;
+    		}
     		if (direction.equals("S") || direction.equals("W"))
     			result = -result;
         }
