@@ -156,7 +156,7 @@ public class GeoTagFunctions {
     	return result;
     }
 
-    //return: GPSInfo directory if it exists. null pointer if gps IFD does not exist.
+    // Return: GPSInfo directory if it exists. null pointer if gps IFD does not exist.
     public static GPSInfo hasGeoTagData(File jpeg) throws ImageReadException{
         
         Utility.displayProcessing("read-geotag");
