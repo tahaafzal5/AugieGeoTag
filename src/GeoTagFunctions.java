@@ -3,7 +3,6 @@ package src;
 import java.io.*;
 import java.util.*;
 
-import org.apache.commons.imaging.ImageReadException;
 import org.apache.commons.imaging.Imaging;
 import org.apache.commons.imaging.common.ImageMetadata;
 import org.apache.commons.imaging.formats.jpeg.JpegImageMetadata;
@@ -11,6 +10,7 @@ import org.apache.commons.imaging.formats.jpeg.exif.ExifRewriter;
 import org.apache.commons.imaging.formats.tiff.TiffImageMetadata;
 import org.apache.commons.imaging.formats.tiff.write.TiffOutputSet;
 import org.apache.commons.imaging.formats.tiff.TiffImageMetadata.GPSInfo;
+import org.apache.commons.imaging.common.RationalNumber;
 
 public class GeoTagFunctions {
     
