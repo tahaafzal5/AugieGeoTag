@@ -2,23 +2,21 @@ package tests;
 
 import java.io.File;
 import src.GeoTagFunctions;
+
 /*
 	This is the test command line tool for write geotag and remove geotag.
 	
 	command type:
 	-m remove for remove geotag, update for update geotag (required)
 	-i name of input file or folder in assets folder (required)
-	-o output file name (optional)
 	-la latitude as a String (required when you select to update geotag)
 	-lo longtitude as a String (required when you select to update geotag)
 	-help print help menu
 	
 	remove geotag command sample:
 	-m remove -i <file path under assets>
-	-m remove -i <file path under assets> -o <output file name>
 	update geotag command sample:
 	-m update -i <file path under assets> -la <latitude> -lo <longitude>
-	-m update -i <file path under assets> -o <output file name> -la <latitude> -lo <longitude>
 	**input flag order does not matter**
 */
 public class Tool {
@@ -35,7 +33,6 @@ public class Tool {
 		String mode = null;
 		
 		File jpeg = null;
-		File result = null;
 		
 		File assetsFolder = null;
 		File resultsFolder = new File("./assets/results");
@@ -65,10 +62,6 @@ public class Tool {
 						System.out.println("Error on anaylyse file type");
 						System.exit(0);
 					}
-					position += 2;
-					break;
-				case "-o":
-					result = new File("./assets/results/" + args[position + 1]);
 					position += 2;
 					break;
 				case "-la":
@@ -135,12 +128,7 @@ public class Tool {
 				switch(mode)
 				{
 					case "remove": 
-						//output in default way
-						if(result == null)
-							GeoTagFunctions.removeGeoTagData(jpeg);
-						//Output in user defined way
-						else
-							GeoTagFunctions.removeGeoTagData(jpeg, result);
+						GeoTagFunctions.removeGeoTagData(jpeg);
 						break;
 					case "update":
 						if(latitude == 0) {
@@ -151,12 +139,7 @@ public class Tool {
 							System.out.println("Longtitude information missing");
 							System.exit(0);
 						}
-						//output in default way
-						if(result == null)
-							GeoTagFunctions.updateGeoTagData(jpeg, latitude, longitude);
-						//Output in user defined way
-						else
-							GeoTagFunctions.updateGeoTagData(jpeg, result, latitude, longitude);
+						GeoTagFunctions.updateGeoTagData(jpeg, latitude, longitude);
 						break;
 					default:
 						System.out.println("Mode information error: should be \"update\" or \"remove\"");
