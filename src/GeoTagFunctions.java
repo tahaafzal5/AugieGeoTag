@@ -18,7 +18,6 @@ import org.apache.commons.imaging.formats.tiff.TiffField;
 public class GeoTagFunctions {
     
 	private static TiffImageMetadata exif = null;
-    private static TiffImageMetadata geotag = null;
 
     // Pre: an open and working Scanner object
     // Return: the file the user wants to open if it exists, null otherwise
