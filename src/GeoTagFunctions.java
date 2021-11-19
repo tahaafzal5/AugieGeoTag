@@ -8,6 +8,7 @@ import org.apache.commons.imaging.Imaging;
 import org.apache.commons.imaging.common.ImageMetadata;
 import org.apache.commons.imaging.formats.jpeg.JpegImageMetadata;
 import org.apache.commons.imaging.formats.jpeg.exif.ExifRewriter;
+import org.apache.commons.imaging.formats.tiff.TiffDirectory;
 import org.apache.commons.imaging.formats.tiff.TiffImageMetadata;
 import org.apache.commons.imaging.formats.tiff.write.TiffOutputSet;
 import org.apache.commons.imaging.formats.tiff.TiffImageMetadata.GPSInfo;
@@ -240,15 +241,31 @@ public class GeoTagFunctions {
     }
 
     //Pre: Image is a jpeg
-    //Return: Object containing geotag data 
-    protected static String getGeoTagData(File jpeg) {
-        if (hasGeoTagData(jpeg) == true) {
-            TiffOutputSet outputSet = exif.getOutputSet();
-            geotag = outputSet.getGPS();
-            return geotag;
+    //Return: String containing geotag data 
+    public static String getGeoTagData(File jpeg) { 
+        //Check if GPS info exists
+        if (getGPSInfo(jpeg) != null) {
+
+            //Initialize directory and wanted variables for geotag
+            final GPSInfo GPSInfo = getGPSInfo(jpeg);
+            final String geotagData = null;
+            final TiffField latitudeRef = GPSInfo.findField();
+            final TiffField latitudeDegrees = 2;
+            final TiffField longitudeRef = 3;
+            final TiffField longitudeDegrees = 4;
+
+            //Add geotag info into string to be returned
+            geotagData.concat(latitudeRef.toString());
+            geotagData.concat(GP.toString());
+            geotagData.concat(GPSInfo.getFieldValue(longitudeDegrees + " ").toString());
+            geotagData.concat(GPSInfo.getFieldValue(longitudeRef).toString());
+            return geotagData;
         }
+
+        //Return null if GPS info does not exist 
         else return null;
     } 
+
 
     /* protected ... void printGeoTagData(...) {
         ...
