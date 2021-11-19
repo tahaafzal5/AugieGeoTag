@@ -159,7 +159,7 @@ public class GeoTagFunctions {
     // Pre: exif should be read
     // Return: true if exif has GPS info, false otherwise
     // Output: error message if program throw Exception
-    protected static GPSInfo getGPSInfo(File jpeg){
+    public static GPSInfo getGPSInfo(File jpeg){
         
         Utility.displayProcessing("get-GPS");
         readImageMeta(jpeg);
