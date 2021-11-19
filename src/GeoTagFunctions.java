@@ -257,10 +257,10 @@ public class GeoTagFunctions {
             final RationalNumber longitude_Degrees = GPSInfo.longitudeDegrees ;
 
             //Add geotag info into string to be returned
-            geotagData.concat(latitude_Ref + " ");
             geotagData.concat(latitude_Degrees.toString() + " ");
-            geotagData.concat(longitude_Ref.toString() + " ");
+            geotagData.concat(latitude_Ref + " ");
             geotagData.concat(longitude_Degrees.toString());
+            geotagData.concat(longitude_Ref.toString() + " ");
             return geotagData;
         }
 
