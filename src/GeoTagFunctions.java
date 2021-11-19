@@ -241,10 +241,6 @@ public class GeoTagFunctions {
     /* protected ... ... getGeoTagData(...) {
         ...
     } */
-
-    /* protected ... void printGeoTagData(...) {
-        ...
-    } */
     
     // Pre: This function save image in results folder under asserts
     // Return: return true if geotag is successfully updated. false otherwise
