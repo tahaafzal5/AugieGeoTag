@@ -277,7 +277,7 @@ public class GeoTagFunctions {
     // Pre: this method will not fail if there is not geotag in image
     // Return: return true if geotag is successfully removed. false otherwise
     // Output: a image without geotag. If the writing process failed, no change would happen
-    public static boolean removeGeoTagData(File jpeg, File result) {
+    private static boolean removeGeoTagData(File jpeg, File result) {
     	try {
     		final int LATITUDE_REFERENCE_TAG = 1;
     	    final int LATITUDE_TAG = 2;
@@ -324,7 +324,7 @@ public class GeoTagFunctions {
     // Pre: latitude and longitude should be passed as two double value
     // Return: return true if geotag is successfully written. false otherwise
     // Output: a image with new geotag written in. If the writing process failed, no change would happen
-    public static boolean updateGeoTagData(File jpeg, File result, double latitude, double longitude) {
+    private static boolean updateGeoTagData(File jpeg, File result, double latitude, double longitude) {
         try {
         	//copy the original information
     	    GeoTagFunctions.readImageMeta(jpeg);
