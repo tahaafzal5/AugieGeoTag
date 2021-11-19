@@ -245,11 +245,11 @@ public class GeoTagFunctions {
     //Pre: Image is a jpeg
     //Return: String containing geotag data 
     public static String getGeoTagData(File jpeg) { 
-        //Check if GPS info exists
-        if (getGPSInfo(jpeg) != null) {
-
-            //Initialize directory and wanted variables for geotag
-            final GPSInfo GPSInfo = getGPSInfo(jpeg);
+        
+	final GPSInfo GPSInfo = getGPSInfo(jpeg);
+        
+	    //Check if GPS info exists
+        if (GPSInfo != null) {
             final String geotagData = "";
             final String latitude_Ref = GPSInfo.latitudeRef;
             final RationalNumber latitude_Degrees = GPSInfo.latitudeDegrees;
@@ -267,11 +267,6 @@ public class GeoTagFunctions {
         //Return null if GPS info does not exist 
         else return null;
     } 
-
-
-    /* protected ... void printGeoTagData(...) {
-        ...
-    } */
     
     // Pre: This function save image in results folder under asserts
     // Return: return true if geotag is successfully updated. false otherwise
