@@ -110,10 +110,8 @@ public class Tool {
 					System.out.println("-lo longtitude as a String");
 					System.out.println("remove geotag:");
 					System.out.println("-m remove -i <file path under assets>");
-					System.out.println("-m remove -i <file path under assets> -o <output file name>");
 					System.out.println("update geotag:");
 					System.out.println("-m update -i <file path under assets> -la <latitude> -lo <longitude>");
-					System.out.println("-m update -i <file path under assets> -o <output file name> -la <latitude> -lo <longitude>");
 					System.exit(0);
 				default:
 					System.out.println("Error on command type " + args[position]);
