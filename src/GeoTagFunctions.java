@@ -237,7 +237,31 @@ public class GeoTagFunctions {
         }
         return geotag;
     }
-	
+
+    //Pre: Image is a jpeg
+    //Return: String containing geotag data 
+    public static String getGeoTagData(File jpeg) { 
+        final GPSInfo GPSInfo = getGPSInfo(jpeg);
+        //Check if GPS info exists
+        if (GPSInfo != null) {
+            String geotagData = "";
+            final String latitude_Ref = GPSInfo.latitudeRef;
+            final RationalNumber latitude_Degrees = GPSInfo.latitudeDegrees;
+            final String longitude_Ref = GPSInfo.longitudeRef;
+            final RationalNumber longitude_Degrees = GPSInfo.longitudeDegrees ;
+
+            //Add geotag info into string to be returned
+            geotagData.concat(latitude_Degrees.toString() + " ");
+            geotagData.concat(latitude_Ref + " ");
+            geotagData.concat(longitude_Degrees.toString());
+            geotagData.concat(longitude_Ref.toString() + " ");
+            return geotagData;
+        }
+
+        //Return null if GPS info does not exist 
+        else return null;
+    } 
+
     // Pre: This function save image in results folder under asserts
     // Return: return true if geotag is successfully updated. false otherwise
     // Output: a image without geotag. If the writing process failed, no change would happen
