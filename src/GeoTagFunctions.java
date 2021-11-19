@@ -3,17 +3,14 @@ package src;
 import java.io.*;
 import java.util.*;
 
-import org.apache.commons.imaging.ImageReadException;
 import org.apache.commons.imaging.Imaging;
 import org.apache.commons.imaging.common.ImageMetadata;
 import org.apache.commons.imaging.common.RationalNumber;
 import org.apache.commons.imaging.formats.jpeg.JpegImageMetadata;
 import org.apache.commons.imaging.formats.jpeg.exif.ExifRewriter;
-import org.apache.commons.imaging.formats.tiff.TiffDirectory;
 import org.apache.commons.imaging.formats.tiff.TiffImageMetadata;
 import org.apache.commons.imaging.formats.tiff.write.TiffOutputSet;
 import org.apache.commons.imaging.formats.tiff.TiffImageMetadata.GPSInfo;
-import org.apache.commons.imaging.formats.tiff.TiffField;
 
 public class GeoTagFunctions {
     
@@ -244,12 +241,10 @@ public class GeoTagFunctions {
     //Pre: Image is a jpeg
     //Return: String containing geotag data 
     public static String getGeoTagData(File jpeg) { 
-        
-	final GPSInfo GPSInfo = getGPSInfo(jpeg);
-        
-	    //Check if GPS info exists
+        final GPSInfo GPSInfo = getGPSInfo(jpeg);
+        //Check if GPS info exists
         if (GPSInfo != null) {
-            final String geotagData = "";
+            String geotagData = "";
             final String latitude_Ref = GPSInfo.latitudeRef;
             final RationalNumber latitude_Degrees = GPSInfo.latitudeDegrees;
             final String longitude_Ref = GPSInfo.longitudeRef;
