@@ -6,12 +6,14 @@ import java.util.*;
 import org.apache.commons.imaging.ImageReadException;
 import org.apache.commons.imaging.Imaging;
 import org.apache.commons.imaging.common.ImageMetadata;
+import org.apache.commons.imaging.common.RationalNumber;
 import org.apache.commons.imaging.formats.jpeg.JpegImageMetadata;
 import org.apache.commons.imaging.formats.jpeg.exif.ExifRewriter;
 import org.apache.commons.imaging.formats.tiff.TiffDirectory;
 import org.apache.commons.imaging.formats.tiff.TiffImageMetadata;
 import org.apache.commons.imaging.formats.tiff.write.TiffOutputSet;
 import org.apache.commons.imaging.formats.tiff.TiffImageMetadata.GPSInfo;
+import org.apache.commons.imaging.formats.tiff.TiffField;
 
 public class GeoTagFunctions {
     
@@ -248,17 +250,17 @@ public class GeoTagFunctions {
 
             //Initialize directory and wanted variables for geotag
             final GPSInfo GPSInfo = getGPSInfo(jpeg);
-            final String geotagData = null;
-            final TiffField latitudeRef = GPSInfo.findField();
-            final TiffField latitudeDegrees = 2;
-            final TiffField longitudeRef = 3;
-            final TiffField longitudeDegrees = 4;
+            final String geotagData = "";
+            final String latitude_Ref = GPSInfo.latitudeRef;
+            final RationalNumber latitude_Degrees = GPSInfo.latitudeDegrees;
+            final String longitude_Ref = GPSInfo.longitudeRef;
+            final RationalNumber longitude_Degrees = GPSInfo.longitudeDegrees ;
 
             //Add geotag info into string to be returned
-            geotagData.concat(latitudeRef.toString());
-            geotagData.concat(GP.toString());
-            geotagData.concat(GPSInfo.getFieldValue(longitudeDegrees + " ").toString());
-            geotagData.concat(GPSInfo.getFieldValue(longitudeRef).toString());
+            geotagData.concat(latitude_Ref + " ");
+            geotagData.concat(latitude_Degrees.toString() + " ");
+            geotagData.concat(longitude_Ref.toString() + " ");
+            geotagData.concat(longitude_Degrees.toString());
             return geotagData;
         }
 
