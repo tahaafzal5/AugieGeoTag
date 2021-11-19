@@ -126,7 +126,10 @@ public class Tool {
 				switch(mode)
 				{
 					case "remove": 
-						GeoTagFunctions.removeGeoTagData(jpeg);
+						if( GeoTagFunctions.getGPSInfo(jpeg) != null )
+							GeoTagFunctions.removeGeoTagData(jpeg);
+						else
+							System.out.println("There is no geotag in the image");
 						break;
 					case "update":
 						if(latitude == 0) {
