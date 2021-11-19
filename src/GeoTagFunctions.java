@@ -156,20 +156,22 @@ public class GeoTagFunctions {
     	return result;
     }
 
-    // Return: GPSInfo directory if it exists. null pointer if gps IFD does not exist.
-    public static GPSInfo hasGeoTagData(File jpeg) throws ImageReadException{
+    // Pre: exif should be read
+    // Return: true if exif has GPS info, false otherwise
+    // Output: error message if program throw Exception
+    protected static GPSInfo getGPSInfo(File jpeg){
         
-        Utility.displayProcessing("read-geotag");
+        Utility.displayProcessing("get-GPS");
         readImageMeta(jpeg);
-        final GPSInfo geotag = exif.getGPS();
-        if (geotag != null) {
-            Utility.displaySuccess("read-geotag");
-            return geotag;
+        GPSInfo geotag = null;
+        try {
+            geotag = exif.getGPS();
+            Utility.displaySuccess("get-GPS");
+            
+        } catch (Exception e) {
+            Utility.displayError("get-GPS");
         }
-        else {
-            Utility.displayError("read-geotag");
-            return null;
-        }
+        return geotag;
     }
 
     /* protected ... ... getGeoTagData(...) {

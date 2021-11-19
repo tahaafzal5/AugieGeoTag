@@ -136,6 +136,10 @@ public class Utility {
                 System.out.println("Error: GeoTag already exists on given image, please open a different image or try updating the GeoTag"); break;
             case "save-image":
             	System.out.println("Error: can't output the image"); break;
+            case "get-GPS":
+                System.out.println("Error: can't get the GPS data from the image"); break;
+
+
             
             default:
                 System.out.println("Error");
@@ -162,6 +166,8 @@ public class Utility {
                 System.out.println("Wrote geotag successfully"); break;
             case "save-image":
                 System.out.println("Image saved successfully"); break;
+            case "get-GPS":
+                System.out.println("GPS data retrieved successfully"); break;
 
             default:
                 System.out.println("Success");
@@ -188,6 +194,8 @@ public class Utility {
                 System.out.println("Writing the metadata in the image..."); break;
             case "save-image":
                 System.out.println("Saving the image..."); break;
+            case "get-GPS":
+                System.out.println("Getting the GPS data from the image..."); break;
 
             default:
                 System.out.println("Processing...");
