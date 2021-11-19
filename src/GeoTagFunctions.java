@@ -236,7 +236,8 @@ public class GeoTagFunctions {
             Utility.displayError("get-GPS");
         }
         return geotag;
-    }   
+    }
+	
     // Pre: This function save image in results folder under asserts
     // Return: return true if geotag is successfully updated. false otherwise
     // Output: a image without geotag. If the writing process failed, no change would happen
