@@ -1,23 +1,32 @@
 package tests;
 
-import java.io.File;
+import java.io.*;
 import src.GeoTagFunctions;
+import jpeg.JpegExif;
 
 /*
 	This is the test command line tool for write geotag and remove geotag.
 	
 	command type:
-	-m remove for remove geotag, update for update geotag (required)
+	-m remove for remove geotag, update for update geotag, 
+	   verify for verify whether file is a jpeg, and print to print geotag (required)
 	-i name of input file or folder in assets folder (required)
 	-la latitude as a String (required when you select to update geotag)
 	-lo longtitude as a String (required when you select to update geotag)
 	-help print help menu
 	
+	**input flag order does not matter**
+
 	remove geotag command sample:
 	-m remove -i <file path under assets>
 	update geotag command sample:
 	-m update -i <file path under assets> -la <latitude> -lo <longitude>
-	**input flag order does not matter**
+	print geotag command sample:
+	-m print -i <file path under assets>
+	verify jpeg command sample:
+	-m verify -i <file path under assets>
+	print all tag command sample:
+	-m tag -i <file path under assets>
 */
 public class Tool {
 	
@@ -26,7 +35,7 @@ public class Tool {
 	//Output: a folder that contains all result image or a result image depends on users choice.
 	public static void main(String[] args) {
 		if(args.length == 0) {
-			System.out.println("No command received.");
+			System.err.println("No command received.");
 			System.exit(0);
 		}
 		
@@ -59,14 +68,14 @@ public class Tool {
 					else if(temp.isDirectory())
 						assetsFolder = temp;
 					else {
-						System.out.println("Error on anaylyse file type");
+						System.err.println("Error on anaylyse file type");
 						System.exit(0);
 					}
 					position += 2;
 					break;
 				case "-la":
 					if (mode.equals("remove")) {
-						System.out.println("Remove mode error: Error argument latitude received.");
+						System.err.println("Remove mode error: Error argument latitude received.");
 						System.exit(0);
 					}	
 					String latitude_info = "";
@@ -76,7 +85,7 @@ public class Tool {
 					}
 					latitude = GeoTagFunctions.getLatitude(latitude_info.trim());
 					if(latitude == null) {
-						System.out.println("Error latitude format.");
+						System.err.println("Error latitude format.");
 						System.exit(0);
 					}
 					
@@ -85,7 +94,7 @@ public class Tool {
 					break;
 				case "-lo":
 					if (mode.equals("remove")) {
-						System.out.println("Remove mode error: Error argument longtitude received.");
+						System.err.println("Remove mode error: Error argument longtitude received.");
 						System.exit(0);
 					}
 					String longitude_info = "";
@@ -95,7 +104,7 @@ public class Tool {
 					}
 					longitude = GeoTagFunctions.getLongitude(longitude_info.trim());
 					if(longitude == null) {
-						System.out.println("Error longtitude format.");
+						System.err.println("Error longtitude format.");
 						System.exit(0);
 					}
 					
@@ -112,9 +121,11 @@ public class Tool {
 					System.out.println("-m remove -i <file path under assets>");
 					System.out.println("update geotag:");
 					System.out.println("-m update -i <file path under assets> -la <latitude> -lo <longitude>");
+					System.out.println("print geotag:");
+					System.out.println("-m print -i <file path under assets>");
 					System.exit(0);
 				default:
-					System.out.println("Error on command type " + args[position]);
+					System.err.println("Error on command type " + args[position]);
 					System.exit(0);
 			}
 		}
@@ -123,27 +134,44 @@ public class Tool {
 			
 			//This means it is a single file processing
 			if(jpeg != null) {
+				//process mode information
 				switch(mode)
 				{
 					case "remove": 
 						if( GeoTagFunctions.getGPSInfo(jpeg) != null )
 							GeoTagFunctions.removeGeoTagData(jpeg);
 						else
-							System.out.println("There is no geotag in the image");
+							System.err.println("There is no geotag in the image");
 						break;
 					case "update":
 						if(latitude == 0) {
-							System.out.println("Latitude information missing");
+							System.err.println("Latitude information missing");
 							System.exit(0);
 						} 
 						if(longitude == 0) {
-							System.out.println("Longtitude information missing");
+							System.err.println("Longtitude information missing");
 							System.exit(0);
 						}
 						GeoTagFunctions.updateGeoTagData(jpeg, latitude, longitude);
 						break;
+					case "print":
+						if(GeoTagFunctions.getGPSInfo(jpeg) != null)
+							System.out.println(GeoTagFunctions.getGeoTagData(jpeg));
+						else
+							System.err.println("There is not geotag in jpeg");
+						System.exit(0);
+					case "verify":
+						if(GeoTagFunctions.isJpeg(jpeg))
+							System.out.println("This is a jpeg/jpg");
+						else
+							System.out.println("This is not a jpeg/jpg");
+						System.exit(0);
+					case "tag":
+						JpegExif exif = new JpegExif(jpeg);
+						exif.print();
+						System.exit(0);
 					default:
-						System.out.println("Mode information error: should be \"update\" or \"remove\"");
+						System.err.println("Mode information error: should be \"update\", \"remove\", or \"print\"");
 						break;
 				}
 			}
@@ -157,24 +185,24 @@ public class Tool {
 						break;
 					case "update":
 						if(latitude == 0) {
-							System.out.println("Latitude information missing");
+							System.err.println("Latitude information missing");
 							System.exit(0);
 						} 
 						if(longitude == 0) {
-							System.out.println("Longtitude information missing");
+							System.err.println("Longtitude information missing");
 							System.exit(0);
 						}
 						for (File f : assetsFolder.listFiles())
 							GeoTagFunctions.updateGeoTagData(f, latitude, longitude);
 						break;
 					default:
-						System.out.println("Mode information error: should be \"update\" or \"remove\"");
+						System.err.println("Mode information error: should be \"update\" or \"remove\"");
 						break;
 				}
 			}
 		}
 		else
-			System.out.println("Missing argument mode");
+			System.err.println("Missing argument mode");
 	}
 
 	public static boolean isCommand(String cmd){
