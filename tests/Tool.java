@@ -30,6 +30,20 @@ import jpeg.JpegExif;
 */
 public class Tool {
 	
+	private static String mode = null;
+		
+	private static File jpeg = null;
+	
+	private static File assetsFolder = null;
+	private static File resultsFolder = new File("./assets/results");
+	
+	/*
+	null pointer is used here to determine whether 
+	latitude and longitude are valid
+	*/
+	private static Double latitude = 0.0;
+	private static Double longitude = 0.0;
+
 	//Pre: this is a command line tool for jpeg processing
 	//Input: user input a command string
 	//Output: a folder that contains all result image or a result image depends on users choice.
@@ -38,21 +52,103 @@ public class Tool {
 			System.err.println("No command received.");
 			System.exit(0);
 		}
-		
-		String mode = null;
-		
-		File jpeg = null;
-		
-		File assetsFolder = null;
-		File resultsFolder = new File("./assets/results");
+
 		if(!resultsFolder.exists())
 			resultsFolder.mkdir();
 		
-		//null pointer is used here to determine whether 
-		//latitude and longitude are valid
-		Double latitude = 0.0;
-		Double longitude = 0.0;
+		analyseInput(args);
 		
+		if(mode != null) {	
+			//This means it is a single file processing
+			if(jpeg != null) {
+				processFile();
+			}
+			//This means it is a folder processing
+			else if (assetsFolder != null) {
+				processFolder();
+			} else
+				System.err.println("Error on deciding process mode");
+		}
+		else
+			System.err.println("Missing argument mode");
+	}
+
+	//Output: all images under user input folder will be processed and output in results folder
+	public static void processFolder()
+	{
+		switch (mode)
+		{
+			case "remove":
+				for (File f : assetsFolder.listFiles())
+					GeoTagFunctions.removeGeoTagData(f);
+				break;
+			case "update":
+				if(latitude == 0) {
+					System.err.println("Latitude information missing");
+					System.exit(0);
+				} 
+				if(longitude == 0) {
+					System.err.println("Longtitude information missing");
+					System.exit(0);
+				}
+				for (File f : assetsFolder.listFiles())
+					GeoTagFunctions.updateGeoTagData(f, latitude, longitude);
+				break;
+			default:
+				System.err.println("Mode information error: should be \"update\" or \"remove\"");
+				break;
+			}
+	}
+
+	//Output: information print on the sreen based on user choice
+	//		  image output based on user choice
+	public static void processFile()
+	{
+		//process mode information
+		switch(mode)
+		{
+			case "remove": 
+				if( GeoTagFunctions.getGPSInfo(jpeg) != null )
+					GeoTagFunctions.removeGeoTagData(jpeg);
+				else
+					System.err.println("There is no geotag in the image");
+				break;
+			case "update":
+				if(latitude == 0) {
+					System.err.println("Latitude information missing");
+					System.exit(0);
+				} 
+				if(longitude == 0) {
+					System.err.println("Longtitude information missing");
+					System.exit(0);
+				}
+				GeoTagFunctions.updateGeoTagData(jpeg, latitude, longitude);
+				break;
+			case "print":
+				if(GeoTagFunctions.getGPSInfo(jpeg) != null)
+					System.out.println(GeoTagFunctions.getGeoTagData(jpeg));
+				else
+					System.err.println("There is not geotag in jpeg");
+				System.exit(0);
+			case "verify":
+				if(GeoTagFunctions.isJpeg(jpeg))
+					System.out.println("This is a jpeg/jpg");
+				else
+					System.out.println("This is not a jpeg/jpg");
+				System.exit(0);
+			case "tag":
+				JpegExif exif = new JpegExif(jpeg);
+				exif.print();
+				System.exit(0);
+			default:
+				System.err.println("Mode information error: should be \"update\", \"remove\", or \"print\"");
+				break;
+		}
+	}
+
+	//Post: Analyse input and set associate value to global variables
+	public static void analyseInput(String[] args)
+	{
 		//Analyse input string
 		for(int position = 0; position < args.length; ) {
 			switch(args[position])
@@ -112,97 +208,32 @@ public class Tool {
 					position += 1;
 					break;
 				case "-help":
-					System.out.println("-m remove for remove geotag, update for update geotag");
-					System.out.println("-i name of input file or folder in assets folder");
-					System.out.println("-o output file name (only for single file processing)");
-					System.out.println("-la latitude as a String");
-					System.out.println("-lo longtitude as a String");
-					System.out.println("remove geotag:");
-					System.out.println("-m remove -i <file path under assets>");
-					System.out.println("update geotag:");
-					System.out.println("-m update -i <file path under assets> -la <latitude> -lo <longitude>");
-					System.out.println("print geotag:");
-					System.out.println("-m print -i <file path under assets>");
+					printHelp();
 					System.exit(0);
 				default:
 					System.err.println("Error on command type " + args[position]);
 					System.exit(0);
 			}
 		}
-		
-		if(mode != null) {
-			
-			//This means it is a single file processing
-			if(jpeg != null) {
-				//process mode information
-				switch(mode)
-				{
-					case "remove": 
-						if( GeoTagFunctions.getGPSInfo(jpeg) != null )
-							GeoTagFunctions.removeGeoTagData(jpeg);
-						else
-							System.err.println("There is no geotag in the image");
-						break;
-					case "update":
-						if(latitude == 0) {
-							System.err.println("Latitude information missing");
-							System.exit(0);
-						} 
-						if(longitude == 0) {
-							System.err.println("Longtitude information missing");
-							System.exit(0);
-						}
-						GeoTagFunctions.updateGeoTagData(jpeg, latitude, longitude);
-						break;
-					case "print":
-						if(GeoTagFunctions.getGPSInfo(jpeg) != null)
-							System.out.println(GeoTagFunctions.getGeoTagData(jpeg));
-						else
-							System.err.println("There is not geotag in jpeg");
-						System.exit(0);
-					case "verify":
-						if(GeoTagFunctions.isJpeg(jpeg))
-							System.out.println("This is a jpeg/jpg");
-						else
-							System.out.println("This is not a jpeg/jpg");
-						System.exit(0);
-					case "tag":
-						JpegExif exif = new JpegExif(jpeg);
-						exif.print();
-						System.exit(0);
-					default:
-						System.err.println("Mode information error: should be \"update\", \"remove\", or \"print\"");
-						break;
-				}
-			}
-			//This means it is a folder processing
-			else if (assetsFolder != null) {
-				switch (mode)
-				{
-					case "remove":
-						for (File f : assetsFolder.listFiles())
-							GeoTagFunctions.removeGeoTagData(f);
-						break;
-					case "update":
-						if(latitude == 0) {
-							System.err.println("Latitude information missing");
-							System.exit(0);
-						} 
-						if(longitude == 0) {
-							System.err.println("Longtitude information missing");
-							System.exit(0);
-						}
-						for (File f : assetsFolder.listFiles())
-							GeoTagFunctions.updateGeoTagData(f, latitude, longitude);
-						break;
-					default:
-						System.err.println("Mode information error: should be \"update\" or \"remove\"");
-						break;
-				}
-			}
-		}
-		else
-			System.err.println("Missing argument mode");
+	}
+
+	//Output: help menu printed on the screen
+	public static void printHelp(){
+		System.out.println("-m remove for remove geotag, update for update geotag");
+		System.out.println("-i name of input file or folder in assets folder");
+		System.out.println("-o output file name (only for single file processing)");
+		System.out.println("-la latitude as a String");
+		System.out.println("-lo longtitude as a String");
+		System.out.println("remove geotag:");
+		System.out.println("-m remove -i <file path under assets>");
+		System.out.println("update geotag:");
+		System.out.println("-m update -i <file path under assets> -la <latitude> -lo <longitude>");
+		System.out.println("print geotag:");
+		System.out.println("-m print -i <file path under assets>");
+		System.out.println("verify jpeg command sample:");
+		System.out.println("-m verify -i <file path under assets>");
+		System.out.println("print all tag command sample:");
+		System.out.println("-m tag -i <file path under assets>");
 	}
 
 	public static boolean isCommand(String cmd){
