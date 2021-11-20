@@ -3,7 +3,6 @@ package src;
 import java.io.*;
 import java.util.*;
 
-import org.apache.commons.imaging.ImageReadException;
 import org.apache.commons.imaging.Imaging;
 import org.apache.commons.imaging.common.ImageMetadata;
 import org.apache.commons.imaging.formats.jpeg.JpegImageMetadata;
@@ -11,6 +10,7 @@ import org.apache.commons.imaging.formats.jpeg.exif.ExifRewriter;
 import org.apache.commons.imaging.formats.tiff.TiffImageMetadata;
 import org.apache.commons.imaging.formats.tiff.write.TiffOutputSet;
 import org.apache.commons.imaging.formats.tiff.TiffImageMetadata.GPSInfo;
+import org.apache.commons.imaging.common.RationalNumber;
 
 public class GeoTagFunctions {
     
@@ -237,7 +237,45 @@ public class GeoTagFunctions {
         }
         return geotag;
     }
-	
+
+    // Pre: Image is a jpeg
+    // Return: String containing geotag data 
+    public static String getGeoTagData(File jpeg) {
+        final GPSInfo GPSInfo = getGPSInfo(jpeg);
+        
+        // check if GPS info exists
+        if (GPSInfo != null) {
+            StringBuilder geotagData = new StringBuilder();
+
+            final RationalNumber latitudeDegrees = GPSInfo.latitudeDegrees;
+            final RationalNumber latitudeMinutes = GPSInfo.latitudeMinutes;
+            final RationalNumber latitudeSeconds = GPSInfo.latitudeSeconds;
+            final String latitudeRef = GPSInfo.latitudeRef;
+            
+            final RationalNumber longitudeDegrees = GPSInfo.longitudeDegrees;
+            final RationalNumber longitudeMinutes = GPSInfo.longitudeMinutes;
+            final RationalNumber longitudeSeconds = GPSInfo.longitudeSeconds;
+            final String longitudeRef = GPSInfo.longitudeRef;
+
+            geotagData.append("Latitude: ");
+            geotagData.append(latitudeDegrees.toDisplayString() + " degrees, ");
+            geotagData.append(latitudeMinutes.toDisplayString() + " minutes, ");
+            geotagData.append(latitudeSeconds.toDisplayString() + " seconds ");
+            geotagData.append(latitudeRef + ", ");
+
+            geotagData.append("Longitude: ");
+            geotagData.append(longitudeDegrees.toDisplayString() + " degrees, ");
+            geotagData.append(longitudeMinutes.toDisplayString() + " minutes, ");
+            geotagData.append(longitudeSeconds.toDisplayString() + " seconds ");
+            geotagData.append(longitudeRef);
+
+            return geotagData.toString();
+        }
+        // return null if GPS info does not exist 
+        else
+            return null;
+    } 
+
     // Pre: This function save image in results folder under asserts
     // Return: return true if geotag is successfully updated. false otherwise
     // Output: a image without geotag. If the writing process failed, no change would happen
