@@ -38,7 +38,7 @@ public class GeoTagFunctions {
         } 
         catch (Exception e) {
             Utility.displayError("find-file");
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
 
         return null;
@@ -72,7 +72,7 @@ public class GeoTagFunctions {
         }
         catch (Exception exception) {
             Utility.displayError("check-jpeg");
-            System.out.println(exception.getMessage());
+            System.err.println(exception.getMessage());
 
             return false;
         }
@@ -98,7 +98,7 @@ public class GeoTagFunctions {
             return true;
         } 
         catch (Exception exception) {
-            System.out.println(jpeg.getName() + ": " + exception.getMessage());
+            System.err.println(jpeg.getName() + ": " + exception.getMessage());
 
             Utility.displayError("read-metadata");
             return false;
@@ -107,60 +107,76 @@ public class GeoTagFunctions {
     
     //Return: null if latitude is not with -90 to 90.
     //        a Double value if it is a valid latitude
-    public static Double getLatitude(String input)
-    {
-        //check direction if exists
-    	Scanner coordScanner = new Scanner(input);
-    	//skip all numeric value
-    	while(coordScanner.hasNextDouble())
-    		coordScanner.nextDouble();
-    	if(coordScanner.hasNext()) {
+    public static Double getLatitude(String input) {
+        Scanner coordScanner = new Scanner(input);
+        
+    	// skip all numeric value
+    	while (coordScanner.hasNextDouble())
+        coordScanner.nextDouble();
+    	
+        // check direction if exists
+        if (coordScanner.hasNext()) {
     		char direction = coordScanner.next().toLowerCase().charAt(0);
-    		if(direction != 'n' && direction != 's') {
-    			System.out.println("Error direction: use N or S");
-    			coordScanner.close();
-    			return null;
+    		
+            if (direction != 'n' && direction != 's') {
+    			System.err.println("Error: for direction use N or S");
+    			
+                coordScanner.close();
+    		
+                return null;
     		}
     	}
     	coordScanner.close();
     	
-    	//range check
+    	// range check
     	Double latitude = getCoordinate(input);
-        if(latitude == null)
+        
+        if (latitude == null)
             return null;
-        if(latitude < -90 || latitude > 90) {
-        	System.out.println("Latitude should be within -90 to 90");
-        	return null;
+        
+        if (latitude < -90 || latitude > 90) {
+        	System.err.println("Latitude should be within -90 to 90");
+        	
+            return null;
         }
+
         return latitude;
     }
 
     //Return: null if longitude is not with -180 to 180.
     //        a Double value if it is a valid longitude
-    public static Double getLongitude(String input)
-    {
-    	//check direction if exists
-    	Scanner coordScanner = new Scanner(input);
-    	//skip all numeric value
-    	while(coordScanner.hasNextDouble())
-    		coordScanner.nextDouble();
-    	if(coordScanner.hasNext()) {
+    public static Double getLongitude(String input) {
+        Scanner coordScanner = new Scanner(input);
+    	
+        // skip all numeric value
+    	while (coordScanner.hasNextDouble())
+            coordScanner.nextDouble();
+    	
+    	// check direction if exists
+        if (coordScanner.hasNext()) {
     		char direction = coordScanner.next().toLowerCase().charAt(0);
-    		if(direction != 'e' && direction != 'w') {
-    			System.out.println("Error direction: use E or W");
-    			coordScanner.close();
-    			return null;
+    		
+            if (direction != 'e' && direction != 'w') {
+    			System.err.println("Error: for direction use E or W");
+    			
+                coordScanner.close();
+    			
+                return null;
     		}
     	}
     	coordScanner.close();
     	
     	Double longitude = getCoordinate(input);
-        if(longitude == null)
+        
+        if (longitude == null)
         	return null;
-        if(longitude < -180 || longitude > 180) {
-        	System.out.println("Longitude should be within -180 to 180");
-        	return null;
+        
+        if (longitude < -180 || longitude > 180) {
+        	System.err.println("Longitude should be within -180 to 180");
+        	
+            return null;
         }
+
         return longitude;
     }
 
@@ -186,55 +202,63 @@ public class GeoTagFunctions {
     	
     	Scanner coordScanner = new Scanner(input);
     	
-    	//get degree
-    	if ( coordScanner.hasNextDouble() )
+    	// get degree
+    	if (coordScanner.hasNextDouble())
     		result += coordScanner.nextDouble();
     	else {
-    		System.out.println("Unable to read degree.");
+    		System.err.println("Unable to read degrees.");
     		coordScanner.close();
-    		return null;
+    		
+            return null;
     	}
     	
-    	//get minute if it exists
-    	if( coordScanner.hasNextDouble() )
-    		result += coordScanner.nextDouble() / MINUTES_PER_DEGREE;
+    	// get minute if it exists
+    	if (coordScanner.hasNextDouble())
+    		result += (coordScanner.nextDouble() / MINUTES_PER_DEGREE);
     	
-    	//get second if it exists
-    	if( coordScanner.hasNextDouble() )
-    		result += coordScanner.nextDouble() / SECONDS_PER_DEGREE;
+    	// get second if it exists
+    	if (coordScanner.hasNextDouble())
+    		result += (coordScanner.nextDouble() / SECONDS_PER_DEGREE);
     	
-    	//if the direction is N or E, result should be positive.
-    	//if the direction is S or W, result should be negative.
-    	if( coordScanner.hasNext()) {
+    	// if the direction is N or E, result should be positive.
+    	// if the direction is S or W, result should be negative.
+    	if (coordScanner.hasNext()) {
     		String direction = coordScanner.next();
-    		if (result < 0) {
-    			System.out.println("Please use either negative value or directon reference.");
+    		
+            if (result < 0) {
+    			System.err.println("Please use either negative value or directon reference.");
     			coordScanner.close();
-    			return null;
+    			
+                return null;
     		}
+
     		if (direction.equals("S") || direction.equals("W"))
     			result = -result;
         }
 
     	coordScanner.close();
+
     	return result;
     }
 
     // Pre: exif should be read
     // Return: true if exif has GPS info, false otherwise
     // Output: error message if program throw Exception
-    public static GPSInfo getGPSInfo(File jpeg){
-        
+    public static GPSInfo getGPSInfo(File jpeg) {
         Utility.displayProcessing("get-GPS");
+        
         readImageMeta(jpeg);
         GPSInfo geotag = null;
+        
         try {
             geotag = exif.getGPS();
-            Utility.displaySuccess("get-GPS");
-            
-        } catch (Exception e) {
-            Utility.displayError("get-GPS");
+            Utility.displaySuccess("get-GPS");    
         }
+        catch (Exception e) {
+            Utility.displayError("get-GPS");
+            System.err.println(e.getMessage());
+        }
+
         return geotag;
     }
 
@@ -289,6 +313,41 @@ public class GeoTagFunctions {
     	
         return updateGeoTagData(jpeg, result, latitude, longitude);
     }
+
+    // Pre: latitude and longitude should be passed as two double value
+    // Return: return true if geotag is successfully written. false otherwise
+    // Output: a image with new geotag written in. If the writing process failed, no change would happen
+    private static boolean updateGeoTagData(File jpeg, File result, double latitude, double longitude) {
+        try {
+        	// copy the original information
+    	    GeoTagFunctions.readImageMeta(jpeg);
+        	
+    	    TiffOutputSet outputSet = null;
+            
+            // if file does not contain any exif metadata, we create an empty
+            // set of exif metadata. Otherwise, we keep all of the other existing tags.
+            if (exif != null) {
+                // get a copy of exif data to be muted.
+                outputSet = exif.getOutputSet();
+            }
+            else {
+            	outputSet = new TiffOutputSet();
+            }
+            
+            Utility.displayProcessing("update-geotag");
+            outputSet.setGPSInDegrees(longitude, latitude);
+            Utility.displaySuccess("update-geotag");
+            
+            return saveJpegImage(jpeg, result, outputSet);           	
+        }
+        catch (Exception exception) {
+            Utility.displayError("update-geotag");
+        	result.delete();
+        	System.err.println(jpeg.getName() + ": " + exception.getMessage());
+
+        	return false;
+        }
+    }
     
     // Pre: This function save image in results folder under asserts
     // Return: return true if geotag is successfully removed. false otherwise
@@ -314,23 +373,23 @@ public class GeoTagFunctions {
     	    final int LONGTITUDE_REFERENCE_TAG = 3;
     	    final int LONGTITUDE_TAG = 4;
     		
-    	    //copy the original information
+    	    // copy the original information
     	    GeoTagFunctions.readImageMeta(jpeg);
     		
     	    TiffOutputSet outputSet = null;
     		
     		if (exif != null) {
-                //get a copy of exif data to be muted.
+                // get a copy of exif data to be muted.
                 outputSet = exif.getOutputSet();
             } 
             else {
             	outputSet = new TiffOutputSet();
             	
-            	//avoid empty exif data that cause null pointer error in output
+            	// avoid empty exif data that cause null pointer error in output
             	outputSet.getOrCreateExifDirectory();
             }
     		
-    		//Remove latitude and longitude value.
+    		// remove latitude and longitude value.
     		Utility.displayProcessing("remove-geotag");
 
     		outputSet.removeField(LATITUDE_REFERENCE_TAG);
@@ -346,44 +405,9 @@ public class GeoTagFunctions {
     		Utility.displayError("remove-geotag");
         	result.delete();
         	
-            System.out.println(jpeg.getName() + ": " + exception.getMessage());
+            System.err.println(jpeg.getName() + ": " + exception.getMessage());
     		return false;
     	}
-    }
-    
-    // Pre: latitude and longitude should be passed as two double value
-    // Return: return true if geotag is successfully written. false otherwise
-    // Output: a image with new geotag written in. If the writing process failed, no change would happen
-    private static boolean updateGeoTagData(File jpeg, File result, double latitude, double longitude) {
-        try {
-        	//copy the original information
-    	    GeoTagFunctions.readImageMeta(jpeg);
-        	
-    	    TiffOutputSet outputSet = null;
-            
-            // if file does not contain any exif metadata, we create an empty
-            // set of exif metadata. Otherwise, we keep all of the other existing tags.
-            if (exif != null) {
-                //get a copy of exif data to be muted.
-                outputSet = exif.getOutputSet();
-            } 
-            else {
-            	outputSet = new TiffOutputSet();
-            }
-            
-            Utility.displayProcessing("update-geotag");
-            outputSet.setGPSInDegrees(longitude, latitude);
-            Utility.displaySuccess("update-geotag");
-            
-            return saveJpegImage(jpeg, result, outputSet);           	
-        }
-        catch (Exception exception) {
-            Utility.displayError("update-geotag");
-        	result.delete();
-        	System.out.println(jpeg.getName() + ": " + exception.getMessage());
-
-        	return false;
-        }
     }
     
     // Pre: open files
@@ -405,7 +429,7 @@ public class GeoTagFunctions {
         catch (Exception e) {
             Utility.displayError("save-image");
             result.delete();
-            System.out.println(jpeg.getName() + ": " + e.getMessage());
+            System.err.println(jpeg.getName() + ": " + e.getMessage());
             
             return false;
         }

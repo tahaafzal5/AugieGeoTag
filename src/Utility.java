@@ -89,6 +89,7 @@ public class Utility {
                 System.out.println("Are you sure you want to write a GeoTag?"); break;
             case "save-image":
                 System.out.println("Are you sure you want to save the image?"); break;
+                
             default:
                 System.out.println("Are you sure you want to do this?");
         }
@@ -119,30 +120,28 @@ public class Utility {
     public static void displayError(String type) {
         switch (type) {
             case "find-file":
-                System.out.println("Error: the file you are trying to open does not exist in this project's assets folder"); break;
+                System.err.println("Error: the file you are trying to open does not exist in this project's assets folder"); break;
             case "open-file":
-                System.out.println("Error: can't open the file you are trying to open"); break;
+                System.err.println("Error: can't open the file you are trying to open"); break;
             case "check-jpeg": 
-                System.out.println("Error: check that you uploaded an acceptable file format (JPEG/JPG)"); break;
+                System.err.println("Error: check that you uploaded an acceptable file format (JPEG/JPG)"); break;
             case "check-multiple":
-                System.out.println("Error: you are attempting to open more than 1 image, please open only one image at a time"); break;
+                System.err.println("Error: you are attempting to open more than 1 image, please open only one image at a time"); break;
             case "read-metadata":
-                System.out.println("Error: can't read the metadata of this file"); break;
+                System.err.println("Error: can't read the metadata of this file"); break;
             case "remove-geotag":
-                System.out.println("Error: GeoTag does not exist on given image, please open a different image or try adding the GeoTag"); break;
+                System.err.println("Error: GeoTag does not exist on given image, please open a different image or try adding the GeoTag"); break;
             case "update-geotag": 
-                System.out.println("Error: GeoTag does not exist on given image, please open a different image or try adding the GeoTag"); break;
+                System.err.println("Error: GeoTag does not exist on given image, please open a different image or try adding the GeoTag"); break;
             case "add-geotag":
-                System.out.println("Error: GeoTag already exists on given image, please open a different image or try updating the GeoTag"); break;
+                System.err.println("Error: GeoTag already exists on given image, please open a different image or try updating the GeoTag"); break;
             case "save-image":
-            	System.out.println("Error: can't output the image"); break;
+            	System.err.println("Error: can't output the image"); break;
             case "get-GPS":
-                System.out.println("Error: can't get the GPS data from the image"); break;
+                System.err.println("Error: can't get the GPS data from the image"); break;
 
-
-            
             default:
-                System.out.println("Error");
+                System.err.println("Error");
         }
     }
 
