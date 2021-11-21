@@ -18,10 +18,20 @@ The workspace contains the following folders:
 ## How to clone this repo
 - Using the terminal, `cd` into the diretory where you want to clone this repo
 - Run `git clone https://github.com/tahaafzal5/AugieGeoTag.git`
-- Open the project in your favorite text editor
+- Open the project in your favorite text editor (we recommend Visual Studio Code)
 
 ## How to run the program
-- < TO DO >
+### Adding the Referenced Libraries 
+Sometimes, `.vscode/settings.json` does not link the referenced libraries properly. So you will have to do that manually. Each IDE has different steps to do this. Since we recommend using Visual Studio Code, here are the steps to add referenced libraries for AugieGeoTag:
+
+- Open the `AugieGeoTag` root directory in Visual Studio Code.
+- With Explorer view open, towards the bottom of the left pane, you will see `JAVA PROJECTS`. Expand that and then expand `AugieGeoTag`.
+- Towards the bottom, you will see `Referenced Libraries`. Click the `+` button on that option. File Explorer/Finder will open.
+- Navigate to `AugieGeoTag/lib/commons-imaging-1.0-alpha2` and select `commons-imaging-1.0-alpha2.jar`.
+- You are all set to compile and run the program now.
+
+### Compiling and running the program
+- << TO DO >>
 
 # Making Changes
 
