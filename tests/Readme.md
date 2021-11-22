@@ -4,4 +4,4 @@ The test tool use both commons imaging and my libraries. It is required to link 
 
 ## Compile script:
 
--javac -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar */*.java
+*javac -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar */*.java
