@@ -12,11 +12,11 @@ javac -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./li
 
 ### Command Type:
 
-* -m remove for remove geotag, update for update geotag, verify for verify whether file is a jpeg, and print to print geotag (required)
-* -i name of input file or folder in assets folder (required)
-* -la latitude as a String (required when you select to update geotag)
-* -lo longtitude as a String (required when you select to update geotag)
-* -help print help menu
+* -m     remove for remove geotag, update for update geotag, verify for verify whether file is a jpeg, and print to print geotag (required)
+* -i     name of input file or folder in assets folder (required)
+* -la    latitude as a String (required when you select to update geotag)
+* -lo    longtitude as a String (required when you select to update geotag)
+* -help  print help menu
 
 ### Command Format:
 
