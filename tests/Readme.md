@@ -60,7 +60,7 @@ Degree Only:
 ```
 * flag order does not matter here
 ```
-They are the same:
+They do the same thing:
 -m tag -i <file path under assets>
 -i <file path under assets> -m tag
 ```
