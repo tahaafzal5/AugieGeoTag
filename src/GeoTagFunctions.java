@@ -313,15 +313,8 @@ public class GeoTagFunctions {
         if (!resultsFolder.exists())
             resultsFolder.mkdir();
     	
-        File result = new File("./assets/results/" + jpeg.getName());
+        File result = new File("./assets/results/editted-" + jpeg.getName());
     	
-        return updateGeoTagData(jpeg, result, latitude, longitude);
-    }
-
-    // Pre: latitude and longitude should be passed as two double value
-    // Return: return true if geotag is successfully written. false otherwise
-    // Output: a image with new geotag written in. If the writing process failed, no change would happen
-    private static boolean updateGeoTagData(File jpeg, File result, double latitude, double longitude) {
         try {
         	// copy the original information
     	    GeoTagFunctions.readImageMeta(jpeg);
