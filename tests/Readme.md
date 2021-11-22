@@ -24,23 +24,44 @@ javac -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./li
 
 * remove geotag command sample: 
 ```
-java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar -m remove -i <file path under assets>
+-m remove -i <file/folder path under assets>
 ```
 * update geotag command sample: 
 ```
-java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar -m update -i <file path under assets> -la <latitude> -lo <longitude>
+-m update -i <file/folder path under assets> -la <latitude> -lo <longitude>
 ```
 * print geotag command sample: 
 ```
-java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar -m print -i <file path under assets>
+-m print -i <file path under assets>
 ```
 * verify jpeg command sample: 
 ```
-java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar -m verify -i <file path under assets>
+-m verify -i <file path under assets>
 ```
 * print all tag command sample: 
 ```
-java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar -m tag -i <file path under assets>
+-m tag -i <file path under assets>
 ```
-	
 
+#### Example Usage:
+
+* remove geotag in internet.jpg: 
+```
+java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar tests/Tool -m remove -i internet.jpg
+```
+* update geotag in internet.jpg: 
+```
+java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar tests/Tool -m update -i internet.jpg -lo 100 -la 80
+```
+* print geotag stored in internet.jpg: 
+```
+java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar tests/Tool -m print -i internet.jpg
+```
+* verify internet.jpg is a jpeg or not: 
+```
+java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar tests/Tool -m verify -i internet.jpg
+```
+* print all tag in internet.jpg: 
+```
+java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar tests/Tool -m tag -i Internet.jpg
+```
