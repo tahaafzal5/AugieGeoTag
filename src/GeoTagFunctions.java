@@ -21,7 +21,7 @@ public class GeoTagFunctions {
     // Output: meaningful messages about processing and success when opening the file
     public static File openFile(Scanner input) {
         System.out.print("Enter the file name (including the extension): ");
-        String fileName = input.nextLine().strip().toLowerCase();
+        String fileName = input.nextLine().strip();
         
         try {
             File file = new File("./assets/" + fileName);
@@ -112,7 +112,7 @@ public class GeoTagFunctions {
         
     	// skip all numeric value
     	while (coordScanner.hasNextDouble())
-        coordScanner.nextDouble();
+            coordScanner.nextDouble();
     	
         // check direction if exists
         if (coordScanner.hasNext()) {
@@ -166,6 +166,7 @@ public class GeoTagFunctions {
     	}
     	coordScanner.close();
     	
+        // range check
     	Double longitude = getCoordinate(input);
         
         if (longitude == null)
@@ -259,6 +260,9 @@ public class GeoTagFunctions {
             System.err.println(e.getMessage());
         }
 
+        if (geotag == null)
+            Utility.displayError("no-geotag");
+
         return geotag;
     }
 
@@ -349,24 +353,17 @@ public class GeoTagFunctions {
         }
     }
     
-    // Pre: This function save image in results folder under asserts
+    // Pre: this method will not fail if there is not geotag in image
     // Return: return true if geotag is successfully removed. false otherwise
     // Output: a image without geotag. If the writing process failed, no change would happen
     public static boolean removeGeoTagData(File jpeg) {
-    	File resultsFolder = new File("./assets/results");
+        File resultsFolder = new File("./assets/results");
 
         if (!resultsFolder.exists())
             resultsFolder.mkdir();
 
-    	File result = new File("./assets/results/" + jpeg.getName());
-    	
-        return removeGeoTagData(jpeg, result);
-    }
-    
-    // Pre: this method will not fail if there is not geotag in image
-    // Return: return true if geotag is successfully removed. false otherwise
-    // Output: a image without geotag. If the writing process failed, no change would happen
-    private static boolean removeGeoTagData(File jpeg, File result) {
+        File resultFile = new File("./assets/results/editted-" + jpeg.getName());
+
     	try {
     		final int LATITUDE_REFERENCE_TAG = 1;
     	    final int LATITUDE_TAG = 2;
@@ -399,13 +396,14 @@ public class GeoTagFunctions {
             
             Utility.displaySuccess("remove-geotag");
             
-            return saveJpegImage(jpeg, result, outputSet);           	
+            return saveJpegImage(jpeg, resultFile, outputSet);           	
     	}
         catch (Exception exception) {
     		Utility.displayError("remove-geotag");
-        	result.delete();
+        	resultFile.delete();
         	
             System.err.println(jpeg.getName() + ": " + exception.getMessage());
+            
     		return false;
     	}
     }

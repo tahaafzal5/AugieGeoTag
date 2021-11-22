@@ -1,12 +1,13 @@
 package src;
 
+import java.io.File;
 import java.util.*;
 
 public class Utility {
 
     // Output: Basic menu of the program to let the user do essential tasks
     protected static void displayMenu() {
-        System.out.println("Augie GeoTag Menu:");
+        System.out.println("\nAugie GeoTag Menu:");
         System.out.println("\t1. Open an image");
         System.out.println("\t2. Add GeoTag");
         System.out.println("\t3. Update GeoTag");
@@ -18,69 +19,55 @@ public class Utility {
 
     // Pre: an open and working Scanner object
     // Output: Shows a help menu about Augie GeoTag explaining what each menu option does
-    protected static void displayHelpMenu(Scanner input) {
-        System.out.println("Help Menu:");
+    protected static void displayHelpMenu() {
+        System.out.println("\nHelp Menu:");
 
-        System.out.println("1. Open an image: This option allows you to select the specific image you would like");
-        System.out.println("\t\t  to edit the GeoTag of. It must be the exact file name including the file extension.");
-        System.out.println("2. Add GeoTag:\t  This option allows you to add a GeoTag to the image you opened with option 1.");
-        System.out.println("\t\t  It will ask for a GeoTag in format of: << to add >>");
-        System.out.println("3. Update GeoTag: This option allows you to remove an original GeoTag and add a new one on the image you opened with option 1.");
-        System.out.println("\t\t  It will ask for a GeoTag in format of: << to add >>");
-        System.out.println("4. Remove GeoTag: This function allows you to remove the GeoTag on the image you opened with option 1.");
+        System.out.println("1. Open an image: Lets you select the specific image you would like to edit");
+        System.out.println("\t\t  the GeoTag of. It must be the exact file name including the file extension.");
+        System.out.println("2. Add GeoTag:\t  Lets you add a GeoTag to the image you opened with option 1.");
+        System.out.println("\t\t  It will ask for a GeoTag in format of: <<<<< TO ADD >>>>>");
+        System.out.println("3. Update GeoTag: Allows you to remove an original GeoTag and add a new one on the image you opened with option 1.");
+        System.out.println("\t\t  It will ask for a GeoTag in format of: <<<<< TO ADD >>>>>");
+        System.out.println("4. Remove GeoTag: Lets you remove the GeoTag on the image you opened with option 1.");
         System.out.println("5. Help Menu:\t  Shows this menu.");
         System.out.println("6. About:\t  Shows the purpose, GitHub repo link, and the developer names for this project.");
-        
-        System.out.println("\nPress Enter key to return to main menu.");
-        
-        if (input.nextLine().equals("")) {
-            displayMenu();
-        }
-        else {
-            displayHelpMenu(input);
-        }   
     }
 
     // Pre: an open and working Scanner object
     // Desc: depending on the user's choice from the main menu, this method calls the appropriate function
-    protected static void handleUserMenuChoice(Scanner input) { 
+    protected static int handleUserMenuChoice(Scanner input) { 
+        System.out.print("\nPlease enter selection (1-7): ");
+        Integer choice = 0;
+        
         try {
-            System.out.print("Please enter selection (1-7): ");
+            while (true) {
+                choice = Integer.parseInt(String.valueOf(input.nextLine().strip()));
 
-            int choice = 0; 
-            while (choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != 5 && choice != 6 && choice != 7) {
-                choice = input.nextInt();
-                switch (choice) {
-                    case 1: System.out.println("GeoTagFunctions.openJpegImage() should be called when it is implemented");
-                            break;
-                    case 2: System.out.println("GeoTagFunctions.writeGeoTagData() should be called when it is implemented");
-                            break;
-                    case 3: System.out.println("GeoTagFunctions.updateGeoTagData() should be called when it is implemented");
-                            break;
-                    case 4: System.out.println("GeoTagFunctions.removeGeoTagData() should be called when it is implemented");
-                            break;
-                    case 5: displayHelpMenu(input);
-                            break;
-                    case 6: aboutProgram();
-                            break;
-                    case 7: System.exit(0);
-
-                    default:
-                        System.out.print("Invalid option. Please enter option 1-7: ");
+                while (choice < 1 || choice > 7) {
+                    System.out.print("Invalid option. Please enter option 1-7: ");
+                    choice = Integer.parseInt(String.valueOf(input.nextLine().strip()));
                 }
+
+                return choice;
             }
         }
-        catch (InputMismatchException exception) {
-            System.out.println("InputMisMatchException occurred. Please only enter integers.");
+        catch (NumberFormatException exception) {
+            System.err.println("NumberFormatException occured");
         }
+        catch (Exception exception) {
+            System.err.println("Exception occured");
+        }
+
+        // base case is exiting the program 
+        return 7;
     } 
 
-    void askConfirmation(String type) {
+    public static void askConfirmation(String type) {
         switch (type) {
             case "find-file":
                 System.out.println("Are you sure you want to find the file?"); break;
             case "open-file":
-                System.out.println("Are you sure you want to open the file?"); break;
+                System.out.println("Are you sure you want to open a file?"); break;
             case "read-geotag":
                 System.out.println("Are you sure you want to read the GeoTag?"); break;
             case "remove-geotag":
@@ -100,19 +87,25 @@ public class Utility {
     // Output: message for the user asking if they are sure. Another message if wrong choice is entered
     // Return: true if user confirms action, false otherwise
     protected static boolean handleUserConfirmationChoice(Scanner input) {  
-        System.out.println("Are you sure?");
-        System.out.println("'Y' for Yes. 'N' for No.");
+        System.out.print("'Y' for Yes & 'N' for No: ");
         
-        while (true) {
-            Character userResponse = input.nextLine().strip().toLowerCase().charAt(0);
-    
-            if (userResponse == 'y')
-                return true;
-            else if (userResponse == 'n')
-                return false;
-            else
-                System.out.println("Wrong choice. Enter 'Y' for Yes. 'N' for No.");
+        try {
+            while (true) {
+                Character userResponse = input.nextLine().strip().toLowerCase().charAt(0);
+        
+                if (userResponse == 'y')
+                    return true;
+                else if (userResponse == 'n')
+                    return false;
+                else
+                    System.out.print("Wrong choice. Enter 'Y' for Yes & 'N' for No: ");
+            }
         }
+        catch (Exception exception) {
+            System.out.println(exception.getMessage());
+        }
+
+        return false;
     }
 
     // Pre: the argument type must be one of the cases in the switch-cases to get a meaningful message
@@ -120,28 +113,32 @@ public class Utility {
     public static void displayError(String type) {
         switch (type) {
             case "find-file":
-                System.err.println("Error: the file you are trying to open does not exist in this project's assets folder"); break;
+                System.err.println("Error: the file you are trying to open does not exist in this project's assets folder."); break;
             case "open-file":
-                System.err.println("Error: can't open the file you are trying to open"); break;
+                System.err.println("Error: can't open the file you are trying to open."); break;
+            case "no-file":
+                System.err.println("Error: no file is open to perform this operation on. Open a file first."); break;
             case "check-jpeg": 
-                System.err.println("Error: check that you uploaded an acceptable file format (JPEG/JPG)"); break;
+                System.err.println("Error: check that you uploaded an acceptable file format (JPEG/JPG)."); break;
             case "check-multiple":
-                System.err.println("Error: you are attempting to open more than 1 image, please open only one image at a time"); break;
+                System.err.println("Error: you are attempting to open more than 1 image, please open only one image at a time."); break;
             case "read-metadata":
-                System.err.println("Error: can't read the metadata of this file"); break;
+                System.err.println("Error: can't read the metadata of this file."); break;
             case "remove-geotag":
-                System.err.println("Error: GeoTag does not exist on given image, please open a different image or try adding the GeoTag"); break;
+                System.err.println("Error: can't remove GeoTag from this image."); break;
+            case "no-geotag":
+                System.err.println("Error: GeoTag does not exist on the given image, please open a different image or try adding the GeoTag.");
             case "update-geotag": 
-                System.err.println("Error: GeoTag does not exist on given image, please open a different image or try adding the GeoTag"); break;
+                System.err.println("Error: GeoTag does not exist on given image, please open a different image or try adding the GeoTag."); break;
             case "add-geotag":
-                System.err.println("Error: GeoTag already exists on given image, please open a different image or try updating the GeoTag"); break;
+                System.err.println("Error: GeoTag already exists on given image, please open a different image or try updating the GeoTag."); break;
             case "save-image":
-            	System.err.println("Error: can't output the image"); break;
+            	System.err.println("Error: can't output the image."); break;
             case "get-GPS":
-                System.err.println("Error: can't get the GPS data from the image"); break;
+                System.err.println("Error: can't get the GPS data from the image."); break;
 
             default:
-                System.err.println("Error");
+                System.err.println("Error.");
         }
     }
 
@@ -206,6 +203,11 @@ public class Utility {
     public static void aboutProgram() {
         System.out.println("\nAugie GeoTag lets you add, edit, and remove GeoTag data from your JPEG/JPG images.");
         System.out.println("GitHub repo: https://github.com/tahaafzal5/AugieGeoTag");
-        System.out.println("This program was developed by Taha, Taire, Zach, Tony, Sicheng and Zemenu.\n");
+        System.out.println("This program was developed by Taha, Taire, Zach, Tony, Sicheng and Zemenu.");
+    }
+
+    // <<<<<<<<<<< TO DO >>>>>>>>>>>>>>>>
+    public static void exitProgram() {
+        System.exit(0);
     }
 }
