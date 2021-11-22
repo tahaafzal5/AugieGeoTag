@@ -24,23 +24,23 @@ javac -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./li
 
 * remove geotag command sample: 
 ```
--m remove -i <file path under assets>
+java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar -m remove -i <file path under assets>
 ```
 * update geotag command sample: 
 ```
--m update -i <file path under assets> -la <latitude> -lo <longitude>
+java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar -m update -i <file path under assets> -la <latitude> -lo <longitude>
 ```
 * print geotag command sample: 
 ```
--m print -i <file path under assets>
+java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar -m print -i <file path under assets>
 ```
 * verify jpeg command sample: 
 ```
--m verify -i <file path under assets>
+java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar -m verify -i <file path under assets>
 ```
 * print all tag command sample: 
 ```
--m tag -i <file path under assets>
+java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar -m tag -i <file path under assets>
 ```
 	
 
