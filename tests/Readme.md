@@ -18,6 +18,22 @@ javac -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./li
 * -lo    longtitude as a String (required when you select to update geotag)
 * -help  print help menu
 
+### Latitude and Longtitude Format Supported by Command Line Tool
+
+Degree, Minute, Second: 
+* Longtitude: 100 30 40.88 E Latitude: 40 20 20.54 N
+* Longtitude: 100 30 40.88 Latitude: 40 20 20.54
+
+Degree, Minute:
+* Longtitude: 100 30 E Latitude: 40 20 N
+* Longtitude: 100 30 Latitude: 40 20
+
+Degree Only:
+* Longtitude: 100.87 E Latitude: 40.66 N
+* Longtitude: 100.87 Latitude: 40.66
+* Longtitude: -100.87 Latitude: -40.66 (This means 100.87 W, 40.66 S)
+* Notice: -100.87 W is not allowed here. Please use either direction reference or negative value to represent W and S.
+
 ### Command Format:
 
 * remove geotag command format: 
