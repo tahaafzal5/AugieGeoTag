@@ -23,10 +23,12 @@ javac -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./li
 Degree, Minute, Second: 
 * Longtitude: 100 30 40.88 E Latitude: 40 20 20.54 N
 * Longtitude: 100 30 40.88 Latitude: 40 20 20.54
+* Longtitude: -100 -30 -40.88 Latitude: -40 -20 -20.54 (This means 100 30 40.88 W, 40 20 20.54 S)
 
 Degree, Minute:
-* Longtitude: 100 30 E Latitude: 40 20 N
-* Longtitude: 100 30 Latitude: 40 20
+* Longtitude: 100 30.88 E Latitude: 40 20.66 N
+* Longtitude: 100 30.88 Latitude: 40 20.66
+* Longtitude: -100 -30.88 Latitude: -40 -20.66 (This means 100 30.88 W, 40 20.66 S)
 
 Degree Only:
 * Longtitude: 100.87 E Latitude: 40.66 N
@@ -55,6 +57,12 @@ Degree Only:
 * print all tag command format: 
 ```
 -m tag -i <file path under assets>
+```
+* flag order does not matter here
+```
+They are the same:
+-m tag -i <file path under assets>
+-i <file path under assets> -m tag
 ```
 
 ### Example Usage:
