@@ -20,23 +20,23 @@ javac -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./li
 
 ### Command Format:
 
-* remove geotag command sample: 
+* remove geotag command format: 
 ```
 -m remove -i <file/folder path under assets>
 ```
-* update geotag command sample: 
+* update geotag command format: 
 ```
 -m update -i <file/folder path under assets> -la <latitude> -lo <longitude>
 ```
-* print geotag command sample: 
+* print geotag command format: 
 ```
 -m print -i <file path under assets>
 ```
-* verify jpeg command sample: 
+* verify jpeg command format: 
 ```
 -m verify -i <file path under assets>
 ```
-* print all tag command sample: 
+* print all tag command format: 
 ```
 -m tag -i <file path under assets>
 ```
