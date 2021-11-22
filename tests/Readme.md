@@ -1,6 +1,6 @@
 # Command Line Tool Instruction
 
-The test tool use both commons imaging library and library from Sicheng. It is required to link them when compiling program.
+The command line tool use both commons imaging library and library from Sicheng. It is required to link them when compiling program.
 
 ## How to Compile it:
 
