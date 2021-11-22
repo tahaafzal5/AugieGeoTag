@@ -47,15 +47,15 @@ javac -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./li
 ```
 java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar tests/Tool -m remove -i internet.jpg
 ```
-* remove geotag in folder source: 
+* remove geotag for all jpeg in folder source: 
 ```
 java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar tests/Tool -m remove -i source
 ```
-* update geotag in internet.jpg: 
+* update geotag in internet.jpg to 100 E 80 N: 
 ```
 java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar tests/Tool -m update -i internet.jpg -lo 100 -la 80
 ```
-* update geotag in folder source: 
+* update geotag for all jpeg in folder source to 100 E 80 N: 
 ```
 java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar tests/Tool -m update -i source -lo 100 -la 80
 ```
