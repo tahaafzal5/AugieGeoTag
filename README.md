@@ -31,7 +31,18 @@ Sometimes, `.vscode/settings.json` does not link the referenced libraries proper
 - You are all set to compile and run the program now.
 
 ### Compiling and running the program
-- << TO DO >>
+#### Compile Program 
+```
+javac -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar */*.java
+```
+#### Run App.java
+```
+java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar src/App
+```
+#### Run Command Line Tool
+```
+java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar tests/Tool <Your command>
+```
 
 # Making Changes
 
