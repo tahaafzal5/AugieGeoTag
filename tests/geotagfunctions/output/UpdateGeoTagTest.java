@@ -40,7 +40,7 @@ public class UpdateGeoTagTest {
 		if(difference.isEmpty())
 			console.println("\nGPS data is equal.");
 		else {
-			console.println("\nDifferen items GPS data:");
+			console.println("\nDifferentt items GPS data:");
 			for(Entry e: difference)
 				console.println(e);				
 		}
@@ -54,7 +54,7 @@ public class UpdateGeoTagTest {
 		if(difference.isEmpty())
 			console.println("\nIFD1 is equal.");
 		else {
-			console.println("\nDifferen items in IFD1:");
+			console.println("\nDifferent items in IFD1:");
 			for(Entry e: difference)
 				console.println(e);				
 		}
@@ -68,7 +68,7 @@ public class UpdateGeoTagTest {
 		if(difference.isEmpty())
 			console.println("\nsub-IFD is equal.");
 		else {
-			console.println("\nDifferen items in sub-IFD:");
+			console.println("\nDifferent items in sub-IFD:");
 			for(Entry e: difference)
 				console.println(e);				
 		}
@@ -82,7 +82,7 @@ public class UpdateGeoTagTest {
 		if(difference.isEmpty())
 			console.println("\nIFD 0 is equal.");
 		else {
-			console.println("\nDifferen items in IFD0:");
+			console.println("\nDifferent items in IFD0:");
 			for(Entry e: difference)
 				console.println(e);				
 		}
