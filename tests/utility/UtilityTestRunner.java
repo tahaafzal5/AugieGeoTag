@@ -1,4 +1,4 @@
-package tests.utilityTest;
+package tests.utility;
 
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;

@@ -1,4 +1,4 @@
-package tests.geoTagFunctionsTest;
+package tests.geotagfunctions.returnvalue;
 
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -129,7 +129,7 @@ public class GeoTagFunctionsTest {
 	//test openFile
 	private void testOpenFile() throws FileNotFoundException
 	{
-		Scanner input = new Scanner(new File("./tests/geoTagFunctionsTest/GeoTagFunctionsTest.txt"));
+		Scanner input = new Scanner(new File("./tests/geotagfunctions/returnvalue/GeoTagFunctionsTest.txt"));
 		File openFile = GeoTagFunctions.openFile(input);
 		assertEquals(openFile != null, true);
 	}

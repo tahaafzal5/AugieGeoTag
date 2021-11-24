@@ -1,4 +1,4 @@
-package tests.geoTagFunctionsTest;
+package tests.geotagfunctions.returnvalue;
 
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
@@ -12,7 +12,8 @@ public class GeoTagFunctionsTestRunner {
 				
 		for (Failure failure : result.getFailures())
 		    System.out.println(failure.toString());
-			
+		
+		System.out.println("-----------");
 		System.out.println("GeotagFunctions test result: " + result.wasSuccessful());
 	}
 }

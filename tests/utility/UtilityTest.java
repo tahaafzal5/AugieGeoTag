@@ -1,4 +1,4 @@
-package tests.utilityTest;
+package tests.utility;
 
 import src.Utility;
 import java.io.*;
@@ -12,10 +12,10 @@ public class UtilityTest {
 	public void UtilityTest() throws FileNotFoundException {
 		
 		// output content to a file
-        PrintStream ps = new PrintStream(new File("./tests/utilityTest/UtilityTestResult.txt"));
+        PrintStream ps = new PrintStream(new File("./tests/utility/UtilityTestResult.txt"));
         System.setOut(ps);
         System.setErr(ps);
-        Scanner input = new Scanner(new File("./tests/utilityTest/input.txt"));
+        Scanner input = new Scanner(new File("./tests/utility/input.txt"));
 		
         Utility.displayMenu();
         
