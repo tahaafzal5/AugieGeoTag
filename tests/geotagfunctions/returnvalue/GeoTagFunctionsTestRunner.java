@@ -14,6 +14,6 @@ public class GeoTagFunctionsTestRunner {
 		    System.out.println(failure.toString());
 		
 		System.out.println("-----------");
-		System.out.println("GeotagFunctions test result: " + result.wasSuccessful());
+		System.out.println("GeotagFunctions return value test result: " + result.wasSuccessful());
 	}
 }
