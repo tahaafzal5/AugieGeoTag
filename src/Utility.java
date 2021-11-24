@@ -6,7 +6,7 @@ import java.util.*;
 public class Utility {
 
     // Output: Basic menu of the program to let the user do essential tasks
-    protected static void displayMenu() {
+    public static void displayMenu() {
         System.out.println("\nAugie GeoTag Menu:");
         System.out.println("\t1. Open an image");
         System.out.println("\t2. Add GeoTag");
@@ -19,7 +19,7 @@ public class Utility {
 
     // Pre: an open and working Scanner object
     // Output: Shows a help menu about Augie GeoTag explaining what each menu option does
-    protected static void displayHelpMenu() {
+    public static void displayHelpMenu() {
         System.out.println("\nHelp Menu:");
 
         System.out.println("1. Open an image: Lets you select the specific image you would like to edit");
@@ -35,7 +35,7 @@ public class Utility {
 
     // Pre: an open and working Scanner object
     // Desc: depending on the user's choice from the main menu, this method calls the appropriate function
-    protected static int handleUserMenuChoice(Scanner input) { 
+    public static int handleUserMenuChoice(Scanner input) { 
         System.out.print("\nPlease enter selection (1-7): ");
         Integer choice = 0;
         
@@ -86,7 +86,7 @@ public class Utility {
     // Input: 'y' for yes and 'n' for no to confirm action
     // Output: message for the user asking if they are sure. Another message if wrong choice is entered
     // Return: true if user confirms action, false otherwise
-    protected static boolean handleUserConfirmationChoice(Scanner input) {  
+    public static boolean handleUserConfirmationChoice(Scanner input) {  
         System.out.print("'Y' for Yes & 'N' for No: ");
         
         try {
@@ -127,7 +127,7 @@ public class Utility {
             case "remove-geotag":
                 System.err.println("Error: can't remove GeoTag from this image."); break;
             case "no-geotag":
-                System.err.println("Error: GeoTag does not exist on the given image, please open a different image or try adding the GeoTag.");
+                System.err.println("Error: GeoTag does not exist on the given image, please open a different image or try adding the GeoTag."); break;
             case "update-geotag": 
                 System.err.println("Error: GeoTag does not exist on given image, please open a different image or try adding the GeoTag."); break;
             case "add-geotag":

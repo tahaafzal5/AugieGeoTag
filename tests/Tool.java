@@ -137,8 +137,12 @@ public class Tool {
 					System.out.println("This is not a jpeg/jpg");
 				System.exit(0);
 			case "tag":
-				JpegExif exif = new JpegExif(jpeg);
-				exif.print();
+				try {
+					JpegExif exif = new JpegExif(jpeg);
+					exif.print();
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+				}
 				System.exit(0);
 			default:
 				System.err.println("Mode information error: should be \"update\", \"remove\", or \"print\"");

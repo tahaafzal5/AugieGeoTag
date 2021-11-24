@@ -82,7 +82,7 @@ public class GeoTagFunctions {
     // Return: true if metadata read successfully, false otherwise
     // Output: error message if program throw Exception
     // Reminder: exif might be a null. It is important to check it because there might be no metadata.
-    public static boolean readImageMeta(File jpeg) {
+    private static boolean readImageMeta(File jpeg) {
         try {
             // get Metadata
             final ImageMetadata metadata = Imaging.getMetadata(jpeg);
@@ -259,9 +259,6 @@ public class GeoTagFunctions {
             Utility.displayError("get-GPS");
             System.err.println(e.getMessage());
         }
-
-        if (geotag == null)
-            Utility.displayError("no-geotag");
 
         return geotag;
     }
