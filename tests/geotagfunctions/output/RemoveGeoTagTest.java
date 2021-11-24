@@ -2,8 +2,7 @@ package tests.geotagfunctions.output;
 
 import src.GeoTagFunctions;
 import jpeg.*;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.LinkedList;
 
 public class RemoveGeoTagTest {
@@ -12,9 +11,13 @@ public class RemoveGeoTagTest {
 	private static JpegExif newExif = null;
 	private static Entry[] oldIfd = null;
 	private static Entry[] newIfd = null;
+	private static PrintStream console = System.out;
 	
 	public static void main(String[] args) throws IOException {
 		File jpeg = new File("./assets/iPhone-6.jpg");	
+		PrintStream fileOutput = new PrintStream(new File("./tests/geotagfunctions/output/print.txt"));
+		System.setOut(fileOutput);
+		System.setErr(fileOutput);
 		GeoTagFunctions.removeGeoTagData(jpeg);
 		File edittedJpeg = new File("./assets/results/editted-iPhone-6.jpg");
 		
@@ -33,11 +36,11 @@ public class RemoveGeoTagTest {
 		
 		LinkedList<Entry> difference = checkIfd();
 		if(difference.isEmpty())
-			System.out.println("\nGPS data is successfully copied.");
+			console.println("\nGPS data is equal.");
 		else {
-			System.out.println("\nItems not copied in GPS data:");
+			console.println("\nItems not copied in GPS data:");
 			for(Entry e: difference)
-				System.out.println(e);				
+				console.println(e);				
 		}
 	}
 	
@@ -47,11 +50,11 @@ public class RemoveGeoTagTest {
 		
 		LinkedList<Entry> difference = checkIfd();
 		if(difference.isEmpty())
-			System.out.println("\nIFD1 is successfully copied.");
+			console.println("\nIFD1 is equal.");
 		else {
-			System.out.println("\nItems not copied in IFD1:");
+			console.println("\nDifferen items in IFD1:");
 			for(Entry e: difference)
-				System.out.println(e);				
+				console.println(e);				
 		}
 	}
 	
@@ -61,11 +64,11 @@ public class RemoveGeoTagTest {
 		
 		LinkedList<Entry> difference = checkIfd();
 		if(difference.isEmpty())
-			System.out.println("\nsub-IFD is successfully copied.");
+			console.println("\nsub-IFD is equal.");
 		else {
-			System.out.println("\nItems not copied in sub-IFD:");
+			console.println("\nDifferen items in sub-IFD:");
 			for(Entry e: difference)
-				System.out.println(e);				
+				console.println(e);				
 		}
 	}
 	
@@ -75,11 +78,11 @@ public class RemoveGeoTagTest {
 		
 		LinkedList<Entry> difference = checkIfd();
 		if(difference.isEmpty())
-			System.out.println("IFD 0 is successfully copied.");
+			console.println("\nIFD 0 is equal.");
 		else {
-			System.out.println("Items not copied in IFD0:");
+			console.println("\nDifferen items in IFD0:");
 			for(Entry e: difference)
-				System.out.println(e);				
+				console.println(e);				
 		}
 	}
 	

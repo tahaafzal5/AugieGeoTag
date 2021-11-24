@@ -1,31 +1,19 @@
-package tests.utility;
+package tests.utility.output;
 
 import src.Utility;
 import java.io.*;
-import java.util.Scanner;
 import org.junit.Test;
-import static org.junit.Assert.assertEquals;
 
-public class UtilityTest {
+public class UtilityOutputTest {
 	
 	@Test
-	public void UtilityTest() throws FileNotFoundException {
-		
-		// output content to a file
-        PrintStream ps = new PrintStream(new File("./tests/utility/UtilityTestResult.txt"));
-        System.setOut(ps);
-        System.setErr(ps);
-        Scanner input = new Scanner(new File("./tests/utility/input.txt"));
+	public void UtilityOutputTest() throws FileNotFoundException {
 		
         Utility.displayMenu();
         
         Utility.displayHelpMenu();
-        
-        testHandleUserChoice(input);
 		
 		testAskConfirmation();
-		
-		testHandleUserConfirmation(input);
 		
 		testDisplayError();
 		
@@ -38,25 +26,6 @@ public class UtilityTest {
 		Utility.exitProgram();
 	}
 	
-	//test handleUserChoice
-	private void testHandleUserChoice(Scanner input) {
-		//test 1-7
-        int choice = Utility.handleUserMenuChoice(input);
-        assertEquals(choice, 1);
-        choice = Utility.handleUserMenuChoice(input);
-        assertEquals(choice, 2);
-        choice = Utility.handleUserMenuChoice(input);
-        assertEquals(choice, 3);
-        choice = Utility.handleUserMenuChoice(input);
-        assertEquals(choice, 4);
-        choice = Utility.handleUserMenuChoice(input);
-        assertEquals(choice, 5);
-        choice = Utility.handleUserMenuChoice(input);
-        assertEquals(choice, 6);
-        choice = Utility.handleUserMenuChoice(input);
-        assertEquals(choice, 7);
-	}
-	
 	//test askConfirmation
 	private void testAskConfirmation() {
 		Utility.askConfirmation("find-file");
@@ -66,14 +35,6 @@ public class UtilityTest {
 		Utility.askConfirmation("write-geotag");
 		Utility.askConfirmation("save-image");
 		Utility.askConfirmation("default");
-	}
-	
-	//test handle user confirmation
-	private void testHandleUserConfirmation(Scanner input) {
-		boolean yes = Utility.handleUserConfirmationChoice(input);
-		assertEquals(yes, true);
-		boolean not = Utility.handleUserConfirmationChoice(input);
-		assertEquals(not, false);
 	}
 	
 	//test displayError
