@@ -12,6 +12,8 @@ public class UpdateGeoTagTest {
 	private static Entry[] oldIfd = null;
 	private static Entry[] newIfd = null;
 	private static PrintStream console = System.out;
+	private static LinkedList<Entry> diffInOld = null;
+	private static LinkedList<Entry> diffInNew = null;
 	
 	public static void main(String[] args) throws IOException {
 		File jpeg = new File("./assets/iPhone-6.jpg");
@@ -32,75 +34,108 @@ public class UpdateGeoTagTest {
 		checkGps();
 	}
 	
+	//Output: different items in GPS IFD. GPS IFD is equal is printed if old jpeg and
+	//new jpeg has same  GPS IFD
 	private static void checkGps() {
 		oldIfd = oldExif.getGpsIfd();
 		newIfd = newExif.getGpsIfd();
 		
-		LinkedList<Entry> difference = checkIfd();
-		if(difference.isEmpty())
-			console.println("\nGPS data is equal.");
+		checkIfd();
+		if(diffInOld.isEmpty() && diffInNew.isEmpty())
+			console.println("\nGPS IFD is equal.");
 		else {
-			console.println("\nDifferentt items GPS data:");
-			for(Entry e: difference)
-				console.println(e);				
+			//print out the difference
+			console.println("\nDifferent items in GPS IFD:");
+			console.println("In old jpeg:");
+			for(Entry e: diffInOld)
+				console.println(e);
+			console.println("In new jpeg:");
+			for(Entry e: diffInNew)
+				console.println(e);
 		}
 	}
 	
+	//Output: different items in IFD 1. IFD 1 is equal is printed if old jpeg and
+	//new jpeg has same IFD 1
 	private static void checkIfd1() {
 		oldIfd = oldExif.getIfd1();
 		newIfd = newExif.getIfd1();
 		
-		LinkedList<Entry> difference = checkIfd();
-		if(difference.isEmpty())
-			console.println("\nIFD1 is equal.");
+		checkIfd();
+		if(diffInOld.isEmpty() && diffInNew.isEmpty())
+			console.println("\nIFD 1 is equal.");
 		else {
-			console.println("\nDifferent items in IFD1:");
-			for(Entry e: difference)
-				console.println(e);				
+			//print out the difference
+			console.println("\nDifferent items in IFD 1:");
+			console.println("In old jpeg:");
+			for(Entry e: diffInOld)
+				console.println(e);
+			console.println("In new jpeg:");
+			for(Entry e: diffInNew)
+				console.println(e);
 		}
 	}
 	
+	//Output: different items in IFD0. Sub-IFD is equal is printed if old jpeg and
+	//new jpeg has same sub-IFD
 	private static void checkSubIfd() {
 		oldIfd = oldExif.getSubIfd();
 		newIfd = newExif.getSubIfd();
 		
-		LinkedList<Entry> difference = checkIfd();
-		if(difference.isEmpty())
-			console.println("\nsub-IFD is equal.");
+		checkIfd();
+		if(diffInOld.isEmpty() && diffInNew.isEmpty())
+			console.println("\nSub-IFD is equal.");
 		else {
+			//print out the difference
 			console.println("\nDifferent items in sub-IFD:");
-			for(Entry e: difference)
-				console.println(e);				
+			console.println("In old jpeg:");
+			for(Entry e: diffInOld)
+				console.println(e);
+			console.println("In new jpeg:");
+			for(Entry e: diffInNew)
+				console.println(e);
 		}
 	}
 	
+	//Output: different items in IFD0. IFD 0 is equal is printed if old jpeg and
+	//new jpeg has same IFD 0
 	private static void checkIfd0() {
 		oldIfd = oldExif.getIfd0();
 		newIfd = newExif.getIfd0();
 		
-		LinkedList<Entry> difference = checkIfd();
-		if(difference.isEmpty())
+		checkIfd();
+		if(diffInOld.isEmpty() && diffInNew.isEmpty())
 			console.println("\nIFD 0 is equal.");
 		else {
-			console.println("\nDifferent items in IFD0:");
-			for(Entry e: difference)
-				console.println(e);				
+			//print out the difference
+			console.println("\nDifferent items in IFD 0:");
+			console.println("In old jpeg:");
+			for(Entry e: diffInOld)
+				console.println(e);
+			console.println("In new jpeg:");
+			for(Entry e: diffInNew)
+				console.println(e);
 		}
 	}
 	
 	//check whether IFD is copied
-	//Return: a LinkedList which contains different Entry
-	private static LinkedList<Entry> checkIfd() {
+	//Post: two LinkedList diffInOld and diffInNew that contains different Entry in new and old jpeg
+	private static void checkIfd() {
 		//set up result variable
-		LinkedList<Entry> difference = new LinkedList<Entry>();
-		for(Entry newEntry : newIfd) {
-			boolean same = false;
+		diffInOld = new LinkedList<Entry>();
+		diffInNew = new LinkedList<Entry>();
+		
+		for(Entry e : oldIfd)
+			diffInOld.add(e);
+		for(Entry e : newIfd)
+			diffInNew.add(e);
+		
+		//remove same items in jpeg
+		for(Entry newEntry : newIfd)
 			for(Entry oldEntry : oldIfd)
-				if(oldEntry.equals(newEntry))
-					same = true;
-			if(!same)
-				difference.add(newEntry);
-		}
-		return difference;
+				if(oldEntry.equals(newEntry)) {
+					diffInOld.remove(oldEntry);
+					diffInNew.remove(newEntry);
+				}
 	}
 }
