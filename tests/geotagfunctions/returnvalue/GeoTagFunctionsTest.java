@@ -83,6 +83,10 @@ public class GeoTagFunctionsTest {
 		assertEquals(noGPS, null);
 		noGPS = GeoTagFunctions.getGeoTagData(new File("./assets/Cannon-EOS-M50-no-geotag.JPG"));
 		assertEquals(noGPS, null);
+		noGPS = GeoTagFunctions.getGeoTagData(new File("./assets/iphone11-notag.jpg"));
+		assertEquals(noGPS, null);
+		noGPS = GeoTagFunctions.getGeoTagData(new File("./assets/iphone11-notag2.jpg"));
+		assertEquals(noGPS, null);
 	}
 	
 	//getGpsInfo test
@@ -104,6 +108,10 @@ public class GeoTagFunctionsTest {
 		invalidGPS = GeoTagFunctions.getGPSInfo(new File("./assets/No-geotag.jpeg"));
 		assertEquals(invalidGPS == null, true);
 		invalidGPS = GeoTagFunctions.getGPSInfo(new File("./assets/Cannon-EOS-M50-no-geotag.JPG"));
+		assertEquals(invalidGPS == null, true);
+		invalidGPS = GeoTagFunctions.getGPSInfo(new File("./assets/iphone11-notag.jpg"));
+		assertEquals(invalidGPS == null, true);
+		invalidGPS = GeoTagFunctions.getGPSInfo(new File("./assets/iphone11-notag2.jpg"));
 		assertEquals(invalidGPS == null, true);
 	}
 	
@@ -182,6 +190,10 @@ public class GeoTagFunctionsTest {
 		false_result = GeoTagFunctions.isJpeg(new File("./assets/Not-JPEG-movie.MOV"));
 		assertEquals(false_result, false);
 		false_result = GeoTagFunctions.isJpeg(new File("./assets/results"));
+		assertEquals(false_result, false);
+		false_result = GeoTagFunctions.isJpeg(new File("./assets/IMG_1492.png"));
+		assertEquals(false_result, false);
+		false_result = GeoTagFunctions.isJpeg(new File("./assets/IMG_1685.png"));
 		assertEquals(false_result, false);
 	}
 	
