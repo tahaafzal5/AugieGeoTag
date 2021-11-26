@@ -16,14 +16,14 @@ public class UpdateGeoTagTest {
 	private static LinkedList<Entry> diffInNew = null;
 	
 	public static void main(String[] args) throws IOException {
-		File jpeg = new File("./assets/iPhone-6.jpg");
+		File jpeg = new File("./assets/Cannon-EOS-M50-no-geotag.JPG");
 		PrintStream fileOutput = new PrintStream(new File("./tests/geotagfunctions/output/print.txt"));
 		System.setOut(fileOutput);
 		System.setErr(fileOutput);
 		final double latitude = -(60 + 30 / 60.0 + 40.88 / 3600.0);
 		final double longitude = -(100 + 40 / 60.0 + 50.87 / 3600.0);
 		GeoTagFunctions.updateGeoTagData(jpeg, latitude, longitude);
-		File edittedJpeg = new File("./assets/results/editted-iPhone-6.jpg");
+		File edittedJpeg = new File("./assets/results/editted-" + jpeg.getName());
 		
 		oldExif = new JpegExif(jpeg);
 		newExif = new JpegExif(edittedJpeg);
@@ -40,6 +40,23 @@ public class UpdateGeoTagTest {
 		oldIfd = oldExif.getGpsIfd();
 		newIfd = newExif.getGpsIfd();
 		
+		if(oldIfd == null && newIfd == null){
+			console.println("\nGPS IFD is not available in both jpeg");
+			return;
+		} else if (oldIfd == null){
+			console.println("\nGPS IFD is not available in old jpeg");
+			console.println("GPS IFD in new jpeg:");
+			for(Entry e : newIfd)
+				console.println(e);
+			return;
+		} else if(newIfd == null){
+			console.println("\nGPS IFD is not available in new jpeg");
+			console.println("GPS IFD in old jpeg:");
+			for(Entry e : oldIfd)
+				console.println(e);
+			return;
+		}
+
 		checkIfd();
 		if(diffInOld.isEmpty() && diffInNew.isEmpty())
 			console.println("\nGPS IFD is equal.");
@@ -60,6 +77,23 @@ public class UpdateGeoTagTest {
 	private static void checkIfd1() {
 		oldIfd = oldExif.getIfd1();
 		newIfd = newExif.getIfd1();
+		
+		if(oldIfd == null && newIfd == null){
+			console.println("\nIFD 1 is not available in both jpeg");
+			return;
+		} else if (oldIfd == null){
+			console.println("\nIFD 1 is not available in old jpeg");
+			console.println("IFD 1 in new jpeg:");
+			for(Entry e : newIfd)
+				console.println(e);
+			return;
+		} else if(newIfd == null){
+			console.println("\nIFD 1 is not available in new jpeg");
+			console.println("IFD 1 in old jpeg:");
+			for(Entry e : oldIfd)
+				console.println(e);
+			return;
+		}
 		
 		checkIfd();
 		if(diffInOld.isEmpty() && diffInNew.isEmpty())
@@ -82,6 +116,23 @@ public class UpdateGeoTagTest {
 		oldIfd = oldExif.getSubIfd();
 		newIfd = newExif.getSubIfd();
 		
+		if(oldIfd == null && newIfd == null){
+			console.println("\nSub-IFD is not available in both jpeg");
+			return;
+		} else if (oldIfd == null){
+			console.println("\nSub-IFD is not available in old jpeg");
+			console.println("Sub-IFD in new jpeg:");
+			for(Entry e : newIfd)
+				console.println(e);
+			return;
+		} else if(newIfd == null){
+			console.println("\nSub-IFD is not available in new jpeg");
+			console.println("Sub-IFD in old jpeg:");
+			for(Entry e : oldIfd)
+				console.println(e);
+			return;
+		}
+		
 		checkIfd();
 		if(diffInOld.isEmpty() && diffInNew.isEmpty())
 			console.println("\nSub-IFD is equal.");
@@ -102,6 +153,23 @@ public class UpdateGeoTagTest {
 	private static void checkIfd0() {
 		oldIfd = oldExif.getIfd0();
 		newIfd = newExif.getIfd0();
+		
+		if(oldIfd == null && newIfd == null){
+			console.println("\nIFD 0 is not available in both jpeg");
+			return;
+		} else if (oldIfd == null){
+			console.println("\nIFD 0 is not available in old jpeg");
+			console.println("IFD 0 in new jpeg:");
+			for(Entry e : newIfd)
+				console.println(e);
+			return;
+		} else if(newIfd == null){
+			console.println("\nIFD 0 is not available in new jpeg");
+			console.println("IFD 0 in old jpeg:");
+			for(Entry e : oldIfd)
+				console.println(e);
+			return;
+		}
 		
 		checkIfd();
 		if(diffInOld.isEmpty() && diffInNew.isEmpty())
