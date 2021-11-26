@@ -124,12 +124,18 @@ public class GeoTagFunctionsTest {
 		assertEquals(withRef, answer);
 		Double noRef = GeoTagFunctions.getLongitude("100 30 20.8");
 		assertEquals(noRef, answer);
+		answer= -answer;
+		noRef = GeoTagFunctions.getLongitude("-100 -30 -20.8");
+		assertEquals(noRef, answer);
 						
 		//degree, minute
 		answer = 100 + 30.66 / 60;
 		withRef = GeoTagFunctions.getLongitude("100 30.66 E");
 		assertEquals(withRef, answer);
 		noRef = GeoTagFunctions.getLongitude("100 30.66");
+		assertEquals(noRef, answer);
+		answer = -answer;
+		noRef = GeoTagFunctions.getLongitude("-100 -30.66");
 		assertEquals(noRef, answer);
 						
 		//degree only
