@@ -18,9 +18,9 @@ import jpeg.JpegExif;
 	**input flag order does not matter**
 
 	remove geotag command sample:
-	-m remove -i <file path under assets>
+	-m remove -i <file/folder path under assets>
 	update geotag command sample:
-	-m update -i <file path under assets> -la <latitude> -lo <longitude>
+	-m update -i <file/folder path under assets> -la <latitude> -lo <longitude>
 	print geotag command sample:
 	-m print -i <file path under assets>
 	verify jpeg command sample:
