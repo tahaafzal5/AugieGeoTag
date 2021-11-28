@@ -1,10 +1,6 @@
 # Command Line Tool Instruction
 
-The command line tool use both commons imaging library and library from Sicheng. It is required to link them when compiling program.
-
-## How to Use it:
-
-### Command Type:
+## Command Type:
 
 * -m     remove for remove geotag, update for update geotag, verify for verify whether file is a jpeg, and print to print geotag (required)
 * -i     name of input file or folder in assets folder (required)
@@ -12,7 +8,7 @@ The command line tool use both commons imaging library and library from Sicheng.
 * -lo    longtitude as a String (required when you select to update geotag)
 * -help  print help menu
 
-### Latitude and Longtitude Format Supported by the Command Line Tool
+## Latitude and Longtitude Format Supported by the Command Line Tool
 
 Degree, Minute, Second: 
 * Longtitude: 100 30 40.88 E Latitude: 40 20 20.54 N
@@ -30,7 +26,7 @@ Degree Only:
 * Longtitude: -100.87 Latitude: -40.66 (This means 100.87 W, 40.66 S)
 * Notice: -100.87 W is not allowed here. Please use either direction reference or negative value to represent W and S.
 
-### Command Format:
+## Command Format:
 
 * remove geotag command format: 
 ```
@@ -59,7 +55,7 @@ They do the same thing:
 -i <file path under assets> -m tag
 ```
 
-### Example Usage:
+## Example Usage:
 
 * remove geotag in internet.jpg: 
 ```
