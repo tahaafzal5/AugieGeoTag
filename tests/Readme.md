@@ -2,12 +2,6 @@
 
 The command line tool use both commons imaging library and library from Sicheng. It is required to link them when compiling program.
 
-## How to Compile it:
-
-```
-javac -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar:./lib/hamcrest-core-1.3.jar:./lib/junit-4.13.2.jar */*.java */*/*/*.java
-```
-
 ## How to Use it:
 
 ### Command Type:
