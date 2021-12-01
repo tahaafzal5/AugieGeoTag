@@ -4,20 +4,23 @@ Augie GeoTag Menu:
 	2. Add GeoTag
 	3. Update GeoTag
 	4. Remove GeoTag
-	5. Help Menu
-	6. About
-	7. Exit
+	5. Clear Program State
+	6. Help Menu
+	7. About
+	8. Exit
 
 Help Menu:
-1. Open an image: Lets you select the specific image you would like to edit
-		  the GeoTag of. It must be the exact file name including the file extension.
-2. Add GeoTag:	  Lets you add a GeoTag to the image you opened with option 1.
-		  It will ask for a GeoTag in format of: <<<<< TO ADD >>>>>
-3. Update GeoTag: Allows you to remove an original GeoTag and add a new one on the image you opened with option 1.
-		  It will ask for a GeoTag in format of: <<<<< TO ADD >>>>>
-4. Remove GeoTag: Lets you remove the GeoTag on the image you opened with option 1.
-5. Help Menu:	  Shows this menu.
-6. About:	  Shows the purpose, GitHub repo link, and the developer names for this project.
+1. Open an image:	 Lets you select the specific image you would like to edit
+			 the GeoTag of. It must be the exact file name including the file extension.
+2. Add GeoTag:		 Lets you add a GeoTag to the image you opened with option 1.
+			 It will ask for latitude and longitude in this format: <<<<< TO ADD >>>>>
+3. Update GeoTag:	 Allows you to remove an original GeoTag and add a new one on the image you opened with option 1.
+			 It will ask for latitude and longitude in this format: <<<<< TO ADD >>>>>
+4. Remove GeoTag:	 Lets you remove the GeoTag on the image you opened with option 1.
+5. Clear Program State:	 Resets the program to its initial state. You should do this before opening a new image.
+6. Help Menu:		 Shows this menu.
+7. About:		 Shows the purpose, GitHub repo link, and the developer names for this project.
+8. Exit:		 Safely exits the program.
 Are you sure you want to find the file?
 Are you sure you want to open a file?
 Are you sure you want to read the GeoTag?
@@ -25,18 +28,19 @@ Are you sure you want to remove the GeoTag?
 Are you sure you want to write a GeoTag?
 Are you sure you want to save the image?
 Are you sure you want to do this?
-Error: the file you are trying to open does not exist in this project's assets folder.
-Error: can't open the file you are trying to open.
-Error: no file is open to perform this operation on. Open a file first.
-Error: check that you uploaded an acceptable file format (JPEG/JPG).
-Error: you are attempting to open more than 1 image, please open only one image at a time.
-Error: can't read the metadata of this file.
-Error: can't remove GeoTag from this image.
+Error: The file you are trying to open does not exist in this project's assets folder.
+Error: Can't open the file you are trying to open.
+Error: No file is open to perform this operation on. Open a file first.
+Error: Check that you uploaded an acceptable file format (JPEG/JPG).
+Error: You are attempting to open more than 1 image, please open only one image at a time or clear program state to open another image.
+Error: Can't read the metadata of this file.
+Error: Can't remove GeoTag from this image.
 Error: GeoTag does not exist on the given image, please open a different image or try adding the GeoTag.
 Error: GeoTag does not exist on given image, please open a different image or try adding the GeoTag.
+Error: GeoTag does not exist on given image, please open a different image or try adding the GeoTag.
 Error: GeoTag already exists on given image, please open a different image or try updating the GeoTag.
-Error: can't output the image.
-Error: can't get the GPS data from the image.
+Error: Can't output the image.
+Error: Can't get the GPS data from the image.
 Error.
 File found successfully
 File opened successfully
