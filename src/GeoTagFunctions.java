@@ -9,6 +9,10 @@ import org.apache.commons.imaging.formats.jpeg.JpegImageMetadata;
 import org.apache.commons.imaging.formats.jpeg.exif.ExifRewriter;
 import org.apache.commons.imaging.formats.tiff.TiffImageMetadata;
 import org.apache.commons.imaging.formats.tiff.write.TiffOutputSet;
+
+import jpeg.Jpeg;
+import jpeg.JpegOutputSet;
+
 import org.apache.commons.imaging.formats.tiff.TiffImageMetadata.GPSInfo;
 import org.apache.commons.imaging.common.RationalNumber;
 
@@ -214,8 +218,9 @@ public class GeoTagFunctions {
     	}
     	
     	// get minute if it exists
-    	if (coordScanner.hasNextDouble())
+    	if (coordScanner.hasNextDouble()) {
     		result += (coordScanner.nextDouble() / MINUTES_PER_DEGREE);
+    	}
     	
     	// get second if it exists
     	if (coordScanner.hasNextDouble())
@@ -320,26 +325,10 @@ public class GeoTagFunctions {
         File result = new File("./assets/results/editted-" + jpeg.getName());
     	
         try {
-        	// copy the original information
-    	    GeoTagFunctions.readImageMeta(jpeg);
-        	
-    	    TiffOutputSet outputSet = null;
+        	Jpeg image = new Jpeg(jpeg);
+            JpegOutputSet outputSet = new JpegOutputSet(image);  
             
-            // if file does not contain any exif metadata, we create an empty
-            // set of exif metadata. Otherwise, we keep all of the other existing tags.
-            if (exif != null) {
-                // get a copy of exif data to be muted.
-                outputSet = exif.getOutputSet();
-            }
-            else {
-            	outputSet = new TiffOutputSet();
-            }
-            
-            Utility.displayProcessing("update-geotag");
-            outputSet.setGPSInDegrees(longitude, latitude);
-            Utility.displaySuccess("update-geotag");
-            
-            return saveJpegImage(jpeg, result, outputSet);           	
+            return outputSet.updateGeoTag(result, latitude, longitude);
         }
         catch (Exception exception) {
             Utility.displayError("update-geotag");
@@ -362,38 +351,10 @@ public class GeoTagFunctions {
         File resultFile = new File("./assets/results/editted-" + jpeg.getName());
 
     	try {
-    		final int LATITUDE_REFERENCE_TAG = 1;
-    	    final int LATITUDE_TAG = 2;
-    	    final int LONGTITUDE_REFERENCE_TAG = 3;
-    	    final int LONGTITUDE_TAG = 4;
-    		
-    	    // copy the original information
-    	    GeoTagFunctions.readImageMeta(jpeg);
-    		
-    	    TiffOutputSet outputSet = null;
-    		
-    		if (exif != null) {
-                // get a copy of exif data to be muted.
-                outputSet = exif.getOutputSet();
-            } 
-            else {
-            	outputSet = new TiffOutputSet();
-            	
-            	// avoid empty exif data that cause null pointer error in output
-            	outputSet.getOrCreateExifDirectory();
-            }
-    		
-    		// remove latitude and longitude value.
-    		Utility.displayProcessing("remove-geotag");
-
-    		outputSet.removeField(LATITUDE_REFERENCE_TAG);
-            outputSet.removeField(LATITUDE_TAG);
-            outputSet.removeField(LONGTITUDE_REFERENCE_TAG);
-            outputSet.removeField(LONGTITUDE_TAG);
+    		Jpeg image = new Jpeg(jpeg);
+            JpegOutputSet outputSet = new JpegOutputSet(image);  
             
-            Utility.displaySuccess("remove-geotag");
-            
-            return saveJpegImage(jpeg, resultFile, outputSet);           	
+            return outputSet.removeGeoTag(resultFile);
     	}
         catch (Exception exception) {
     		Utility.displayError("remove-geotag");
@@ -403,30 +364,5 @@ public class GeoTagFunctions {
             
     		return false;
     	}
-    }
-    
-    // Pre: open files
-    // Output: a jpeg file with new exif in outputSet is written. Nothing would change if method failed
-    private static boolean saveJpegImage(File jpeg, File result, TiffOutputSet outputSet){
-        try {
-            // set up output stream
-            FileOutputStream fos = new FileOutputStream(result);
-            BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fos);
-                
-            // write exif metadata into new jpeg/jpg file
-            Utility.displayProcessing("save-image");
-            new ExifRewriter().updateExifMetadataLossless(jpeg, bufferedOutputStream, outputSet);
-            
-            Utility.displaySuccess("save-image");
-            
-            return true;
-        } 
-        catch (Exception e) {
-            Utility.displayError("save-image");
-            result.delete();
-            System.err.println(jpeg.getName() + ": " + e.getMessage());
-            
-            return false;
-        }
     }
 }

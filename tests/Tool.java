@@ -145,7 +145,8 @@ public class Tool {
 					break;
 				}
 				if (GeoTagFunctions.updateGeoTagData(jpeg, latitude, longitude))
-					console.printf("Geotag in %s has updated to: \n%s \n", jpeg.getName(), GeoTagFunctions.getGeoTagData(jpeg));
+					console.printf("Geotag in %s has updated to: \n%s \n", jpeg.getName(), 
+							GeoTagFunctions.getGeoTagData(new File("./assets/results/editted-" + jpeg.getName())));
 				else 
 					System.err.printf("Failed to update geotag in %s \n", jpeg.getName());
 				break;
