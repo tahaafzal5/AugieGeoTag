@@ -5,5 +5,3 @@ echo "Utility return value test:"
 sh ./tests/utility/returnvalue/test.sh
 echo "GeoTagFunctions return value test:"
 sh ./tests/geotagfunctions/returnvalue/test.sh
-echo "GeoTagFunctions output test:"
-sh ./tests/geotagfunctions/output/test.sh
