@@ -302,7 +302,11 @@ public class GeoTagFunctions {
         // return null if GPS info does not exist 
         else
             return null;
-    } 
+    }
+
+    public static boolean addGeoTagData(File jpeg, double latitude, double longitude) {
+        return updateGeoTagData(jpeg, latitude, longitude);
+    }
 
     // Pre: This function save image in results folder under asserts
     // Return: return true if geotag is successfully updated. false otherwise

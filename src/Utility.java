@@ -1,6 +1,5 @@
 package src;
 
-import java.io.File;
 import java.util.*;
 
 public class Utility {
@@ -12,9 +11,10 @@ public class Utility {
         System.out.println("\t2. Add GeoTag");
         System.out.println("\t3. Update GeoTag");
         System.out.println("\t4. Remove GeoTag");
-        System.out.println("\t5. Help Menu");
-        System.out.println("\t6. About");
-        System.out.println("\t7. Exit");
+        System.out.println("\t5. Clear Program State");
+        System.out.println("\t6. Help Menu");
+        System.out.println("\t7. About");
+        System.out.println("\t8. Exit");
     }
 
     // Pre: an open and working Scanner object
@@ -22,29 +22,31 @@ public class Utility {
     protected static void displayHelpMenu() {
         System.out.println("\nHelp Menu:");
 
-        System.out.println("1. Open an image: Lets you select the specific image you would like to edit");
-        System.out.println("\t\t  the GeoTag of. It must be the exact file name including the file extension.");
-        System.out.println("2. Add GeoTag:\t  Lets you add a GeoTag to the image you opened with option 1.");
-        System.out.println("\t\t  It will ask for a GeoTag in format of: <<<<< TO ADD >>>>>");
-        System.out.println("3. Update GeoTag: Allows you to remove an original GeoTag and add a new one on the image you opened with option 1.");
-        System.out.println("\t\t  It will ask for a GeoTag in format of: <<<<< TO ADD >>>>>");
-        System.out.println("4. Remove GeoTag: Lets you remove the GeoTag on the image you opened with option 1.");
-        System.out.println("5. Help Menu:\t  Shows this menu.");
-        System.out.println("6. About:\t  Shows the purpose, GitHub repo link, and the developer names for this project.");
+        System.out.println("1. Open an image:\t Lets you select the specific image you would like to edit");
+        System.out.println("\t\t\t the GeoTag of. It must be the exact file name including the file extension.");
+        System.out.println("2. Add GeoTag:\t\t Lets you add a GeoTag to the image you opened with option 1.");
+        System.out.println("\t\t\t It will ask for latitude and longitude in this format: <<<<< TO ADD >>>>>");
+        System.out.println("3. Update GeoTag:\t Allows you to remove an original GeoTag and add a new one on the image you opened with option 1.");
+        System.out.println("\t\t\t It will ask for latitude and longitude in this format: <<<<< TO ADD >>>>>");
+        System.out.println("4. Remove GeoTag:\t Lets you remove the GeoTag on the image you opened with option 1.");
+        System.out.println("5. Clear Program State:\t Resets the program to its initial state. You should do this before opening a new image.");
+        System.out.println("6. Help Menu:\t\t Shows this menu.");
+        System.out.println("7. About:\t\t Shows the purpose, GitHub repo link, and the developer names for this project.");
+        System.out.println("8. Exit:\t\t Safely exits the program.");
     }
 
     // Pre: an open and working Scanner object
     // Desc: depending on the user's choice from the main menu, this method calls the appropriate function
     protected static int handleUserMenuChoice(Scanner input) { 
-        System.out.print("\nPlease enter selection (1-7): ");
+        System.out.print("\nPlease enter selection (1-8): ");
         Integer choice = 0;
         
         try {
             while (true) {
                 choice = Integer.parseInt(String.valueOf(input.nextLine().strip()));
 
-                while (choice < 1 || choice > 7) {
-                    System.out.print("Invalid option. Please enter option 1-7: ");
+                while (choice < 1 || choice > 8) {
+                    System.out.print("Invalid option. Please enter option 1-8: ");
                     choice = Integer.parseInt(String.valueOf(input.nextLine().strip()));
                 }
 
@@ -59,7 +61,7 @@ public class Utility {
         }
 
         // base case is exiting the program 
-        return 7;
+        return 8;
     } 
 
     public static void askConfirmation(String type) {
@@ -76,6 +78,8 @@ public class Utility {
                 System.out.println("Are you sure you want to write a GeoTag?"); break;
             case "save-image":
                 System.out.println("Are you sure you want to save the image?"); break;
+            case "clear-state":
+                System.out.println("Are you sure you want to clear program state?"); break;
                 
             default:
                 System.out.println("Are you sure you want to do this?");
@@ -113,19 +117,19 @@ public class Utility {
     public static void displayError(String type) {
         switch (type) {
             case "find-file":
-                System.err.println("Error: the file you are trying to open does not exist in this project's assets folder."); break;
+                System.err.println("Error: The file you are trying to open does not exist in this project's assets folder."); break;
             case "open-file":
-                System.err.println("Error: can't open the file you are trying to open."); break;
+                System.err.println("Error: Can't open the file you are trying to open."); break;
             case "no-file":
-                System.err.println("Error: no file is open to perform this operation on. Open a file first."); break;
+                System.err.println("Error: No file is open to perform this operation on. Open a file first."); break;
             case "check-jpeg": 
-                System.err.println("Error: check that you uploaded an acceptable file format (JPEG/JPG)."); break;
+                System.err.println("Error: Check that you uploaded an acceptable file format (JPEG/JPG)."); break;
             case "check-multiple":
-                System.err.println("Error: you are attempting to open more than 1 image, please open only one image at a time."); break;
+                System.err.println("Error: You are attempting to open more than 1 image, please open only one image at a time or clear program state to open another image."); break;
             case "read-metadata":
-                System.err.println("Error: can't read the metadata of this file."); break;
+                System.err.println("Error: Can't read the metadata of this file."); break;
             case "remove-geotag":
-                System.err.println("Error: can't remove GeoTag from this image."); break;
+                System.err.println("Error: Can't remove GeoTag from this image."); break;
             case "no-geotag":
                 System.err.println("Error: GeoTag does not exist on the given image, please open a different image or try adding the GeoTag.");
             case "update-geotag": 
@@ -133,9 +137,11 @@ public class Utility {
             case "add-geotag":
                 System.err.println("Error: GeoTag already exists on given image, please open a different image or try updating the GeoTag."); break;
             case "save-image":
-            	System.err.println("Error: can't output the image."); break;
+            	System.err.println("Error: Can't output the image."); break;
             case "get-GPS":
-                System.err.println("Error: can't get the GPS data from the image."); break;
+                System.err.println("Error: Can't get the GPS data from the image."); break;
+            case "clear-state":
+                System.err.println("Error: Can't clear program state."); break;
 
             default:
                 System.err.println("Error.");
@@ -164,6 +170,8 @@ public class Utility {
                 System.out.println("Image saved successfully"); break;
             case "get-GPS":
                 System.out.println("GPS data retrieved successfully"); break;
+            case "clear-state":
+                System.out.println("Program state cleared successfully"); break;
 
             default:
                 System.out.println("Success");
@@ -192,6 +200,8 @@ public class Utility {
                 System.out.println("Saving the image..."); break;
             case "get-GPS":
                 System.out.println("Getting the GPS data from the image..."); break;
+            case "clear-state":
+                System.out.println("Clearing program state..."); break;
 
             default:
                 System.out.println("Processing...");
