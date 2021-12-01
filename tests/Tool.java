@@ -61,7 +61,7 @@ public class Tool {
 		System.setOut(disable);
 		
 		if(args.length == 0) {
-			console.println("No command received.");
+			System.err.println("No command received.");
 			System.exit(0);
 		}
 
@@ -79,10 +79,10 @@ public class Tool {
 			else if (assetsFolder != null) {
 				processFolder();
 			} else
-				console.println("Error on deciding process mode");
+				System.err.println("Error on deciding process mode");
 		}
 		else
-			console.println("Missing argument mode");
+			System.err.println("Missing argument mode");
 	}
 
 	//Output: all images under user input folder will be processed and output in results folder
@@ -95,25 +95,25 @@ public class Tool {
 					if(GeoTagFunctions.removeGeoTagData(f))
 						console.printf("Geotag in %s has been removed \n", f.getName());
 					else
-						console.printf("Failed to remove geotag in %s \n", f.getName());
+						System.err.printf("Failed to remove geotag in %s \n", f.getName());
 				break;
 			case "update":
 				if(latitude == 0) {
-					console.println("Latitude information missing");
+					System.err.println("Latitude information missing");
 					break;
 				} 
 				if(longitude == 0) {
-					console.println("Longtitude information missing");
+					System.err.println("Longtitude information missing");
 					break;
 				}
 				for (File f : assetsFolder.listFiles())
 					if(GeoTagFunctions.updateGeoTagData(f, latitude, longitude))
 						console.printf("Successfully update %s \n", f.getName());
 					else
-						console.printf("Failed to update geotag in %s \n", f.getName());
+						System.err.printf("Failed to update geotag in %s \n", f.getName());
 				break;
 			default:
-				console.println("Mode information error: should be \"update\" or \"remove\"");
+				System.err.println("Mode information error: should be \"update\" or \"remove\"");
 				break;
 			}
 	}
@@ -130,36 +130,36 @@ public class Tool {
 					if (GeoTagFunctions.removeGeoTagData(jpeg))
 						console.printf("Geotag in %s has been removed \n", jpeg.getName());
 					else
-						console.printf("Failed to remove geotag in %s \n", jpeg.getName());
+						System.err.printf("Failed to remove geotag in %s \n", jpeg.getName());
 				}
 				else
 					console.println("There is no geotag in the image");
 				break;
 			case "update":
 				if(latitude == 0) {
-					console.println("Latitude information missing");
+					System.err.println("Latitude information missing");
 					break;
 				} 
 				if(longitude == 0) {
-					console.println("Longtitude information missing");
+					System.err.println("Longtitude information missing");
 					break;
 				}
 				if (GeoTagFunctions.updateGeoTagData(jpeg, latitude, longitude))
 					console.printf("Geotag in %s has updated to: \n%s \n", jpeg.getName(), GeoTagFunctions.getGeoTagData(jpeg));
 				else 
-					console.printf("Failed to update geotag in %s \n", jpeg.getName());
+					System.err.printf("Failed to update geotag in %s \n", jpeg.getName());
 				break;
 			case "print":
 				if(GeoTagFunctions.getGPSInfo(jpeg) != null)
 					console.println(GeoTagFunctions.getGeoTagData(jpeg));
 				else
-					console.println("There is not geotag in jpeg");
+					System.err.println("There is not geotag in jpeg");
 				break;
 			case "verify":
 				if(GeoTagFunctions.isJpeg(jpeg))
 					console.println("This is a jpeg/jpg");
 				else
-					console.println("This is not a jpeg/jpg");
+					System.err.println("This is not a jpeg/jpg");
 				break;
 			case "tag":
 				try {
@@ -167,11 +167,11 @@ public class Tool {
 					System.setOut(console);
 					jpegFile.exif.print();
 				} catch (Exception e) {
-					console.println(e.getMessage());
+					System.err.println(e.getMessage());
 				}
 				break;
 			default:
-				console.println("Mode information error: should be \"update\", \"remove\", or \"print\"");
+				System.err.println("Mode information error: should be \"update\", \"remove\", or \"print\"");
 				break;
 		}
 	}
@@ -182,7 +182,7 @@ public class Tool {
 		//Analyse input string
 		for(int position = 0; position < args.length; ) {
 			if(position + 1 >= args.length) {
-				console.println("Missing argument after flag " + args[position]);
+				System.err.println("Missing argument after flag " + args[position]);
 				System.exit(0);
 			}
 			switch(args[position])
@@ -198,14 +198,14 @@ public class Tool {
 					else if(temp.isDirectory())
 						assetsFolder = temp;
 					else {
-						console.println("Error on anaylyse file type");
+						System.err.println("Error on anaylyse file type");
 						System.exit(0);
 					}
 					position += 2;
 					break;
 				case "-la":
 					if (mode.equals("remove")) {
-						console.println("Remove mode error: Error argument latitude received.");
+						System.err.println("Remove mode error: Error argument latitude received.");
 						System.exit(0);
 					}	
 					String latitude_info = "";
@@ -215,7 +215,7 @@ public class Tool {
 					}
 					latitude = GeoTagFunctions.getLatitude(latitude_info.trim());
 					if(latitude == null) {
-						console.println("Error latitude format.");
+						System.err.println("Error latitude format.");
 						System.exit(0);
 					}
 					
@@ -224,7 +224,7 @@ public class Tool {
 					break;
 				case "-lo":
 					if (mode.equals("remove")) {
-						console.println("Remove mode error: Error argument longtitude received.");
+						System.err.println("Remove mode error: Error argument longtitude received.");
 						System.exit(0);
 					}
 					String longitude_info = "";
@@ -234,7 +234,7 @@ public class Tool {
 					}
 					longitude = GeoTagFunctions.getLongitude(longitude_info.trim());
 					if(longitude == null) {
-						console.println("Error longtitude format.");
+						System.err.println("Error longtitude format.");
 						System.exit(0);
 					}
 					
@@ -245,7 +245,7 @@ public class Tool {
 					printHelp();
 					System.exit(0);
 				default:
-					console.println("Error on command type " + args[position]);
+					System.err.println("Error on command type " + args[position]);
 					System.exit(0);
 			}
 		}
