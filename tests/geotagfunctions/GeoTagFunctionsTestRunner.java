@@ -1,4 +1,4 @@
-package tests.geotagfunctions.returnvalue;
+package tests.geotagfunctions;
 
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
@@ -10,7 +10,7 @@ public class GeoTagFunctionsTestRunner {
 	public static void main(String[] args) throws FileNotFoundException
 	{
 		PrintStream console = System.out;
-		PrintStream fileOutput = new PrintStream(new File("./tests/geotagfunctions/returnvalue/print.txt"));
+		PrintStream fileOutput = new PrintStream(new File("./tests/geotagfunctions/print.txt"));
 		System.setOut(fileOutput);
 		System.setErr(fileOutput);
 		Result result = JUnitCore.runClasses(GeoTagFunctionsTest.class);

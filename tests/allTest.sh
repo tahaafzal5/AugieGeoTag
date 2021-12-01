@@ -4,4 +4,4 @@ sh ./tests/utility/output/test.sh
 echo "Utility return value test:"
 sh ./tests/utility/returnvalue/test.sh
 echo "GeoTagFunctions return value test:"
-sh ./tests/geotagfunctions/returnvalue/test.sh
+sh ./tests/geotagfunctions/test.sh
