@@ -2,6 +2,7 @@ package tests;
 
 import java.io.*;
 import src.GeoTagFunctions;
+import jpeg.Jpeg;
 import jpeg.JpegExif;
 
 /*
@@ -162,9 +163,9 @@ public class Tool {
 				break;
 			case "tag":
 				try {
-					JpegExif exif = new JpegExif(jpeg);
+					Jpeg jpegFile = new Jpeg(jpeg);
 					System.setOut(console);
-					exif.print();
+					jpegFile.exif.print();
 				} catch (Exception e) {
 					console.println(e.getMessage());
 				}

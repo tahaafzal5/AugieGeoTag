@@ -9,8 +9,8 @@ public class RemoveGeoTagTest {
 	
 	private static JpegExif oldExif = null;
 	private static JpegExif newExif = null;
-	private static Entry[] oldIfd = null;
-	private static Entry[] newIfd = null;
+	private static LinkedList<Entry> oldIfd = null;
+	private static LinkedList<Entry> newIfd = null;
 	private static PrintStream console = System.out;
 	private static LinkedList<Entry> diffInOld = null;
 	private static LinkedList<Entry> diffInNew = null;
@@ -23,8 +23,10 @@ public class RemoveGeoTagTest {
 		GeoTagFunctions.removeGeoTagData(jpeg);
 		File edittedJpeg = new File("./assets/results/editted-" + jpeg.getName());
 		
-		oldExif = new JpegExif(jpeg);
-		newExif = new JpegExif(edittedJpeg);
+		Jpeg oldJpeg = new Jpeg(jpeg);
+		Jpeg newJpeg = new Jpeg(edittedJpeg);
+		oldExif = oldJpeg.exif;
+		newExif = newJpeg.exif;
 		
 		checkIfd0();
 		checkSubIfd();
