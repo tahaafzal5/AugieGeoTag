@@ -137,7 +137,12 @@ public class Tool {
 					System.out.println("This is not a jpeg/jpg");
 				System.exit(0);
 			case "tag":
-				JpegExif exif = new JpegExif(jpeg);
+				JpegExif exif = null;
+				try {
+					exif = new JpegExif(jpeg);
+				} catch (IOException e) {
+					e.getMessage();
+				}
 				exif.print();
 				System.exit(0);
 			default:
