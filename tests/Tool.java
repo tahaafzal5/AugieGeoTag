@@ -3,7 +3,6 @@ package tests;
 import java.io.*;
 import src.GeoTagFunctions;
 import jpeg.Jpeg;
-import jpeg.JpegExif;
 
 /*
 	This is the test command line tool for write geotag and remove geotag.

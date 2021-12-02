@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 
 public class UtilityReturnValueTest {
 	@Test
-	public void UtilityReturnValueTest() throws FileNotFoundException {
+	public void UtilityReturnValueTests() throws FileNotFoundException {
 		Scanner input = new Scanner(new File("./tests/utility/returnvalue/input.txt"));
 		
 		testHandleUserChoice(input);

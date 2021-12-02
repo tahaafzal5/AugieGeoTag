@@ -76,6 +76,8 @@ public class Utility {
                 System.out.println("Are you sure you want to remove the GeoTag?"); break;
             case "write-geotag":
                 System.out.println("Are you sure you want to write a GeoTag?"); break;
+            case "update-geotag":
+                System.out.println("Are you sure you want to update the GeoTag?"); break;
             case "save-image":
                 System.out.println("Are you sure you want to save the image?"); break;
             case "clear-state":
@@ -131,11 +133,11 @@ public class Utility {
             case "remove-geotag":
                 System.err.println("Error: Can't remove GeoTag from this image."); break;
             case "no-geotag":
-                System.err.println("Error: GeoTag does not exist on the given image, please open a different image or try adding the GeoTag.");
+                System.err.println("Error: GeoTag does not exist in this image, please open a different image or try adding the GeoTag.");
             case "update-geotag": 
-                System.err.println("Error: GeoTag does not exist on given image, please open a different image or try adding the GeoTag."); break;
+                System.err.println("Error: GeoTag does not exist in this image, please open a different image or try adding the GeoTag."); break;
             case "add-geotag":
-                System.err.println("Error: GeoTag already exists on given image, please open a different image or try updating the GeoTag."); break;
+                System.err.println("Error: GeoTag already exists in this image, please open a different image or try updating the GeoTag."); break;
             case "save-image":
             	System.err.println("Error: Can't output the image."); break;
             case "get-GPS":
@@ -153,25 +155,27 @@ public class Utility {
     public static void displaySuccess(String type) {
         switch (type) {
             case "find-file":
-                System.out.println("File found successfully"); break;
+                System.out.println("Success: File found successfully"); break;
             case "open-file":
-                System.out.println("File opened successfully"); break;
+                System.out.println("Success: File opened successfully"); break;
             case "read-metadata":
-                System.out.println("Metadata read successfully"); break;
+                System.out.println("Success: Metadata read successfully"); break;
             case "check-jpeg":
-                System.out.println("Checked JPEG/JPG successfully"); break;
+                System.out.println("Success: Checked JPEG/JPG successfully"); break;
             case "read-geotag":
-                System.out.println("Read geotag successfully"); break;
+                System.out.println("Success: Read GeoTag successfully"); break;
             case "remove-geotag":
-                System.out.println("Removed geotag successfully"); break;
+                System.out.println("Success: Removed GeoTag successfully"); break;
             case "write-geotag":
-                System.out.println("Wrote geotag successfully"); break;
+                System.out.println("Success: Wrote GeoTag successfully"); break;
+            case "update-geotag":
+                System.out.println("Success: Updated GeoTag successfully"); break;
             case "save-image":
-                System.out.println("Image saved successfully"); break;
+                System.out.println("Success: Image saved successfully"); break;
             case "get-GPS":
-                System.out.println("GPS data retrieved successfully"); break;
+                System.out.println("Success: GPS data retrieved successfully"); break;
             case "clear-state":
-                System.out.println("Program state cleared successfully"); break;
+                System.out.println("Success: Program state cleared successfully"); break;
 
             default:
                 System.out.println("Success");
@@ -191,11 +195,13 @@ public class Utility {
             case "check-jpeg":
                 System.out.println("Checking if the image is a JPEG/JPG..."); break;
             case "read-geotag":
-                System.out.println("Reading the geotag in the image..."); break;
+                System.out.println("Reading the GeoTag in the image..."); break;
             case "remove-geotag":
-                System.out.println("Removing geotag from the image..."); break;
+                System.out.println("Removing GeoTag from the image..."); break;
+            case "update-geotag":
+                System.out.println("Updating GeoTag in the image..."); break;
             case "write-metadata":
-                System.out.println("Writing the metadata in the image..."); break;
+                System.out.println("Writing the metadata to the image..."); break;
             case "save-image":
                 System.out.println("Saving the image..."); break;
             case "get-GPS":
@@ -213,7 +219,7 @@ public class Utility {
     public static void aboutProgram() {
         System.out.println("\nAugie GeoTag lets you add, edit, and remove GeoTag data from your JPEG/JPG images.");
         System.out.println("GitHub repo: https://github.com/tahaafzal5/AugieGeoTag");
-        System.out.println("This program was developed by Taha, Taire, Zach, Tony, Sicheng and Zemenu.");
+        System.out.println("This program was developed by Taha, Taire, Zach, Tony, Sicheng, and Zemenu.");
     }
 
     // <<<<<<<<<<< TO DO >>>>>>>>>>>>>>>>

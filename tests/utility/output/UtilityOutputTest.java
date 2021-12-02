@@ -7,7 +7,7 @@ import org.junit.Test;
 public class UtilityOutputTest {
 	
 	@Test
-	public void UtilityOutputTest() throws FileNotFoundException {
+	public void UtilityOutputTests() throws FileNotFoundException {
 		
         Utility.displayMenu();
         

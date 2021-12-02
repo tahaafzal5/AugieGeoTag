@@ -9,7 +9,7 @@ import java.io.*;
 
 public class GeoTagFunctionsTest {
 	@Test
-	public void GeoTagFunctionsTest() throws FileNotFoundException
+	public void GeoTagFunctionsTests() throws FileNotFoundException
 	{
 		testOpenFile();
 		
