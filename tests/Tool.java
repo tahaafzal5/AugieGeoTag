@@ -165,7 +165,10 @@ public class Tool {
 				try {
 					Jpeg jpegFile = new Jpeg(jpeg);
 					System.setOut(console);
-					jpegFile.exif.print();
+					if(jpegFile.exif != null)
+						jpegFile.exif.print();
+					else
+						System.out.println("There is no exif data in this image");
 				} catch (Exception e) {
 					System.err.println(e.getMessage());
 				}
