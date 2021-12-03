@@ -33,14 +33,20 @@ public class GeoTagFunctionsTest {
 	{
 		boolean remove = GeoTagFunctions.removeGeoTagData(new File("./assets/internet.jpg"));
 		assertEquals(remove, true);
+		
 		remove = GeoTagFunctions.removeGeoTagData(new File("./assets/Cannon-EOS-M50-no-geotag.JPG"));
 		assertEquals(remove, true);
+		
 		remove = GeoTagFunctions.removeGeoTagData(new File("./assets/iPhone-6.JPG"));
 		assertEquals(remove, true);
+		
 		remove = GeoTagFunctions.removeGeoTagData(new File("./assets/iPhone12-geotag.JPG"));
 		assertEquals(remove, true);
+		
 		remove = GeoTagFunctions.removeGeoTagData(new File("./assets/iPhoneXS.jpeg"));
 		assertEquals(remove, true);
+		
+		deleteTestFiles();
 	}
 	
 	//updateGeotag test
@@ -48,14 +54,39 @@ public class GeoTagFunctionsTest {
 	{
 		boolean update = GeoTagFunctions.updateGeoTagData(new File("./assets/internet.jpg"), 0, 0);
 		assertEquals(update, true);
+		
 		update = GeoTagFunctions.updateGeoTagData(new File("./assets/Cannon-EOS-M50-no-geotag.JPG"), 70, 60);
 		assertEquals(update, true);
+		
 		update = GeoTagFunctions.updateGeoTagData(new File("./assets/iPhone-6.JPG"), -80, 80);
 		assertEquals(update, true);
+		
 		update = GeoTagFunctions.updateGeoTagData(new File("./assets/iPhone12-geotag.JPG"), 40, -40);
 		assertEquals(update, true);
+		
 		update = GeoTagFunctions.updateGeoTagData(new File("./assets/iPhoneXS.jpeg"), -50, -50);
 		assertEquals(update, true);
+		
+		deleteTestFiles();
+	}
+	
+	//Post: delete all test files that has generated during test.
+	private void deleteTestFiles()
+	{
+		File result = new File("./assets/results/editted-internet.jpg");
+		result.delete();
+		
+		result = new File("./assets/results/editted-Cannon-EOS-M50-no-geotag.JPG");
+		result.delete();
+		
+		result = new File("./assets/results/editted-iPhone-6.JPG");
+		result.delete();
+		
+		result = new File("./assets/results/editted-iPhone12-geotag.JPG");
+		result.delete();
+		
+		result = new File("./assets/results/editted-iPhoneXS.jpeg");
+		result.delete();
 	}
 	
 	//getGpsData test
