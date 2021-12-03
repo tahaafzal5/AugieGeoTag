@@ -93,6 +93,10 @@ java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib
 ```
 java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar tests/Tool -m verify -i internet.jpg
 ```
+* print all tag in internet.jpg: 
+```
+java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar tests/Tool -m tag -i Internet.jpg
+```
 ## 2. JUnit Test Instruction
 
 ### Run All Test by Executing Shell Script allTest.sh
@@ -101,7 +105,3 @@ sh ./tests/allTest.sh
 ```
 - There are also shell script available for an individual test. Please go to associate test folder and run it.
 - Please go to <a href="https://github.com/SichengYang/Java-JPEG-GeoTag-Editor/tree/main/src/tests">this site</a> to see library output JUnit test
-* print all tag in internet.jpg: 
-```
-java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar tests/Tool -m tag -i Internet.jpg
-```
