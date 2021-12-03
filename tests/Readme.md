@@ -48,6 +48,10 @@ Degree Only:
 ```
 -m tag -i <file path under assets>
 ```
+* Process all files in assets
+```
+add . after -i (-i .)
+```
 * flag order does not matter here
 ```
 They do the same thing:
