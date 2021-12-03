@@ -29,29 +29,24 @@ public class App {
 
             switch (userMenuChoice) {
                 case 1: if (!isFileOpen) {
-                            Utility.askConfirmation("open-file");
-                            userConfirmationChoice = Utility.handleUserConfirmationChoice(input);
+                            openedFile = GeoTagFunctions.openFile(input);
                             
-                            if (userConfirmationChoice) {
-                                openedFile = GeoTagFunctions.openFile(input);
+                            if (openedFile != null) {
+                                isJpeg = GeoTagFunctions.isJpeg(openedFile);
                                 
-                                if (openedFile != null) {
-                                    isJpeg = GeoTagFunctions.isJpeg(openedFile);
-                                    
-                                    if (isJpeg) {
-                                        isFileOpen = true;
+                                if (isJpeg) {
+                                    isFileOpen = true;
 
-                                        jpegImage = openedFile;
-                                    
-                                        geoTagData = GeoTagFunctions.getGeoTagData(jpegImage);
+                                    jpegImage = openedFile;
+                                
+                                    geoTagData = GeoTagFunctions.getGeoTagData(jpegImage);
 
-                                        if (geoTagData != null) {
-                                            System.out.println(jpegImage.getName() + " has the following GeoTagData:");
-                                            System.out.println(geoTagData);
-                                        }
-                                        else {
-                                            System.out.println(jpegImage.getName() + " has no GeoTagData.");
-                                        }
+                                    if (geoTagData != null) {
+                                        System.out.println(jpegImage.getName() + " has the following GeoTagData:");
+                                        System.out.println(geoTagData);
+                                    }
+                                    else {
+                                        System.out.println(jpegImage.getName() + " has no GeoTagData.");
                                     }
                                 }
                             }

@@ -66,10 +66,6 @@ public class Utility {
 
     public static void askConfirmation(String type) {
         switch (type) {
-            case "find-file":
-                System.out.println("Are you sure you want to find the file?"); break;
-            case "open-file":
-                System.out.println("Are you sure you want to open a file?"); break;
             case "read-geotag":
                 System.out.println("Are you sure you want to read the GeoTag?"); break;
             case "remove-geotag":
