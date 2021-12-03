@@ -1,4 +1,4 @@
-<h1 align="center" style="border-bottom: none">Command Line Tool Instruction</h1>
+# Command Line Tool Instruction
 
 ## Command Type:
 
