@@ -90,6 +90,8 @@ public class GeoTagFunctions {
             final ImageMetadata metadata = Imaging.getMetadata(jpeg);
             final JpegImageMetadata jpegMetadata = (JpegImageMetadata) metadata;
             
+            exif = null;
+
             Utility.displayProcessing("read-metadata");
             if (jpegMetadata != null) {
                 exif = jpegMetadata.getExif();
@@ -136,7 +138,7 @@ public class GeoTagFunctions {
         if (latitude == null)
             return null;
         
-        if (latitude < -90 || latitude > 90) {
+        if (latitude <= -90 || latitude >= 90) {
         	System.err.println("Latitude should be within -90 to 90");
         	
             return null;
@@ -174,7 +176,7 @@ public class GeoTagFunctions {
         if (longitude == null)
         	return null;
         
-        if (longitude < -180 || longitude > 180) {
+        if (longitude <= -180 || longitude >= 180) {
         	System.err.println("Longitude should be within -180 to 180");
         	
             return null;
@@ -253,6 +255,9 @@ public class GeoTagFunctions {
         
         readImageMeta(jpeg);
         GPSInfo geotag = null;
+
+        if (exif == null)
+            return null;
         
         try {
             geotag = exif.getGPS();
@@ -272,7 +277,7 @@ public class GeoTagFunctions {
     // Pre: Image is a jpeg
     // Return: String containing geotag data 
     public static String getGeoTagData(File jpeg) {
-        final GPSInfo GPSInfo = getGPSInfo(jpeg);
+        GPSInfo GPSInfo = getGPSInfo(jpeg);
         
         // check if GPS info exists
         if (GPSInfo != null) {
