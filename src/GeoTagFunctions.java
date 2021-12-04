@@ -268,9 +268,6 @@ public class GeoTagFunctions {
             System.err.println(e.getMessage());
         }
 
-        if (geotag == null)
-            Utility.displayError("no-geotag");
-
         return geotag;
     }
 
