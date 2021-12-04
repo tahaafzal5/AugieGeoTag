@@ -64,6 +64,7 @@ public class Utility {
         return 8;
     } 
 
+    // Output: a meaningful message asking user for confirmation before performing the action
     public static void askConfirmation(String type) {
         switch (type) {
             case "read-geotag":
@@ -129,7 +130,7 @@ public class Utility {
             case "remove-geotag":
                 System.err.println("Error: Can't remove GeoTag from this image."); break;
             case "no-geotag":
-                System.err.println("Error: GeoTag does not exist in this image, please open a different image or try adding the GeoTag.");
+                System.err.println("Error: GeoTag does not exist in this image, please open a different image or try adding the GeoTag."); break;
             case "update-geotag": 
                 System.err.println("Error: GeoTag does not exist in this image, please open a different image or try adding the GeoTag."); break;
             case "add-geotag":
@@ -218,7 +219,7 @@ public class Utility {
         System.out.println("This program was developed by Taha, Taire, Zach, Tony, Sicheng, and Zemenu.");
     }
 
-    // <<<<<<<<<<< TO DO >>>>>>>>>>>>>>>>
+    // Desc: safely exits the program
     public static void exitProgram() {
         System.exit(0);
     }
