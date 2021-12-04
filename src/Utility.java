@@ -163,8 +163,8 @@ public class Utility {
                 System.out.println("Success: Read GeoTag successfully"); break;
             case "remove-geotag":
                 System.out.println("Success: Removed GeoTag successfully"); break;
-            case "write-geotag":
-                System.out.println("Success: Wrote GeoTag successfully"); break;
+            case "add-geotag":
+                System.out.println("Success: Added GeoTag successfully"); break;
             case "update-geotag":
                 System.out.println("Success: Updated GeoTag successfully"); break;
             case "save-image":
@@ -197,8 +197,8 @@ public class Utility {
                 System.out.println("Removing GeoTag from the image..."); break;
             case "update-geotag":
                 System.out.println("Updating GeoTag in the image..."); break;
-            case "write-metadata":
-                System.out.println("Writing the metadata to the image..."); break;
+            case "add-geotag":
+                System.out.println("Adding GeoTag to the image..."); break;
             case "save-image":
                 System.out.println("Saving the image..."); break;
             case "get-GPS":

@@ -310,13 +310,13 @@ public class GeoTagFunctions {
     }
 
     public static boolean addGeoTagData(File jpeg, double latitude, double longitude) {
-        return updateGeoTagData(jpeg, latitude, longitude);
+        return updateGeoTagData(jpeg, latitude, longitude, true);
     }
 
     // Pre: This function save image in results folder under asserts
     // Return: return true if geotag is successfully updated. false otherwise
     // Output: a image without geotag. If the writing process failed, no change would happen
-    public static boolean updateGeoTagData(File jpeg, double latitude, double longitude) {
+    public static boolean updateGeoTagData(File jpeg, double latitude, double longitude, boolean isAdd) {
     	File resultsFolder = new File("./assets/results");
         
         if (!resultsFolder.exists())
@@ -326,7 +326,14 @@ public class GeoTagFunctions {
     	
         try {
         	Jpeg image = new Jpeg(jpeg);
-            JpegOutputSet outputSet = new JpegOutputSet(image);  
+            JpegOutputSet outputSet = new JpegOutputSet(image);
+
+            if (isAdd) {
+                Utility.displayProcessing("add-geotag");
+            }
+            else {
+                Utility.displayProcessing("update-geotag");
+            }
             
             return outputSet.updateGeoTag(result, latitude, longitude);
         }
@@ -352,7 +359,9 @@ public class GeoTagFunctions {
 
     	try {
     		Jpeg image = new Jpeg(jpeg);
-            JpegOutputSet outputSet = new JpegOutputSet(image);  
+            JpegOutputSet outputSet = new JpegOutputSet(image);
+
+            Utility.displayProcessing("remove-geotag");
             
             return outputSet.removeGeoTag(resultFile);
     	}
