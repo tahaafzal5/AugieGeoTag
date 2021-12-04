@@ -77,11 +77,11 @@ java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib
 ```
 java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar tests/Tool -m update -i internet.jpg -lo 100 -la 80
 ```
-* update geotag for all jpeg in folder source under assets to 100 E 80 N: 
+* update geotag for all jpeg in folder assets to 100 E 80 N: 
 ```
 java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar tests/Tool -m update -i . -lo 100 -la 80
 ```
-* update geotag for all jpeg in folder assets to 100 E 80 N: 
+* update geotag for all jpeg in folder source under assets to 100 E 80 N: 
 ```
 java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar tests/Tool -m update -i source -lo 100 -la 80
 ```
