@@ -18,6 +18,8 @@ public class App {
         boolean isJpeg = false;
         File jpegImage = null;
         boolean userConfirmationChoice = false;
+        boolean operationResult = false;
+
         String geoTagData = null;
         GPSInfo gpsInfo = null;
 
@@ -107,7 +109,15 @@ public class App {
                                     }
 
                                     // if all good, geoTagData is added to the jpeg image
-                                    GeoTagFunctions.addGeoTagData(jpegImage, latitude, longitude);
+                                    operationResult = GeoTagFunctions.addGeoTagData(jpegImage, latitude, longitude);
+
+                                    // was the geotag added successfully or not
+                                    if (operationResult) {
+                                        Utility.displaySuccess("add-geotag");
+                                    }
+                                    else {
+                                        Utility.displayError("add-geotag");
+                                    }
                                 }
                             }
                             else {
@@ -159,7 +169,15 @@ public class App {
                                     }
 
                                     // if all good, geoTagData in the jpeg image is updated
-                                    GeoTagFunctions.updateGeoTagData(jpegImage, latitude, longitude);
+                                    operationResult = GeoTagFunctions.updateGeoTagData(jpegImage, latitude, longitude, false);
+
+                                    // was the geotag updated successfully or not
+                                    if (operationResult) {
+                                        Utility.displaySuccess("update-geotag");
+                                    }
+                                    else {
+                                        Utility.displayError("update-geotag");
+                                    }
                                 }
                             }
                             else {
@@ -184,7 +202,15 @@ public class App {
 
                                 if (userConfirmationChoice) {
                                     // if all good, geoTagData is removed from the jpeg image
-                                    GeoTagFunctions.removeGeoTagData(jpegImage);
+                                    operationResult = GeoTagFunctions.removeGeoTagData(jpegImage);
+                                    
+                                    // was the geotag removed successfully or not
+                                    if (operationResult) {
+                                        Utility.displaySuccess("remove-geotag");
+                                    }
+                                    else {
+                                        Utility.displayError("remove-geotag");
+                                    }
                                 }
                             }
                             else {
@@ -213,6 +239,8 @@ public class App {
                             isJpeg = false;
                             jpegImage = null;
                             userConfirmationChoice = false;
+                            operationResult = false;
+
                             geoTagData = null;
                             gpsInfo = null;
 
