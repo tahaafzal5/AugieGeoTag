@@ -320,8 +320,7 @@ public class GeoTagFunctions {
     // Pre: This function save image in results folder under asserts
     // Return: return true if geotag is successfully updated. false otherwise
     // Output: a image without geotag. If the writing process failed, no change would happen
-    // isAdd argument: true will display add geotag prompt whereas false value will display update prompt
-    private static boolean updateGeoTagData(File jpeg, double latitude, double longitude, boolean isAdd) {
+    private static boolean updateGeoTagData(File jpeg, double latitude, double longitude, boolean displayAddPrompt) {
     	File resultsFolder = new File("./assets/results");
         
         if (!resultsFolder.exists())
@@ -333,7 +332,7 @@ public class GeoTagFunctions {
         	Jpeg image = new Jpeg(jpeg);
             JpegOutputSet outputSet = new JpegOutputSet(image);
 
-            if (isAdd) {
+            if (displayAddPrompt) {
                 Utility.displayProcessing("add-geotag");
             }
             else {
