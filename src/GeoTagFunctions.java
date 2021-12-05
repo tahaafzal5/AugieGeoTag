@@ -313,10 +313,14 @@ public class GeoTagFunctions {
         return updateGeoTagData(jpeg, latitude, longitude, true);
     }
 
+    public static boolean updateGeoTagData(File jpeg, double latitude, double longitude) {
+        return updateGeoTagData(jpeg, latitude, longitude, false);
+    }
+
     // Pre: This function save image in results folder under asserts
     // Return: return true if geotag is successfully updated. false otherwise
     // Output: a image without geotag. If the writing process failed, no change would happen
-    public static boolean updateGeoTagData(File jpeg, double latitude, double longitude, boolean isAdd) {
+    private static boolean updateGeoTagData(File jpeg, double latitude, double longitude, boolean isAdd) {
     	File resultsFolder = new File("./assets/results");
         
         if (!resultsFolder.exists())
