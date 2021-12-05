@@ -31,20 +31,30 @@ public class GeoTagFunctionsTest {
 	//removeGeotag test
 	private void testRemoveGeoTag()
 	{
-		boolean remove = GeoTagFunctions.removeGeoTagData(new File("./assets/internet.jpg"));
-		assertEquals(remove, true);
+		File jpeg = new File("./assets/internet.jpg");
+		boolean remove = GeoTagFunctions.removeGeoTagData(jpeg);
+		assertEquals(true, remove);
+		assertEquals(null, GeoTagFunctions.getGeoTagData(new File("./assets/results/editted-" + jpeg.getName())));
 		
-		remove = GeoTagFunctions.removeGeoTagData(new File("./assets/Cannon-EOS-M50-no-geotag.JPG"));
-		assertEquals(remove, true);
+		jpeg = new File("./assets/Cannon-EOS-M50-no-geotag.JPG");
+		remove = GeoTagFunctions.removeGeoTagData(jpeg);
+		assertEquals(true, remove);
+		assertEquals(null, GeoTagFunctions.getGeoTagData(new File("./assets/results/editted-" + jpeg.getName())));
 		
-		remove = GeoTagFunctions.removeGeoTagData(new File("./assets/iPhone-6.JPG"));
-		assertEquals(remove, true);
+		jpeg = new File("./assets/iPhone-6.JPG");
+		remove = GeoTagFunctions.removeGeoTagData(jpeg);
+		assertEquals(true, remove);
+		assertEquals(null, GeoTagFunctions.getGeoTagData(new File("./assets/results/editted-" + jpeg.getName())));
 		
-		remove = GeoTagFunctions.removeGeoTagData(new File("./assets/iPhone12-geotag.JPG"));
-		assertEquals(remove, true);
+		jpeg = new File("./assets/iPhone12-geotag.JPG");
+		remove = GeoTagFunctions.removeGeoTagData(jpeg);
+		assertEquals(true, remove);
+		assertEquals(null, GeoTagFunctions.getGeoTagData(new File("./assets/results/editted-" + jpeg.getName())));
 		
-		remove = GeoTagFunctions.removeGeoTagData(new File("./assets/iPhoneXS.jpeg"));
-		assertEquals(remove, true);
+		jpeg = new File("./assets/iPhoneXS.jpeg");
+		remove = GeoTagFunctions.removeGeoTagData(jpeg);
+		assertEquals(true, remove);
+		assertEquals(null, GeoTagFunctions.getGeoTagData(new File("./assets/results/editted-" + jpeg.getName())));
 		
 		deleteTestFiles();
 	}
@@ -52,20 +62,35 @@ public class GeoTagFunctionsTest {
 	//updateGeotag test
 	private void testUpdateGeoTag()
 	{
-		boolean update = GeoTagFunctions.updateGeoTagData(new File("./assets/internet.jpg"), 0, 0);
-		assertEquals(update, true);
+		File jpeg = new File("./assets/internet.jpg");
+		String geotag = "Latitude: 50 degrees, 0 minutes, 0 seconds N, Longitude: 50 degrees, 0 minutes, 0 seconds E";
+		boolean update = GeoTagFunctions.updateGeoTagData(jpeg, 50, 50);
+		assertEquals(true, update);
+		assertEquals(geotag, GeoTagFunctions.getGeoTagData(new File("./assets/results/editted-" + jpeg.getName())));
 		
-		update = GeoTagFunctions.updateGeoTagData(new File("./assets/Cannon-EOS-M50-no-geotag.JPG"), 70, 60);
-		assertEquals(update, true);
+		jpeg = new File("./assets/Cannon-EOS-M50-no-geotag.JPG");
+		geotag = "Latitude: 80 degrees, 0 minutes, 0 seconds N, Longitude: 80 degrees, 0 minutes, 0 seconds E";
+		update = GeoTagFunctions.updateGeoTagData(jpeg, 80, 80);
+		assertEquals(true, update);
+		assertEquals(geotag, GeoTagFunctions.getGeoTagData(new File("./assets/results/editted-" + jpeg.getName())));
 		
-		update = GeoTagFunctions.updateGeoTagData(new File("./assets/iPhone-6.JPG"), -80, 80);
-		assertEquals(update, true);
+		jpeg = new File("./assets/iPhone-6.JPG");
+		geotag = "Latitude: 40 degrees, 30 minutes, 35.999 seconds N, Longitude: 40 degrees, 30 minutes, 35.999 seconds E";
+		update = GeoTagFunctions.updateGeoTagData(jpeg, 40.51, 40.51);
+		assertEquals(true, update);
+		assertEquals(geotag, GeoTagFunctions.getGeoTagData(new File("./assets/results/editted-" + jpeg.getName())));
 		
-		update = GeoTagFunctions.updateGeoTagData(new File("./assets/iPhone12-geotag.JPG"), 40, -40);
-		assertEquals(update, true);
+		jpeg = new File("./assets/iPhone12-geotag.JPG");
+		geotag = "Latitude: 40 degrees, 30 minutes, 35.999 seconds N, Longitude: 40 degrees, 30 minutes, 35.999 seconds E";
+		update = GeoTagFunctions.updateGeoTagData(jpeg, 40.51, 40.51);
+		assertEquals(true, update);
+		assertEquals(geotag, GeoTagFunctions.getGeoTagData(new File("./assets/results/editted-" + jpeg.getName())));
 		
-		update = GeoTagFunctions.updateGeoTagData(new File("./assets/iPhoneXS.jpeg"), -50, -50);
-		assertEquals(update, true);
+		jpeg = new File("./assets/iPhoneXS.jpeg");
+		geotag = "Latitude: 40 degrees, 30 minutes, 35.999 seconds S, Longitude: 40 degrees, 30 minutes, 35.999 seconds W";
+		update = GeoTagFunctions.updateGeoTagData(jpeg, -40.51, -40.51);
+		assertEquals(true, update);
+		assertEquals(geotag, GeoTagFunctions.getGeoTagData(new File("./assets/results/editted-" + jpeg.getName())));
 		
 		deleteTestFiles();
 	}
@@ -94,56 +119,56 @@ public class GeoTagFunctionsTest {
 	{
 		String geotag = "Latitude: 43 degrees, 28 minutes, 2.814 seconds N, Longitude: 11 degrees, 53 minutes, 6.456 seconds E";
 		String hasGPS = GeoTagFunctions.getGeoTagData(new File("./assets/internet.jpg"));
-		assertEquals(hasGPS, geotag);
+		assertEquals(geotag, hasGPS);
 		geotag = "Latitude: 40 degrees, 0 minutes, 24.46 seconds N, Longitude: 116 degrees, 18 minutes, 4.57 seconds E";
 		hasGPS = GeoTagFunctions.getGeoTagData(new File("./assets/iPhone-6.JPG"));
-		assertEquals(hasGPS, geotag);
+		assertEquals(geotag, hasGPS);
 		geotag = "Latitude: 43 degrees, 31 minutes, 30.79 seconds N, Longitude: 96 degrees, 44 minutes, 18.34 seconds W";
 		hasGPS = GeoTagFunctions.getGeoTagData(new File("./assets/iPhone12-geotag.JPG"));
-		assertEquals(hasGPS, geotag);
+		assertEquals(geotag, hasGPS);
 		geotag = "Latitude: 36 degrees, 3 minutes, 28.4 seconds N, Longitude: 112 degrees, 7 minutes, 59.03 seconds W";
 		hasGPS = GeoTagFunctions.getGeoTagData(new File("./assets/iPhoneXS.jpeg"));
-		assertEquals(hasGPS, geotag);
+		assertEquals(geotag, hasGPS);
 		geotag = "Latitude: 43 degrees, 51 minutes, 2.91 seconds N, Longitude: 103 degrees, 31 minutes, 53.97 seconds W";
 		hasGPS = GeoTagFunctions.getGeoTagData(new File("./assets/Pixel-2-XL-2.jpg"));
-		assertEquals(hasGPS, geotag);
+		assertEquals(geotag, hasGPS);
 		
 		String noGPS = GeoTagFunctions.getGeoTagData(new File("./assets/iPhone12-no-geotag.jpg"));
-		assertEquals(noGPS, null);
+		assertEquals(null, noGPS);
 		noGPS = GeoTagFunctions.getGeoTagData(new File("./assets/No-geotag.jpeg"));
-		assertEquals(noGPS, null);
+		assertEquals(null, noGPS);
 		noGPS = GeoTagFunctions.getGeoTagData(new File("./assets/Cannon-EOS-M50-no-geotag.JPG"));
-		assertEquals(noGPS, null);
+		assertEquals(null, noGPS);
 		noGPS = GeoTagFunctions.getGeoTagData(new File("./assets/iphone11-notag.jpg"));
-		assertEquals(noGPS, null);
+		assertEquals(null, noGPS);
 		noGPS = GeoTagFunctions.getGeoTagData(new File("./assets/iphone11-notag2.jpg"));
-		assertEquals(noGPS, null);
+		assertEquals(null, noGPS);
 	}
 	
 	//getGpsInfo test
 	private void testGetGPSInfo()
 	{
 		GPSInfo validGPS = GeoTagFunctions.getGPSInfo(new File("./assets/internet.jpg"));
-		assertEquals(validGPS != null, true);
+		assertEquals(true, validGPS != null);
 		validGPS = GeoTagFunctions.getGPSInfo(new File("./assets/iPhone-6.JPG"));
-		assertEquals(validGPS != null, true);
+		assertEquals(true, validGPS != null);
 		validGPS = GeoTagFunctions.getGPSInfo(new File("./assets/iPhone12-geotag.JPG"));
-		assertEquals(validGPS != null, true);
+		assertEquals(true, validGPS != null);
 		validGPS = GeoTagFunctions.getGPSInfo(new File("./assets/iPhoneXS.jpeg"));
-		assertEquals(validGPS != null, true);
+		assertEquals(true, validGPS != null);
 		validGPS = GeoTagFunctions.getGPSInfo(new File("./assets/Pixel-2-XL-2.jpg"));
-		assertEquals(validGPS != null, true);
+		assertEquals(true, validGPS != null);
 		
 		GPSInfo invalidGPS = GeoTagFunctions.getGPSInfo(new File("./assets/iPhone12-no-geotag.JPG"));
-		assertEquals(invalidGPS == null, true);
+		assertEquals(true, invalidGPS == null);
 		invalidGPS = GeoTagFunctions.getGPSInfo(new File("./assets/No-geotag.jpeg"));
-		assertEquals(invalidGPS == null, true);
+		assertEquals(true, invalidGPS == null);
 		invalidGPS = GeoTagFunctions.getGPSInfo(new File("./assets/Cannon-EOS-M50-no-geotag.JPG"));
-		assertEquals(invalidGPS == null, true);
+		assertEquals(true, invalidGPS == null);
 		invalidGPS = GeoTagFunctions.getGPSInfo(new File("./assets/iphone11-notag.jpg"));
-		assertEquals(invalidGPS == null, true);
+		assertEquals(true, invalidGPS == null);
 		invalidGPS = GeoTagFunctions.getGPSInfo(new File("./assets/iphone11-notag2.jpg"));
-		assertEquals(invalidGPS == null, true);
+		assertEquals(true, invalidGPS == null);
 	}
 	
 	//test getLongitude
@@ -152,32 +177,32 @@ public class GeoTagFunctionsTest {
 		//degree, minute, second
 		Double answer = 100 + 30 / 60.0 + 20.8 / 3600;
 		Double withRef = GeoTagFunctions.getLongitude("100 30 20.8 E");
-		assertEquals(withRef, answer);
+		assertEquals(answer, withRef);
 		Double noRef = GeoTagFunctions.getLongitude("100 30 20.8");
-		assertEquals(noRef, answer);
+		assertEquals(answer, noRef);
 		answer= -answer;
 		noRef = GeoTagFunctions.getLongitude("-100 -30 -20.8");
-		assertEquals(noRef, answer);
+		assertEquals(answer, noRef);
 						
 		//degree, minute
 		answer = 100 + 30.66 / 60;
 		withRef = GeoTagFunctions.getLongitude("100 30.66 E");
-		assertEquals(withRef, answer);
+		assertEquals(answer, withRef);
 		noRef = GeoTagFunctions.getLongitude("100 30.66");
-		assertEquals(noRef, answer);
+		assertEquals(answer, noRef);
 		answer = -answer;
 		noRef = GeoTagFunctions.getLongitude("-100 -30.66");
-		assertEquals(noRef, answer);
+		assertEquals(answer, noRef);
 						
 		//degree only
 		answer = 100.88;
 		withRef = GeoTagFunctions.getLongitude("100.88 E");
-		assertEquals(withRef, answer);
+		assertEquals(answer, withRef);
 		noRef = GeoTagFunctions.getLongitude("100.88");
-		assertEquals(noRef, answer);
+		assertEquals(answer, noRef);
 		answer = -100.88;
 		noRef = GeoTagFunctions.getLongitude("-100.88");
-		assertEquals(noRef, answer);		
+		assertEquals(answer, noRef);
 	}
 	
 	//test getLatitude
@@ -186,52 +211,52 @@ public class GeoTagFunctionsTest {
 		//degree, minute, second
 		Double answer = 60 + 30 / 60.0 + 20.8 / 3600;
 		Double withRef = GeoTagFunctions.getLatitude("60 30 20.8 N");
-		assertEquals(withRef, answer);
+		assertEquals(answer, withRef);
 		Double noRef = GeoTagFunctions.getLatitude("60 30 20.8");
-		assertEquals(noRef, answer);
+		assertEquals(answer, noRef);
 				
 		//degree, minute
 		answer = 60 + 30.66 / 60;
 		withRef = GeoTagFunctions.getLatitude("60 30.66 N");
-		assertEquals(withRef, answer);
+		assertEquals(answer, withRef);
 		noRef = GeoTagFunctions.getLatitude("60 30.66");
-		assertEquals(noRef, answer);
+		assertEquals(answer, noRef);
 				
 		//degree only
 		answer = 60.88;
 		withRef = GeoTagFunctions.getLatitude("60.88 N");
-		assertEquals(withRef, answer);
+		assertEquals(answer, withRef);
 		noRef = GeoTagFunctions.getLatitude("60.88");
-		assertEquals(noRef, answer);
+		assertEquals(answer, noRef);
 		answer = -60.88;
 		noRef = GeoTagFunctions.getLatitude("-60.88");
-		assertEquals(noRef, answer);
+		assertEquals(answer, noRef);
 	}
 	
 	//test isJpeg
 	private void testIsJpeg()
 	{
-		boolean true_result = GeoTagFunctions.isJpeg(new File("./assets/internet.jpg"));
-		assertEquals(true_result, true);
-		true_result = GeoTagFunctions.isJpeg(new File("./assets/Pixel-2-XL-2.jpg"));
-		assertEquals(true_result, true);
-		true_result = GeoTagFunctions.isJpeg(new File("./assets/No-geotag.jpeg"));
-		assertEquals(true_result, true);
-		true_result = GeoTagFunctions.isJpeg(new File("./assets/iPhone12-geotag.JPG"));
-		assertEquals(true_result, true);
-		true_result = GeoTagFunctions.isJpeg(new File("./assets/Cannon-EOS-M50-no-geotag.JPG"));
-		assertEquals(true_result, true);
+		boolean trueResult = GeoTagFunctions.isJpeg(new File("./assets/internet.jpg"));
+		assertEquals(true, trueResult);
+		trueResult = GeoTagFunctions.isJpeg(new File("./assets/Pixel-2-XL-2.jpg"));
+		assertEquals(true, trueResult);
+		trueResult = GeoTagFunctions.isJpeg(new File("./assets/No-geotag.jpeg"));
+		assertEquals(true, trueResult);
+		trueResult = GeoTagFunctions.isJpeg(new File("./assets/iPhone12-geotag.JPG"));
+		assertEquals(true, trueResult);
+		trueResult = GeoTagFunctions.isJpeg(new File("./assets/Cannon-EOS-M50-no-geotag.JPG"));
+		assertEquals(true, trueResult);
 		
-		boolean false_result = GeoTagFunctions.isJpeg(new File("./assets/MacBook-png.png"));
-		assertEquals(false_result, false);
-		false_result = GeoTagFunctions.isJpeg(new File("./assets/Not-JPEG-movie.MOV"));
-		assertEquals(false_result, false);
-		false_result = GeoTagFunctions.isJpeg(new File("./assets/results"));
-		assertEquals(false_result, false);
-		false_result = GeoTagFunctions.isJpeg(new File("./assets/IMG_1492.png"));
-		assertEquals(false_result, false);
-		false_result = GeoTagFunctions.isJpeg(new File("./assets/IMG_1685.png"));
-		assertEquals(false_result, false);
+		boolean falseResult = GeoTagFunctions.isJpeg(new File("./assets/MacBook-png.png"));
+		assertEquals(false, falseResult);
+		falseResult = GeoTagFunctions.isJpeg(new File("./assets/Not-JPEG-movie.MOV"));
+		assertEquals(false, falseResult);
+		falseResult = GeoTagFunctions.isJpeg(new File("./assets/results"));
+		assertEquals(false, falseResult);
+		falseResult = GeoTagFunctions.isJpeg(new File("./assets/IMG_1492.png"));
+		assertEquals(false, falseResult);
+		falseResult = GeoTagFunctions.isJpeg(new File("./assets/IMG_1685.png"));
+		assertEquals(false, falseResult);
 	}
 	
 	//test openFile
@@ -239,25 +264,25 @@ public class GeoTagFunctionsTest {
 	{
 		Scanner input = new Scanner(new File("./tests/geotagfunctions/GeoTagFunctionsTest.txt"));
 		File openFile = GeoTagFunctions.openFile(input);
-		assertEquals(openFile != null, true);
+		assertEquals(true, openFile != null);
 		openFile = GeoTagFunctions.openFile(input);
-		assertEquals(openFile != null, true);
+		assertEquals(true, openFile != null);
 		openFile = GeoTagFunctions.openFile(input);
-		assertEquals(openFile != null, true);
+		assertEquals(true, openFile != null);
 		openFile = GeoTagFunctions.openFile(input);
-		assertEquals(openFile != null, true);
+		assertEquals(true, openFile != null);
 		openFile = GeoTagFunctions.openFile(input);
-		assertEquals(openFile != null, true);
+		assertEquals(true, openFile != null);
 		
 		openFile = GeoTagFunctions.openFile(input);
-		assertEquals(openFile == null, true);
+		assertEquals(true, openFile == null);
 		openFile = GeoTagFunctions.openFile(input);
-		assertEquals(openFile == null, true);
+		assertEquals(true, openFile == null);
 		openFile = GeoTagFunctions.openFile(input);
-		assertEquals(openFile == null, true);
+		assertEquals(true, openFile == null);
 		openFile = GeoTagFunctions.openFile(input);
-		assertEquals(openFile == null, true);
+		assertEquals(true, openFile == null);
 		openFile = GeoTagFunctions.openFile(input);
-		assertEquals(openFile == null, true);
+		assertEquals(true, openFile == null);
 	}
 }
