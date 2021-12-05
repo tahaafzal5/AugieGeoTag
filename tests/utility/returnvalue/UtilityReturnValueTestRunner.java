@@ -15,6 +15,8 @@ public class UtilityReturnValueTestRunner {
 		System.setErr(fileOutput);
 		Result result = JUnitCore.runClasses(UtilityReturnValueTest.class);
 		
+		fileOutput.close();
+
 		for (Failure failure : result.getFailures())
 		    console.println(failure.toString());
 		
