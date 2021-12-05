@@ -52,19 +52,19 @@ public class GeoTagFunctionsTest {
 	//updateGeotag test
 	private void testUpdateGeoTag()
 	{
-		boolean update = GeoTagFunctions.updateGeoTagData(new File("./assets/internet.jpg"), 0, 0, false);
+		boolean update = GeoTagFunctions.updateGeoTagData(new File("./assets/internet.jpg"), 0, 0);
 		assertEquals(update, true);
 		
-		update = GeoTagFunctions.updateGeoTagData(new File("./assets/Cannon-EOS-M50-no-geotag.JPG"), 70, 60, false);
+		update = GeoTagFunctions.updateGeoTagData(new File("./assets/Cannon-EOS-M50-no-geotag.JPG"), 70, 60);
 		assertEquals(update, true);
 		
-		update = GeoTagFunctions.updateGeoTagData(new File("./assets/iPhone-6.JPG"), -80, 80, false);
+		update = GeoTagFunctions.updateGeoTagData(new File("./assets/iPhone-6.JPG"), -80, 80);
 		assertEquals(update, true);
 		
-		update = GeoTagFunctions.updateGeoTagData(new File("./assets/iPhone12-geotag.JPG"), 40, -40, false);
+		update = GeoTagFunctions.updateGeoTagData(new File("./assets/iPhone12-geotag.JPG"), 40, -40);
 		assertEquals(update, true);
 		
-		update = GeoTagFunctions.updateGeoTagData(new File("./assets/iPhoneXS.jpeg"), -50, -50, false);
+		update = GeoTagFunctions.updateGeoTagData(new File("./assets/iPhoneXS.jpeg"), -50, -50);
 		assertEquals(update, true);
 		
 		deleteTestFiles();

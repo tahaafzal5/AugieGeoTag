@@ -109,7 +109,7 @@ public class Tool {
 				}
 				for (File f : assetsFolder.listFiles())
 					if(GeoTagFunctions.isJpeg(f))
-						if(GeoTagFunctions.updateGeoTagData(f, latitude, longitude, false))
+						if(GeoTagFunctions.updateGeoTagData(f, latitude, longitude))
 							console.printf("Successfully update %s \n", f.getName());
 						else
 							console.printf("Failed to update geotag in %s \n", f.getName());
@@ -146,7 +146,7 @@ public class Tool {
 					console.println("Longtitude information missing");
 					break;
 				}
-				if (GeoTagFunctions.updateGeoTagData(jpeg, latitude, longitude, false))
+				if (GeoTagFunctions.updateGeoTagData(jpeg, latitude, longitude))
 					console.printf("Geotag in %s has updated to: \n%s \n", jpeg.getName(), 
 							GeoTagFunctions.getGeoTagData(new File("./assets/results/editted-" + jpeg.getName())));
 				else 

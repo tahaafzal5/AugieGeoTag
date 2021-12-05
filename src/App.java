@@ -169,7 +169,7 @@ public class App {
                                     }
 
                                     // if all good, geoTagData in the jpeg image is updated
-                                    operationResult = GeoTagFunctions.updateGeoTagData(jpegImage, latitude, longitude, false);
+                                    operationResult = GeoTagFunctions.updateGeoTagData(jpegImage, latitude, longitude);
 
                                     // was the geotag updated successfully or not
                                     if (operationResult) {
