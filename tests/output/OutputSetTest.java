@@ -22,17 +22,11 @@ public class OutputSetTest {
 		double latitude = 50.0 + 30.0 / 60 + 55.77 / 3600;
 		double longitude = 100.0 + 50.0 / 60 + 10.8 / 3600;
 		
-		File removeResults = new File("./assets/remove");
-		if(!removeResults.exists())
-			removeResults.mkdir();
-		
-		File updateResults = new File("./assets/update");
-		if(!updateResults.exists())
-			updateResults.mkdir();
+		File results = new File("./assets/results");
 		
 		File resource = new File("./assets");
 
-		for(File f : resource.listFiles()) {
+		for(File f : results.listFiles()) {
 			try {
 				if(f.isFile() && GeoTagFunctions.isJpeg(f)) {
 					File output = new File("./assets/remove/" + f.getName());
@@ -48,7 +42,7 @@ public class OutputSetTest {
 			}
 		}
 		
-		for(File f : resource.listFiles()) {
+		for(File f : results.listFiles()) {
 			if(f.isFile() && GeoTagFunctions.isJpeg(f)) {
 				try {
 					File output = new File("./assets/update/" + f.getName());
@@ -62,8 +56,8 @@ public class OutputSetTest {
 			}
 		}
 
-		removeResults.delete();
-		updateResults.delete();
+		for(File f : results.listFiles())
+			f.delete();
 	}
 	
 	//Analyze whether geotag in image is removed
