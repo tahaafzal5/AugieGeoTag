@@ -12,7 +12,7 @@ public class OutputSetTestRunner {
 	public static void main(String[] args) throws FileNotFoundException
 	{
 		PrintStream console = System.out;
-		PrintStream fileOutput = new PrintStream(new File("./tests/geotagfunctions/print.txt"));
+		PrintStream fileOutput = new PrintStream(new File("./tests/output/print.txt"));
 		System.setOut(fileOutput);
 		System.setErr(fileOutput);
 		Result result = JUnitCore.runClasses(OutputSetTest.class);
