@@ -1,13 +1,16 @@
 package tests.utility.output;
 
 import src.Utility;
+
+import static org.junit.Assert.assertArrayEquals;
+
 import java.io.*;
 import org.junit.Test;
 
 public class UtilityOutputTest {
 	
 	@Test
-	public void UtilityOutputTests() throws FileNotFoundException {
+	public void UtilityOutputTests(){
 		
         Utility.displayMenu();
         
@@ -23,7 +26,16 @@ public class UtilityOutputTest {
 		
 		Utility.aboutProgram();
 		
-		Utility.exitProgram();
+		try (BufferedInputStream print = new BufferedInputStream(new FileInputStream(new File("./tests/utility/output/print.txt")));
+			 BufferedInputStream answer = new BufferedInputStream(new FileInputStream(new File("./tests/utility/output/answer.txt")))){
+			byte[] printContent = new byte[print.available()];
+			byte[] anwerContent = new byte[answer.available()];
+
+			assertArrayEquals(anwerContent, printContent);
+
+		} catch (Exception e){
+			System.err.println(e.getMessage());
+		}
 	}
 	
 	//test askConfirmation
