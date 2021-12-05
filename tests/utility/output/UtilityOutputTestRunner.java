@@ -14,6 +14,8 @@ public class UtilityOutputTestRunner {
 		System.setOut(fileOutput);
 		System.setErr(fileOutput);
 		Result result = JUnitCore.runClasses(UtilityOutputTest.class);
+		
+		fileOutput.close();
 
 		for (Failure failure : result.getFailures())
 		    console.println(failure.toString());
