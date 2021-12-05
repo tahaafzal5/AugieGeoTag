@@ -26,10 +26,10 @@ public class OutputSetTest {
 		
 		File resource = new File("./assets");
 
-		for(File f : results.listFiles()) {
+		for(File f : resource.listFiles()) {
 			try {
 				if(f.isFile() && GeoTagFunctions.isJpeg(f)) {
-					File output = new File("./assets/remove/" + f.getName());
+					File output = new File("./assets/results/" + f.getName());
 					Jpeg jpeg = new Jpeg(f);
 					JpegOutputSet outputSet = new JpegOutputSet(jpeg);
 					if (outputSet.removeGeoTag(output)) {
@@ -42,10 +42,10 @@ public class OutputSetTest {
 			}
 		}
 		
-		for(File f : results.listFiles()) {
+		for(File f : resource.listFiles()) {
 			if(f.isFile() && GeoTagFunctions.isJpeg(f)) {
 				try {
-					File output = new File("./assets/update/" + f.getName());
+					File output = new File("./assets/results/" + f.getName());
 					Jpeg jpeg = new Jpeg(f);
 					JpegOutputSet outputSet = new JpegOutputSet(jpeg);
 					if (outputSet.updateGeoTag(output, latitude, longitude))
