@@ -15,6 +15,8 @@ public class GeoTagFunctionsTestRunner {
 		System.setErr(fileOutput);
 		Result result = JUnitCore.runClasses(GeoTagFunctionsTest.class);
 		
+		fileOutput.close();
+
 		for (Failure failure : result.getFailures())
 		    console.println(failure.getTrimmedTrace());
 		
