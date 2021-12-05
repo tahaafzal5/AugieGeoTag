@@ -29,9 +29,12 @@ public class UtilityOutputTest {
 		try (BufferedInputStream print = new BufferedInputStream(new FileInputStream(new File("./tests/utility/output/print.txt")));
 			 BufferedInputStream answer = new BufferedInputStream(new FileInputStream(new File("./tests/utility/output/answer.txt")))){
 			byte[] printContent = new byte[print.available()];
-			byte[] anwerContent = new byte[answer.available()];
+			byte[] answerContent = new byte[answer.available()];
 
-			assertArrayEquals(anwerContent, printContent);
+			print.read(printContent);
+			answer.read(answerContent);
+
+			assertArrayEquals(answerContent, printContent);
 
 		} catch (Exception e){
 			System.err.println(e.getMessage());
