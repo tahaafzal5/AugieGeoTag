@@ -7,3 +7,5 @@ echo "GeoTagFunctions return value test:"
 sh ./tests/geotagfunctions/test.sh
 echo "Library output test:"
 sh ./tests/output/test.sh
+echo "App test:"
+sh ./tests/app/test.sh

@@ -231,7 +231,6 @@ public class App {
                             Utility.displayProcessing("clear-state");
                             
                             // all the needed variables are reset here
-                            input = new Scanner(System.in);
                             userMenuChoice = 0;
                     
                             isFileOpen = false;
@@ -268,7 +267,8 @@ public class App {
 
                 // Exit
                 //      break the main continuous loop and exit the program 
-                case 8: Utility.exitProgram();
+                case 8:
+                        break;
             }
         }
 

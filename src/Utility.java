@@ -234,9 +234,4 @@ public class Utility {
         System.out.println("GitHub repo: https://github.com/tahaafzal5/AugieGeoTag");
         System.out.println("This program was developed by Taha, Taire, Zach, Tony, Sicheng, and Zemenu.");
     }
-
-    // Desc: safely exits the program
-    public static void exitProgram() {
-        System.exit(0);
-    }
 }
