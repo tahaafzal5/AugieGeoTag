@@ -63,31 +63,31 @@ public class GeoTagFunctionsTest {
 	private void testUpdateGeoTag()
 	{
 		File jpeg = new File("./assets/internet.jpg");
-		String geotag = "Latitude: 50 degrees, 0 minutes, 0 seconds N, Longitude: 50 degrees, 0 minutes, 0 seconds E";
+		String geotag = "Latitude & Longitude: 50° 0' 0\" N 50° 0' 0\" E";
 		boolean update = GeoTagFunctions.updateGeoTagData(jpeg, 50, 50);
 		assertEquals(true, update);
 		assertEquals(geotag, GeoTagFunctions.getGeoTagData(new File("./assets/results/editted-" + jpeg.getName())));
 		
 		jpeg = new File("./assets/Cannon-EOS-M50-no-geotag.JPG");
-		geotag = "Latitude: 80 degrees, 0 minutes, 0 seconds N, Longitude: 80 degrees, 0 minutes, 0 seconds E";
+		geotag = "Latitude & Longitude: 80° 0' 0\" N 80° 0' 0\" E";
 		update = GeoTagFunctions.addGeoTagData(jpeg, 80, 80);
 		assertEquals(true, update);
 		assertEquals(geotag, GeoTagFunctions.getGeoTagData(new File("./assets/results/editted-" + jpeg.getName())));
 		
 		jpeg = new File("./assets/iPhone-6.JPG");
-		geotag = "Latitude: 40 degrees, 30 minutes, 35.999 seconds N, Longitude: 40 degrees, 30 minutes, 35.999 seconds E";
+		geotag = "Latitude & Longitude: 40° 30' 35.999\" N 40° 30' 35.999\" E";
 		update = GeoTagFunctions.updateGeoTagData(jpeg, 40.51, 40.51);
 		assertEquals(true, update);
 		assertEquals(geotag, GeoTagFunctions.getGeoTagData(new File("./assets/results/editted-" + jpeg.getName())));
 		
 		jpeg = new File("./assets/iPhone12-geotag.JPG");
-		geotag = "Latitude: 40 degrees, 30 minutes, 35.999 seconds N, Longitude: 40 degrees, 30 minutes, 35.999 seconds E";
+		geotag = "Latitude & Longitude: 40° 30' 35.999\" N 40° 30' 35.999\" E";
 		update = GeoTagFunctions.addGeoTagData(jpeg, 40.51, 40.51);
 		assertEquals(true, update);
 		assertEquals(geotag, GeoTagFunctions.getGeoTagData(new File("./assets/results/editted-" + jpeg.getName())));
 		
 		jpeg = new File("./assets/iPhoneXS.jpeg");
-		geotag = "Latitude: 40 degrees, 30 minutes, 35.999 seconds S, Longitude: 40 degrees, 30 minutes, 35.999 seconds W";
+		geotag = "Latitude & Longitude: 40° 30' 35.999\" S 40° 30' 35.999\" W";
 		update = GeoTagFunctions.updateGeoTagData(jpeg, -40.51, -40.51);
 		assertEquals(true, update);
 		assertEquals(geotag, GeoTagFunctions.getGeoTagData(new File("./assets/results/editted-" + jpeg.getName())));
@@ -117,19 +117,19 @@ public class GeoTagFunctionsTest {
 	//getGpsData test
 	private void testGetGPSData()
 	{
-		String geotag = "Latitude: 43 degrees, 28 minutes, 2.814 seconds N, Longitude: 11 degrees, 53 minutes, 6.456 seconds E";
+		String geotag = "Latitude & Longitude: 43° 28' 2.814\" N 11° 53' 6.456\" E";
 		String hasGPS = GeoTagFunctions.getGeoTagData(new File("./assets/internet.jpg"));
 		assertEquals(geotag, hasGPS);
-		geotag = "Latitude: 40 degrees, 0 minutes, 24.46 seconds N, Longitude: 116 degrees, 18 minutes, 4.57 seconds E";
+		geotag = "Latitude & Longitude: 40° 0' 24.46\" N 116° 18' 4.57\" E";
 		hasGPS = GeoTagFunctions.getGeoTagData(new File("./assets/iPhone-6.JPG"));
 		assertEquals(geotag, hasGPS);
-		geotag = "Latitude: 43 degrees, 31 minutes, 30.79 seconds N, Longitude: 96 degrees, 44 minutes, 18.34 seconds W";
+		geotag = "Latitude & Longitude: 43° 31' 30.79\" N 96° 44' 18.34\" W";
 		hasGPS = GeoTagFunctions.getGeoTagData(new File("./assets/iPhone12-geotag.JPG"));
 		assertEquals(geotag, hasGPS);
-		geotag = "Latitude: 36 degrees, 3 minutes, 28.4 seconds N, Longitude: 112 degrees, 7 minutes, 59.03 seconds W";
+		geotag = "Latitude & Longitude: 36° 3' 28.4\" N 112° 7' 59.03\" W";
 		hasGPS = GeoTagFunctions.getGeoTagData(new File("./assets/iPhoneXS.jpeg"));
 		assertEquals(geotag, hasGPS);
-		geotag = "Latitude: 43 degrees, 51 minutes, 2.91 seconds N, Longitude: 103 degrees, 31 minutes, 53.97 seconds W";
+		geotag = "Latitude & Longitude: 43° 51' 2.91\" N 103° 31' 53.97\" W";
 		hasGPS = GeoTagFunctions.getGeoTagData(new File("./assets/Pixel-2-XL-2.jpg"));
 		assertEquals(geotag, hasGPS);
 		
