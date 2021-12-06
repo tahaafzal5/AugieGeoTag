@@ -59,11 +59,8 @@ public class GeoTagFunctions {
                 
             bufferedInputStream.close();
                 
-            // check the file type
-            Utility.displayProcessing("check-jpeg");
+            // check the file type to be JPEG/JPG
             if ((fileMarker[0] & 0xFF) == 0xFF && (fileMarker[1] & 0xFF) == 0xD8) {
-                Utility.displaySuccess("check-jpeg");
-
                 return true;
             }
             else {
@@ -92,12 +89,9 @@ public class GeoTagFunctions {
             
             exif = null;
 
-            Utility.displayProcessing("read-metadata");
             if (jpegMetadata != null) {
                 exif = jpegMetadata.getExif();
             }
-
-            Utility.displaySuccess("read-metadata");
 
             return true;
         } 
@@ -109,8 +103,8 @@ public class GeoTagFunctions {
         }
     }
     
-    //Return: null if latitude is not with -90 to 90.
-    //        a Double value if it is a valid latitude
+    // Return: null if latitude is not with -90 to 90.
+    //         a Double value if it is a valid latitude
     public static Double getLatitude(String input) {
         Scanner coordScanner = new Scanner(input);
         
@@ -147,8 +141,8 @@ public class GeoTagFunctions {
         return latitude;
     }
 
-    //Return: null if longitude is not with -180 to 180.
-    //        a Double value if it is a valid longitude
+    // Return: null if longitude is not with -180 to 180.
+    //         a Double value if it is a valid longitude
     public static Double getLongitude(String input) {
         Scanner coordScanner = new Scanner(input);
     	
@@ -185,11 +179,11 @@ public class GeoTagFunctions {
         return longitude;
     }
 
-    //Pre: each should be separated by white space (example: 100 30 20.99 N)
-    //Return: a double that represents passed latitude or longitude coordinate
-    //  	  N and E would be a positive value. S and W would be negative value.
-    //Reminder: Null pointer would be returned if format is wrong.
-    //Support format example:
+    // Pre: each should be separated by white space (example: 100 30 20.99 N)
+    // Return: a double that represents passed latitude or longitude coordinate
+    //  	   N and E would be a positive value. S and W would be negative value.
+    // Reminder: Null pointer would be returned if format is wrong.
+    // Support format example:
     //	  100 30 20.99 N
     //	  100 40.99 S
     //	  100.88 W
@@ -251,8 +245,6 @@ public class GeoTagFunctions {
     // Return: true if exif has GPS info, false otherwise
     // Output: error message if program throw Exception
     public static GPSInfo getGPSInfo(File jpeg) {
-        Utility.displayProcessing("get-GPS");
-        
         readImageMeta(jpeg);
         GPSInfo geotag = null;
 
@@ -261,7 +253,6 @@ public class GeoTagFunctions {
         
         try {
             geotag = exif.getGPS();
-            Utility.displaySuccess("get-GPS");    
         }
         catch (Exception e) {
             Utility.displayError("get-GPS");
@@ -290,16 +281,15 @@ public class GeoTagFunctions {
             final RationalNumber longitudeSeconds = GPSInfo.longitudeSeconds;
             final String longitudeRef = GPSInfo.longitudeRef;
 
-            geotagData.append("Latitude: ");
-            geotagData.append(latitudeDegrees.toDisplayString() + " degrees, ");
-            geotagData.append(latitudeMinutes.toDisplayString() + " minutes, ");
-            geotagData.append(latitudeSeconds.toDisplayString() + " seconds ");
-            geotagData.append(latitudeRef + ", ");
+            geotagData.append("Latitude & Longitude: ");
+            geotagData.append(latitudeDegrees.toDisplayString() + "° ");
+            geotagData.append(latitudeMinutes.toDisplayString() + "' ");
+            geotagData.append(latitudeSeconds.toDisplayString() + "\" ");
+            geotagData.append(latitudeRef + " ");
 
-            geotagData.append("Longitude: ");
-            geotagData.append(longitudeDegrees.toDisplayString() + " degrees, ");
-            geotagData.append(longitudeMinutes.toDisplayString() + " minutes, ");
-            geotagData.append(longitudeSeconds.toDisplayString() + " seconds ");
+            geotagData.append(longitudeDegrees.toDisplayString() + "° ");
+            geotagData.append(longitudeMinutes.toDisplayString() + "' ");
+            geotagData.append(longitudeSeconds.toDisplayString() + "\" ");
             geotagData.append(longitudeRef);
 
             return geotagData.toString();
@@ -309,17 +299,19 @@ public class GeoTagFunctions {
             return null;
     }
 
+    // Desc: Helper method to add the geoTag. Calls the private updateGeoTagData method
     public static boolean addGeoTagData(File jpeg, double latitude, double longitude) {
         return updateGeoTagData(jpeg, latitude, longitude, true);
     }
 
+    // Desc: Helper method to update the geotag. Calls the private updateGeoTagData method
     public static boolean updateGeoTagData(File jpeg, double latitude, double longitude) {
         return updateGeoTagData(jpeg, latitude, longitude, false);
     }
 
-    // Pre: This function save image in results folder under asserts
+    // Post: This function save image in results folder under asserts
     // Return: return true if geotag is successfully updated. false otherwise
-    // Output: a image without geotag. If the writing process failed, no change would happen
+    // Output: a image with a geotag. If the writing process failed, no change would happen
     private static boolean updateGeoTagData(File jpeg, double latitude, double longitude, boolean displayAddPrompt) {
     	File resultsFolder = new File("./assets/results");
         

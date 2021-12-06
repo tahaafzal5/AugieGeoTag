@@ -251,7 +251,7 @@ public class App {
                             Utility.displaySuccess("clear-state");
                         }
                         else {
-                            System.out.println("Program state not cleared.");
+                            Utility.displayError("clear-state");
                         }
                         break;
 
