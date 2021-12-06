@@ -66,6 +66,171 @@ Getting the GPS data from the image...
 Reading image metadata...
 Success: Metadata read successfully
 Success: GPS data retrieved successfully
+internet.jpg has the following GeoTagData:
+Latitude: 43 degrees, 28 minutes, 2.814 seconds N, Longitude: 11 degrees, 53 minutes, 6.456 seconds E
+
+Augie GeoTag Menu:
+	1. Open an image
+	2. Add GeoTag
+	3. Update GeoTag
+	4. Remove GeoTag
+	5. Clear Program State
+	6. Help Menu
+	7. About
+	8. Exit
+
+Please enter selection (1-8): Getting the GPS data from the image...
+Reading image metadata...
+Success: Metadata read successfully
+Success: GPS data retrieved successfully
+Are you sure you want to remove the GeoTag?
+'Y' for Yes & 'N' for No: 
+Augie GeoTag Menu:
+	1. Open an image
+	2. Add GeoTag
+	3. Update GeoTag
+	4. Remove GeoTag
+	5. Clear Program State
+	6. Help Menu
+	7. About
+	8. Exit
+
+Please enter selection (1-8): Are you sure you want to clear program state?
+'Y' for Yes & 'N' for No: Program state not cleared.
+
+Augie GeoTag Menu:
+	1. Open an image
+	2. Add GeoTag
+	3. Update GeoTag
+	4. Remove GeoTag
+	5. Clear Program State
+	6. Help Menu
+	7. About
+	8. Exit
+
+Please enter selection (1-8): Are you sure you want to clear program state?
+'Y' for Yes & 'N' for No: Clearing program state...
+Success: Program state cleared successfully
+
+Augie GeoTag Menu:
+	1. Open an image
+	2. Add GeoTag
+	3. Update GeoTag
+	4. Remove GeoTag
+	5. Clear Program State
+	6. Help Menu
+	7. About
+	8. Exit
+
+Please enter selection (1-8): Enter the file name (including the extension): Finding file...
+Success: File opened successfully
+Checking if the image is a JPEG/JPG...
+Success: Checked JPEG/JPG successfully
+Getting the GPS data from the image...
+Reading image metadata...
+Success: Metadata read successfully
+Success: GPS data retrieved successfully
+No-geotag.jpeg has no GeoTagData.
+
+Augie GeoTag Menu:
+	1. Open an image
+	2. Add GeoTag
+	3. Update GeoTag
+	4. Remove GeoTag
+	5. Clear Program State
+	6. Help Menu
+	7. About
+	8. Exit
+
+Please enter selection (1-8): Getting the GPS data from the image...
+Reading image metadata...
+Success: Metadata read successfully
+Success: GPS data retrieved successfully
+Are you sure you want to do this?
+'Y' for Yes & 'N' for No: 
+Augie GeoTag Menu:
+	1. Open an image
+	2. Add GeoTag
+	3. Update GeoTag
+	4. Remove GeoTag
+	5. Clear Program State
+	6. Help Menu
+	7. About
+	8. Exit
+
+Please enter selection (1-8): Are you sure you want to clear program state?
+'Y' for Yes & 'N' for No: Clearing program state...
+Success: Program state cleared successfully
+
+Augie GeoTag Menu:
+	1. Open an image
+	2. Add GeoTag
+	3. Update GeoTag
+	4. Remove GeoTag
+	5. Clear Program State
+	6. Help Menu
+	7. About
+	8. Exit
+
+Please enter selection (1-8): Enter the file name (including the extension): Finding file...
+Success: File opened successfully
+Checking if the image is a JPEG/JPG...
+Success: Checked JPEG/JPG successfully
+Getting the GPS data from the image...
+Reading image metadata...
+Success: Metadata read successfully
+Success: GPS data retrieved successfully
+iphone-6.jpg has the following GeoTagData:
+Latitude: 40 degrees, 0 minutes, 24.46 seconds N, Longitude: 116 degrees, 18 minutes, 4.57 seconds E
+
+Augie GeoTag Menu:
+	1. Open an image
+	2. Add GeoTag
+	3. Update GeoTag
+	4. Remove GeoTag
+	5. Clear Program State
+	6. Help Menu
+	7. About
+	8. Exit
+
+Please enter selection (1-8): Getting the GPS data from the image...
+Reading image metadata...
+Success: Metadata read successfully
+Success: GPS data retrieved successfully
+Are you sure you want to update the GeoTag?
+'Y' for Yes & 'N' for No: 
+Augie GeoTag Menu:
+	1. Open an image
+	2. Add GeoTag
+	3. Update GeoTag
+	4. Remove GeoTag
+	5. Clear Program State
+	6. Help Menu
+	7. About
+	8. Exit
+
+Please enter selection (1-8): Are you sure you want to clear program state?
+'Y' for Yes & 'N' for No: Clearing program state...
+Success: Program state cleared successfully
+
+Augie GeoTag Menu:
+	1. Open an image
+	2. Add GeoTag
+	3. Update GeoTag
+	4. Remove GeoTag
+	5. Clear Program State
+	6. Help Menu
+	7. About
+	8. Exit
+
+Please enter selection (1-8): Enter the file name (including the extension): Finding file...
+Success: File opened successfully
+Checking if the image is a JPEG/JPG...
+Success: Checked JPEG/JPG successfully
+Getting the GPS data from the image...
+Reading image metadata...
+Success: Metadata read successfully
+Success: GPS data retrieved successfully
 No-geotag.jpeg has no GeoTagData.
 
 Augie GeoTag Menu:
@@ -291,15 +456,4 @@ Augie GeoTag Menu:
 	7. About
 	8. Exit
 
-Please enter selection (1-8): Getting the GPS data from the image...
-Reading image metadata...
-Success: Metadata read successfully
-Success: GPS data retrieved successfully
-Getting the GPS data from the image...
-Reading image metadata...
-Success: Metadata read successfully
-Success: GPS data retrieved successfully
-Getting the GPS data from the image...
-editted-No-geotag.jpg: ./assets/results/editted-No-geotag.jpg (No such file or directory)
-Error: Can't read the metadata of this file.
-Success: GPS data retrieved successfully
+Please enter selection (1-8): 
