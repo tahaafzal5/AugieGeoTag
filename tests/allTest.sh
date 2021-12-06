@@ -3,7 +3,7 @@ echo "Utility output test:"
 sh ./tests/utility/output/test.sh
 echo "Utility return value test:"
 sh ./tests/utility/returnvalue/test.sh
-echo "GeoTagFunctions return value test:"
+echo "GeoTagFunctions test:"
 sh ./tests/geotagfunctions/test.sh
 echo "Library output test:"
 sh ./tests/output/test.sh
