@@ -37,7 +37,7 @@ javac -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./li
 ```
 - Run App
 ```
-java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar src/App.java
+java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar src/App.java
 ```
 
 # Making Changes
