@@ -20,7 +20,7 @@ public class GeoTagFunctionsTestRunner {
 		for (Failure failure : result.getFailures())
 		    console.println(failure.getTrimmedTrace());
 		
-		console.println("GeotagFunctions return value test result: " + result.wasSuccessful());
+		console.println("GeotagFunctions test result: " + result.wasSuccessful());
 		console.close();
 	}
 }
