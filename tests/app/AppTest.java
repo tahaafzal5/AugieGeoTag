@@ -39,7 +39,7 @@ public class AppTest {
         output.delete();
 
         output = new File("./assets/results/editted-iPhone-6.jpg");
-        String result = "Latitude: 40 degrees, 30 minutes, 35.999 seconds N, Longitude: 40 degrees, 30 minutes, 35.999 seconds E";
+        String result = "Latitude & Longitude: 40° 30' 35.999\" N 40° 30' 35.999\" E";
         assertEquals(result, GeoTagFunctions.getGeoTagData(output));
         output.delete();
 
