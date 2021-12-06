@@ -70,7 +70,7 @@ public class GeoTagFunctionsTest {
 		
 		jpeg = new File("./assets/Cannon-EOS-M50-no-geotag.JPG");
 		geotag = "Latitude: 80 degrees, 0 minutes, 0 seconds N, Longitude: 80 degrees, 0 minutes, 0 seconds E";
-		update = GeoTagFunctions.updateGeoTagData(jpeg, 80, 80);
+		update = GeoTagFunctions.addGeoTagData(jpeg, 80, 80);
 		assertEquals(true, update);
 		assertEquals(geotag, GeoTagFunctions.getGeoTagData(new File("./assets/results/editted-" + jpeg.getName())));
 		
@@ -82,7 +82,7 @@ public class GeoTagFunctionsTest {
 		
 		jpeg = new File("./assets/iPhone12-geotag.JPG");
 		geotag = "Latitude: 40 degrees, 30 minutes, 35.999 seconds N, Longitude: 40 degrees, 30 minutes, 35.999 seconds E";
-		update = GeoTagFunctions.updateGeoTagData(jpeg, 40.51, 40.51);
+		update = GeoTagFunctions.addGeoTagData(jpeg, 40.51, 40.51);
 		assertEquals(true, update);
 		assertEquals(geotag, GeoTagFunctions.getGeoTagData(new File("./assets/results/editted-" + jpeg.getName())));
 		
