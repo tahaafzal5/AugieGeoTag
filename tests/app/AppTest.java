@@ -36,11 +36,16 @@ public class AppTest {
 
         File output = new File("./assets/results/editted-internet.jpg");
         assertEquals(null, GeoTagFunctions.getGeoTagData(output));
+        output.delete();
+
         output = new File("./assets/results/editted-iPhone-6.jpg");
         String result = "Latitude: 40 degrees, 30 minutes, 35.999 seconds N, Longitude: 40 degrees, 30 minutes, 35.999 seconds E";
         assertEquals(result, GeoTagFunctions.getGeoTagData(output));
-        output = new File("./assets/results/editted-No-geotag.jpg");
+        output.delete();
+
+        output = new File("./assets/results/editted-No-geotag.jpeg");
         assertEquals(result, GeoTagFunctions.getGeoTagData(output));
+        output.delete();
 
         File printContent = new File("./tests/app/print.txt");
         File answerContent = new File("./tests/app/answer.txt");

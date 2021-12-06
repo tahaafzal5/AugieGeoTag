@@ -10,12 +10,19 @@ Augie GeoTag Menu:
 	8. Exit
 
 Help Menu:
-1. Open an image:	 Lets you select the specific image you would like to edit
-			 the GeoTag of. It must be the exact file name including the file extension.
+1. Open an image:	 Lets you select the specific image you would like to edit the GeoTag of.
+			 It must be the exact file name including the file extension.
 2. Add GeoTag:		 Lets you add a GeoTag to the image you opened with option 1.
-			 It will ask for latitude and longitude in this format: <<<<< TO ADD >>>>>
+			 It will ask for latitude and longitude in this format:
+				 Degrees Minutes Seconds Direction. Example: 10 30 20.99 N
+				 Degrees Minutes Direction. Example: 10 40.99 S
+				 Degrees Direction. Example: 50.88 W
+				 Degrees Minutes Seconds. Example: 10 30 20.99
+			 If no direction is mentioned, it is assumed to be N for latitude and E for longitude.
+			 You can type in any of the above with a positive or negative sign to represent direction too.
+			 If any of the Degrees, Minutes, or Seconds are left out, they are assumed to be 0.
 3. Update GeoTag:	 Allows you to remove an original GeoTag and add a new one on the image you opened with option 1.
-			 It will ask for latitude and longitude in this format: <<<<< TO ADD >>>>>
+			 It will ask for latitude and longitude in the same format as the Add GeoTag option.
 4. Remove GeoTag:	 Lets you remove the GeoTag on the image you opened with option 1.
 5. Clear Program State:	 Resets the program to its initial state. You should do this before opening a new image.
 6. Help Menu:		 Shows this menu.
