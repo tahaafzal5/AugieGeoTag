@@ -12,7 +12,7 @@ public class AppTestRunner {
 	public static void main(String[] args) throws FileNotFoundException
 	{
         PrintStream console = System.out;
-		PrintStream fileOutput = new PrintStream(new File("./tests/app/answer.txt"));
+		PrintStream fileOutput = new PrintStream(new File("./tests/app/print.txt"));
 		System.setOut(fileOutput);
 		System.setErr(fileOutput);
         Result result = JUnitCore.runClasses(AppTest.class);

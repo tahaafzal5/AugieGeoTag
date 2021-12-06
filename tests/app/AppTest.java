@@ -5,6 +5,8 @@ import static org.junit.Assert.assertEquals;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 import org.junit.Test;
@@ -14,6 +16,13 @@ import src.App;
 
 public class AppTest {
    
+    private static PrintStream disable = new PrintStream(new OutputStream() {
+			
+		@Override 
+        public void write(int b) { } 
+			
+	});
+    
     @Test
     public void AppTest() throws FileNotFoundException
     {
@@ -21,6 +30,9 @@ public class AppTest {
         System.setIn(fis);
         
         App.main(null);
+
+        System.setOut(disable);
+        System.setErr(disable);
 
         File output = new File("./assets/results/editted-internet.jpg");
         assertEquals(null, GeoTagFunctions.getGeoTagData(output));
