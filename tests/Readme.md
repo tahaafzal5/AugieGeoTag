@@ -63,27 +63,27 @@ They do the same thing:
 
 * remove geotag in internet.jpg: 
 ```
-java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar tests/Tool -m remove -i internet.jpg
+java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar tests/Tool -m remove -i internet.jpg
 ```
 * remove geotag for all jpeg in folder source under assets: 
 ```
-java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar tests/Tool -m remove -i source
+java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar tests/Tool -m remove -i source
 ```
 * remove geotag for all jpeg in assets: 
 ```
-java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar tests/Tool -m remove -i .
+java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar tests/Tool -m remove -i .
 ```
 * update geotag in internet.jpg to 100 E 80 N: 
 ```
-java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar tests/Tool -m update -i internet.jpg -lo 100 -la 80
+java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar tests/Tool -m update -i internet.jpg -lo 100 -la 80
 ```
 * update geotag for all jpeg in folder assets to 100 E 80 N: 
 ```
-java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar tests/Tool -m update -i . -lo 100 -la 80
+java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar tests/Tool -m update -i . -lo 100 -la 80
 ```
 * update geotag for all jpeg in folder source under assets to 100 E 80 N: 
 ```
-java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar tests/Tool -m update -i source -lo 100 -la 80
+java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar tests/Tool -m update -i source -lo 100 -la 80
 ```
 * print geotag stored in internet.jpg: 
 ```
@@ -91,11 +91,11 @@ java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib
 ```
 * verify internet.jpg is a jpeg or not: 
 ```
-java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar tests/Tool -m verify -i internet.jpg
+java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar tests/Tool -m verify -i internet.jpg
 ```
 * print all tag in internet.jpg: 
 ```
-java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/exif.jar tests/Tool -m tag -i Internet.jpg
+java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar tests/Tool -m tag -i Internet.jpg
 ```
 ## 2. JUnit Test Instruction
 
@@ -104,4 +104,3 @@ java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib
 sh ./tests/allTest.sh
 ```
 - There are also shell script available for an individual test. Please go to associate test folder and run it.
-- Please go to <a href="https://github.com/SichengYang/Java-JPEG-GeoTag-Editor/tree/main/src/tests">this site</a> to see library output JUnit test
