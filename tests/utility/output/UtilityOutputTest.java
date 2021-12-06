@@ -2,15 +2,17 @@ package tests.utility.output;
 
 import src.Utility;
 
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 import java.io.*;
+import java.util.Scanner;
+
 import org.junit.Test;
 
 public class UtilityOutputTest {
 	
 	@Test
-	public void UtilityOutputTests(){
+	public void UtilityOutputTests() throws FileNotFoundException{
 		
         Utility.displayMenu();
         
@@ -26,19 +28,20 @@ public class UtilityOutputTest {
 		
 		Utility.aboutProgram();
 		
-		try (BufferedInputStream print = new BufferedInputStream(new FileInputStream(new File("./tests/utility/output/print.txt")));
-			 BufferedInputStream answer = new BufferedInputStream(new FileInputStream(new File("./tests/utility/output/answer.txt")))){
-			byte[] printContent = new byte[print.available()];
-			byte[] answerContent = new byte[answer.available()];
+		File printContent = new File("./tests/utility/output/print.txt");
+        File answerContent = new File("./tests/utility/output/answer.txt");
+        Scanner printScanner = new Scanner(printContent);
+        Scanner answerScanner = new Scanner(answerContent);
 
-			print.read(printContent);
-			answer.read(answerContent);
+        while(printScanner.hasNextLine()){
+            assertEquals(true, answerScanner.hasNextLine() );
+            String print = printScanner.nextLine();
+            String answer = answerScanner.nextLine();
+            assertEquals(answer, print);
+        }
 
-			assertArrayEquals(answerContent, printContent);
-
-		} catch (Exception e){
-			System.err.println(e.getMessage());
-		}
+        printScanner.close();
+        answerScanner.close();
 	}
 	
 	//test askConfirmation
