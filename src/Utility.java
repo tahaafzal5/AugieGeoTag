@@ -22,16 +22,32 @@ public class Utility {
     public static void displayHelpMenu() {
         System.out.println("\nHelp Menu:");
 
-        System.out.println("1. Open an image:\t Lets you select the specific image you would like to edit");
-        System.out.println("\t\t\t the GeoTag of. It must be the exact file name including the file extension.");
+        System.out.println("1. Open an image:\t Lets you select the specific image you would like to edit the GeoTag of.");
+        System.out.println("\t\t\t It must be the exact file name including the file extension.");
+
         System.out.println("2. Add GeoTag:\t\t Lets you add a GeoTag to the image you opened with option 1.");
-        System.out.println("\t\t\t It will ask for latitude and longitude in this format: <<<<< TO ADD >>>>>");
+        System.out.println("\t\t\t It will ask for latitude and longitude in this format:");
+        
+        System.out.println("\t\t\t\t Degrees Minutes Seconds Direction. Example: 10 30 20.99 N");
+        System.out.println("\t\t\t\t Degrees Minutes Direction. Example: 10 40.99 S");
+        System.out.println("\t\t\t\t Degrees Direction. Example: 50.88 W");
+        System.out.println("\t\t\t\t Degrees Minutes Seconds. Example: 10 30 20.99");
+        
+        System.out.println("\t\t\t If no direction is mentioned, it is assumed to be N for latitude and E for longitude.");
+        System.out.println("\t\t\t You can type in any of the above with a positive or negative sign to represent direction too.");
+        System.out.println("\t\t\t If any of the Degrees, Minutes, or Seconds are left out, they are assumed to be 0.");
+        
         System.out.println("3. Update GeoTag:\t Allows you to remove an original GeoTag and add a new one on the image you opened with option 1.");
-        System.out.println("\t\t\t It will ask for latitude and longitude in this format: <<<<< TO ADD >>>>>");
+        System.out.println("\t\t\t It will ask for latitude and longitude in the same format as the Add GeoTag option.");
+        
         System.out.println("4. Remove GeoTag:\t Lets you remove the GeoTag on the image you opened with option 1.");
+        
         System.out.println("5. Clear Program State:\t Resets the program to its initial state. You should do this before opening a new image.");
+        
         System.out.println("6. Help Menu:\t\t Shows this menu.");
+        
         System.out.println("7. About:\t\t Shows the purpose, GitHub repo link, and the developer names for this project.");
+        
         System.out.println("8. Exit:\t\t Safely exits the program.");
     }
 
