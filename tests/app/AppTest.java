@@ -34,16 +34,16 @@ public class AppTest {
         System.setOut(disable);
         System.setErr(disable);
 
-        File output = new File("./assets/results/editted-internet.jpg");
+        File output = new File("./assets/results/edited-internet.jpg");
         assertEquals(null, GeoTagFunctions.getGeoTagData(output));
         output.delete();
 
-        output = new File("./assets/results/editted-iPhone-6.jpg");
+        output = new File("./assets/results/edited-iPhone-6.jpg");
         String result = "Latitude & Longitude: 40° 30' 35.999\" N 40° 30' 35.999\" E";
         assertEquals(result, GeoTagFunctions.getGeoTagData(output));
         output.delete();
 
-        output = new File("./assets/results/editted-No-geotag.jpeg");
+        output = new File("./assets/results/edited-No-geotag.jpeg");
         assertEquals(result, GeoTagFunctions.getGeoTagData(output));
         output.delete();
 

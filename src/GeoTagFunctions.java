@@ -318,7 +318,7 @@ public class GeoTagFunctions {
         if (!resultsFolder.exists())
             resultsFolder.mkdir();
     	
-        File result = new File("./assets/results/editted-" + jpeg.getName());
+        File result = new File("./assets/results/edited-" + jpeg.getName());
     	
         try {
         	Jpeg image = new Jpeg(jpeg);
@@ -351,7 +351,7 @@ public class GeoTagFunctions {
         if (!resultsFolder.exists())
             resultsFolder.mkdir();
 
-        File resultFile = new File("./assets/results/editted-" + jpeg.getName());
+        File resultFile = new File("./assets/results/edited-" + jpeg.getName());
 
     	try {
     		Jpeg image = new Jpeg(jpeg);
