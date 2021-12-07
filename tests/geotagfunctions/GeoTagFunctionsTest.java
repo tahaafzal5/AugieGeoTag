@@ -34,27 +34,27 @@ public class GeoTagFunctionsTest {
 		File jpeg = new File("./assets/internet.jpg");
 		boolean remove = GeoTagFunctions.removeGeoTagData(jpeg);
 		assertEquals(true, remove);
-		assertEquals(null, GeoTagFunctions.getGeoTagData(new File("./assets/results/editted-" + jpeg.getName())));
+		assertEquals(null, GeoTagFunctions.getGeoTagData(new File("./assets/results/edited-" + jpeg.getName())));
 		
 		jpeg = new File("./assets/Cannon-EOS-M50-no-geotag.JPG");
 		remove = GeoTagFunctions.removeGeoTagData(jpeg);
 		assertEquals(true, remove);
-		assertEquals(null, GeoTagFunctions.getGeoTagData(new File("./assets/results/editted-" + jpeg.getName())));
+		assertEquals(null, GeoTagFunctions.getGeoTagData(new File("./assets/results/edited-" + jpeg.getName())));
 		
 		jpeg = new File("./assets/iPhone-6.JPG");
 		remove = GeoTagFunctions.removeGeoTagData(jpeg);
 		assertEquals(true, remove);
-		assertEquals(null, GeoTagFunctions.getGeoTagData(new File("./assets/results/editted-" + jpeg.getName())));
+		assertEquals(null, GeoTagFunctions.getGeoTagData(new File("./assets/results/edited-" + jpeg.getName())));
 		
 		jpeg = new File("./assets/iPhone12-geotag.JPG");
 		remove = GeoTagFunctions.removeGeoTagData(jpeg);
 		assertEquals(true, remove);
-		assertEquals(null, GeoTagFunctions.getGeoTagData(new File("./assets/results/editted-" + jpeg.getName())));
+		assertEquals(null, GeoTagFunctions.getGeoTagData(new File("./assets/results/edited-" + jpeg.getName())));
 		
 		jpeg = new File("./assets/iPhoneXS.jpeg");
 		remove = GeoTagFunctions.removeGeoTagData(jpeg);
 		assertEquals(true, remove);
-		assertEquals(null, GeoTagFunctions.getGeoTagData(new File("./assets/results/editted-" + jpeg.getName())));
+		assertEquals(null, GeoTagFunctions.getGeoTagData(new File("./assets/results/edited-" + jpeg.getName())));
 		
 		deleteTestFiles();
 	}
@@ -66,31 +66,31 @@ public class GeoTagFunctionsTest {
 		String geotag = "Latitude & Longitude: 50° 0' 0\" N 50° 0' 0\" E";
 		boolean update = GeoTagFunctions.updateGeoTagData(jpeg, 50, 50);
 		assertEquals(true, update);
-		assertEquals(geotag, GeoTagFunctions.getGeoTagData(new File("./assets/results/editted-" + jpeg.getName())));
+		assertEquals(geotag, GeoTagFunctions.getGeoTagData(new File("./assets/results/edited-" + jpeg.getName())));
 		
 		jpeg = new File("./assets/Cannon-EOS-M50-no-geotag.JPG");
 		geotag = "Latitude & Longitude: 80° 0' 0\" N 80° 0' 0\" E";
 		update = GeoTagFunctions.addGeoTagData(jpeg, 80, 80);
 		assertEquals(true, update);
-		assertEquals(geotag, GeoTagFunctions.getGeoTagData(new File("./assets/results/editted-" + jpeg.getName())));
+		assertEquals(geotag, GeoTagFunctions.getGeoTagData(new File("./assets/results/edited-" + jpeg.getName())));
 		
 		jpeg = new File("./assets/iPhone-6.JPG");
 		geotag = "Latitude & Longitude: 40° 30' 35.999\" N 40° 30' 35.999\" E";
 		update = GeoTagFunctions.updateGeoTagData(jpeg, 40.51, 40.51);
 		assertEquals(true, update);
-		assertEquals(geotag, GeoTagFunctions.getGeoTagData(new File("./assets/results/editted-" + jpeg.getName())));
+		assertEquals(geotag, GeoTagFunctions.getGeoTagData(new File("./assets/results/edited-" + jpeg.getName())));
 		
 		jpeg = new File("./assets/iPhone12-geotag.JPG");
 		geotag = "Latitude & Longitude: 40° 30' 35.999\" N 40° 30' 35.999\" E";
 		update = GeoTagFunctions.addGeoTagData(jpeg, 40.51, 40.51);
 		assertEquals(true, update);
-		assertEquals(geotag, GeoTagFunctions.getGeoTagData(new File("./assets/results/editted-" + jpeg.getName())));
+		assertEquals(geotag, GeoTagFunctions.getGeoTagData(new File("./assets/results/edited-" + jpeg.getName())));
 		
 		jpeg = new File("./assets/iPhoneXS.jpeg");
 		geotag = "Latitude & Longitude: 40° 30' 35.999\" S 40° 30' 35.999\" W";
 		update = GeoTagFunctions.updateGeoTagData(jpeg, -40.51, -40.51);
 		assertEquals(true, update);
-		assertEquals(geotag, GeoTagFunctions.getGeoTagData(new File("./assets/results/editted-" + jpeg.getName())));
+		assertEquals(geotag, GeoTagFunctions.getGeoTagData(new File("./assets/results/edited-" + jpeg.getName())));
 		
 		deleteTestFiles();
 	}
@@ -98,19 +98,19 @@ public class GeoTagFunctionsTest {
 	//Post: delete all test files that has generated during test.
 	private void deleteTestFiles()
 	{
-		File result = new File("./assets/results/editted-internet.jpg");
+		File result = new File("./assets/results/edited-internet.jpg");
 		result.delete();
 		
-		result = new File("./assets/results/editted-Cannon-EOS-M50-no-geotag.JPG");
+		result = new File("./assets/results/edited-Cannon-EOS-M50-no-geotag.JPG");
 		result.delete();
 		
-		result = new File("./assets/results/editted-iPhone-6.JPG");
+		result = new File("./assets/results/edited-iPhone-6.JPG");
 		result.delete();
 		
-		result = new File("./assets/results/editted-iPhone12-geotag.JPG");
+		result = new File("./assets/results/edited-iPhone12-geotag.JPG");
 		result.delete();
 		
-		result = new File("./assets/results/editted-iPhoneXS.jpeg");
+		result = new File("./assets/results/edited-iPhoneXS.jpeg");
 		result.delete();
 	}
 	
