@@ -8,34 +8,51 @@ The workspace contains the following folders:
 
 - `.vscode`: the folder containing vscode configuration
 - `assets`: the folder containing all the images (please add all your images here)
-- `bin`: the compiled output files are generated here by default (locally only)
+- `assets/results`: the folder where the resulting images are saved
+- `endian`: << TO DO >>
+- `jpeg`: << TO DO >>
 - `lib`: the folder to maintain dependencies
 - `src`: the folder containing all the code
 - `tests`: the folder containing all the tests
 
 # Getting Started
 
-## How to clone this repo
+## How to Clone this Repo
 - Using the terminal, `cd` into the diretory where you want to clone this repo
 - Run `git clone https://github.com/tahaafzal5/AugieGeoTag.git`
-- Open the project in your favorite text editor (we recommend Visual Studio Code)
+- Open the project in your favorite IDE (we recommend Visual Studio Code)
 
-## How to run the program
+## How to Run the Program
+
+### Updating the Java Version
+You will face no (or the least) issues if a Long Term Support (LTS) version of Java is used.
+We strongly recommend `17.0.1 2021-10-19 LTS`.
+
+If you have multiple Java Developmenent Kits (JDKs) installed on your machine, your IDE might default to a version other than `17.0.1 2021-10-19 LTS`.
+Make sure your IDE is using the correct JDK. Each IDE has different steps to do this. Since we recommend using Visual Studio Code, here are the steps to update the java version for `AugieGeoTag`:
+
+- Open VS Code's Command Palette by:
+    - `Cmd` + `Shift` + `P` on a Mac
+    - `Ctrl` + `Shift` + `P` on a PC
+- Search for `Java: Configure Java Runtime` in the Command Palette
+- When configuring runtime for projects, select Java Version `17` for the project `AugieGeoTag`
+- Restart VS Code
+
 ### Adding the Referenced Libraries 
-Sometimes, `.vscode/settings.json` does not link the referenced libraries properly. So you will have to do that manually. Each IDE has different steps to do this. Since we recommend using Visual Studio Code, here are the steps to add referenced libraries for AugieGeoTag:
+Sometimes, `.vscode/settings.json` does not link the referenced libraries properly. So you will have to do that manually. Each IDE has different steps to do this. Since we recommend using Visual Studio Code, here are the steps to add referenced libraries for `AugieGeoTag`:
 
-- Open the `AugieGeoTag` root directory in Visual Studio Code.
-- With Explorer view open, towards the bottom of the left pane, you will see `JAVA PROJECTS`. Expand that and then expand `AugieGeoTag`.
-- Towards the bottom, you will see `Referenced Libraries`. Click the `+` button on that option. File Explorer/Finder will open.
-- Navigate to `AugieGeoTag/lib/commons-imaging-1.0-alpha2` and select `commons-imaging-1.0-alpha2.jar`.
-- You are all set to compile and run the program now.
+- Open the `AugieGeoTag` root directory in Visual Studio Code
+- With Explorer view open, towards the bottom of the left pane, you will see `JAVA PROJECTS`. Expand that and then expand `AugieGeoTag`
+- Towards the bottom, you will see `Referenced Libraries`. Click the `+` button on that option. File Explorer/Finder will open
+- Navigate to `AugieGeoTag/lib/commons-imaging-1.0-alpha2` and select `commons-imaging-1.0-alpha2.jar`
+- Restart VS Code
 
-### Compiling and running the program
-- Compile the Whole Program:
+### Compiling and Running the Program
+- Compile the entire program:
 ```
 javac -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar:./lib/hamcrest-core-1.3.jar:./lib/junit-4.13.2.jar */*.java */*/*.java */*/*/*.java
 ```
-- Run App
+- Run the app
 ```
 java -cp .:./lib/commons-imaging-1.0-alpha2/commons-imaging-1.0-alpha2.jar src/App.java
 ```
@@ -75,7 +92,7 @@ Please make a new branch for each change you want to make. This way we can keep 
     - Pull the newest changes by `git pull`
     - Make more changes by creating a new branch and all as done above.
 
-# Reviewing someone else's changes
+# Reviewing Someone Else's Changes
 
 Whenever someone creates a new PR, do the following before accepting their changes:
 
@@ -91,4 +108,4 @@ Whenever someone creates a new PR, do the following before accepting their chang
     - Test out the code with normal cases, abnormal cases, and edge cases
     - Use GitHub to make comments and give feedback if you have any
         - Wait until changes are made by the developer and review them again using the steps above 
-- When satisfied, approve the PR and merge in the branch
+- When satisfied, approve the PR and merge in the branch by the `Rebase and merge` button hidden in the dropdown
