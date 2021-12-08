@@ -25,7 +25,7 @@ The workspace contains the following folders:
 ## How to Run the Program
 
 ### Updating the Java Version
-You will face no (or the least) issues if a Long Term Support (LTS) version of Java.
+You will face no (or the least) issues if a Long Term Support (LTS) version of Java is used.
 We strongly recommend `17.0.1 2021-10-19 LTS`.
 
 If you have multiple Java Developmenent Kits (JDKs) installed on your machine, your IDE might default to a version other than `17.0.1 2021-10-19 LTS`.
