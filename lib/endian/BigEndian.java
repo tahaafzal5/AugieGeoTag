@@ -1,4 +1,4 @@
-package src.endian;
+package lib.endian;
 
 /*
 	class BigEndian contains some useful methods to deal with big endian calculation

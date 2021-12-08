@@ -4,11 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 
-import src.jpeg.Entry;
-import src.jpeg.Jpeg;
-import src.jpeg.JpegExif;
-import src.jpeg.JpegOutputSet;
-import src.jpeg.NotJpegException;
+import lib.jpeg.*;
 import src.GeoTagFunctions;
 
 import static org.junit.Assert.assertEquals;

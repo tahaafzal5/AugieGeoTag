@@ -3,11 +3,11 @@
 	Each Entry knows its tagNumber, dataFormat, componentCount, offset, and value.
  */
 
-package src.jpeg;
+package lib.jpeg;
 
 import java.util.Arrays;
 
-import src.endian.BigEndian;
+import lib.endian.BigEndian;
 
 public class Entry 
 {

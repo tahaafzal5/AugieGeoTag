@@ -1,11 +1,11 @@
-package src.jpeg;
+package lib.jpeg;
 
 import java.io.*;
 import java.nio.ByteBuffer;
 import java.util.*;
 
-import src.endian.BigEndian;
-import src.endian.SmallEndian;
+import lib.endian.BigEndian;
+import lib.endian.SmallEndian;
 
 /*
 	JpegExif will process a byte[] exif data and gather the informaton.

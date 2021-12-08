@@ -1,4 +1,4 @@
-package src.jpeg;
+package lib.jpeg;
 
 /*
 	This is Exception will be thrown if the input file is not JPEG
