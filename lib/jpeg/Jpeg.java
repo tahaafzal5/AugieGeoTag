@@ -1,9 +1,9 @@
-package src.jpeg;
+package lib.jpeg;
 
 import java.io.*;
 import java.util.LinkedList;
 
-import src.endian.BigEndian;
+import lib.endian.BigEndian;
 
 /*
 	Jpeg class is used to store all information of a jpeg file. It contains all structures of a jpeg.

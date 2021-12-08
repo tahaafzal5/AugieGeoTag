@@ -8,8 +8,8 @@ import org.apache.commons.imaging.common.ImageMetadata;
 import org.apache.commons.imaging.formats.jpeg.JpegImageMetadata;
 import org.apache.commons.imaging.formats.tiff.TiffImageMetadata;
 
-import src.jpeg.Jpeg;
-import src.jpeg.JpegOutputSet;
+import lib.jpeg.Jpeg;
+import lib.jpeg.JpegOutputSet;
 
 import org.apache.commons.imaging.formats.tiff.TiffImageMetadata.GPSInfo;
 import org.apache.commons.imaging.common.RationalNumber;
