@@ -24,7 +24,7 @@ public class AppTest {
 	});
     
     @Test
-    public void AppTest() throws FileNotFoundException
+    public void AppTests() throws FileNotFoundException
     {
         FileInputStream fis = new FileInputStream("./tests/app/input.txt"); 
         System.setIn(fis);
