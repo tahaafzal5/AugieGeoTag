@@ -1,4 +1,4 @@
-package jpeg;
+package src.jpeg;
 
 import java.io.*;
 import java.util.*;
