@@ -9,10 +9,10 @@ The workspace contains the following folders:
 - `.vscode`: the folder containing vscode configuration
 - `assets`: the folder containing all the images (please add all your images here)
 - `assets/results`: the folder where the resulting images are saved
-- `endian`: << TO DO >>
-- `jpeg`: << TO DO >>
-- `lib`: the folder to maintain dependencies
+- `lib`: the folder containing external library jar files
 - `src`: the folder containing all the code
+- `src/endian`: the folder containing bit shifting algorithm
+- `src/jpeg`: the folder containing our jpeg library for test and image output
 - `tests`: the folder containing all the tests
 
 # Getting Started
