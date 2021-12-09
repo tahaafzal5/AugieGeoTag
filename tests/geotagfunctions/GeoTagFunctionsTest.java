@@ -51,7 +51,7 @@ public class GeoTagFunctionsTest {
 		assertEquals(true, remove);
 		assertEquals(null, GeoTagFunctions.getGeoTagData(new File("./assets/results/edited-" + jpeg.getName())));
 		
-		jpeg = new File("./assets/iPhoneXS.jpeg");
+		jpeg = new File("./assets/Pixel-2-XL.jpg");
 		remove = GeoTagFunctions.removeGeoTagData(jpeg);
 		assertEquals(true, remove);
 		assertEquals(null, GeoTagFunctions.getGeoTagData(new File("./assets/results/edited-" + jpeg.getName())));
@@ -86,7 +86,7 @@ public class GeoTagFunctionsTest {
 		assertEquals(true, update);
 		assertEquals(geotag, GeoTagFunctions.getGeoTagData(new File("./assets/results/edited-" + jpeg.getName())));
 		
-		jpeg = new File("./assets/iPhoneXS.jpeg");
+		jpeg = new File("./assets/Pixel-2-XL.jpg");
 		geotag = "Latitude & Longitude: 40° 30' 35.999\" S 40° 30' 35.999\" W";
 		update = GeoTagFunctions.updateGeoTagData(jpeg, -40.51, -40.51);
 		assertEquals(true, update);
@@ -110,7 +110,7 @@ public class GeoTagFunctionsTest {
 		result = new File("./assets/results/edited-iPhone12-geotag.JPG");
 		result.delete();
 		
-		result = new File("./assets/results/edited-iPhoneXS.jpeg");
+		result = new File("./assets/results/edited-Pixel-2-XL.jpg");
 		result.delete();
 	}
 	
