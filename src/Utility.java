@@ -53,7 +53,7 @@ public class Utility {
 
     // Pre: an open and working Scanner object
     // Desc: depending on the user's choice from the main menu, this method calls the appropriate function
-    public static Integer handleUserMenuChoice(Scanner input) { 
+    public static int handleUserMenuChoice(Scanner input) { 
         System.out.print("\nPlease enter selection (1-8): ");
         Integer choice = 0;
         
