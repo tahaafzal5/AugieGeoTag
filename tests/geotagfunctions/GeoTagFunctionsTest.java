@@ -17,7 +17,7 @@ public class GeoTagFunctionsTest {
 		
 		testGetLatitude();
 		
-		testGetLongtitude();
+		testGetLongitude();
 		
 		testGetGPSInfo();
 		
@@ -172,7 +172,7 @@ public class GeoTagFunctionsTest {
 	}
 	
 	//test getLongitude
-	private void testGetLongtitude()
+	private void testGetLongitude()
 	{
 		//degree, minute, second
 		Double answer = 100 + 30 / 60.0 + 20.8 / 3600;

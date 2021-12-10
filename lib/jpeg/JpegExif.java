@@ -8,7 +8,7 @@ import lib.endian.BigEndian;
 import lib.endian.LittleEndian;
 
 /*
-	JpegExif will process a byte[] exif data and gather the informaton.
+	JpegExif will process a byte[] exif data and gather the information.
 	User can access JpegExif through class Jpeg.
 */
 
@@ -154,19 +154,19 @@ public class JpegExif {
 	}
 
 	//Return: offset to thumbnail format
-	public int getThunmnailFormat()
+	public int getThumbnailFormat()
 	{
 		return thumbnailFormat;
 	}
 
 	//Return: offset to thumbnail offset
-	public int getThunmnailOffset()
+	public int getThumbnailOffset()
 	{
 		return thumbnailOffset;
 	}
 
 	//Return: offset to thumbnail length
-	public int getThunmnailLength()
+	public int getThumbnailLength()
 	{
 		return thumbnailLength;
 	}
@@ -499,7 +499,7 @@ public class JpegExif {
 		}
 	}
 
-	//Post: a byte[] which is swaped
+	//Post: a byte[] which is swapped
 	private void swapByte(byte[] b)
 	{
 		for(int i=0; i<b.length/2; i++ ) {
@@ -547,7 +547,7 @@ public class JpegExif {
 	}
 
 	//Pre: Object should be int or long
-	//Return: an int that represent by the ibject
+	//Return: an int that represent by the object
 	private int getObjectValue(Object obj)
 	{
 		if(obj instanceof Integer)

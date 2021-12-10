@@ -5,25 +5,25 @@
 * -m     remove for remove geotag, update for update geotag, verify for verify whether file is a jpeg, and print to print geotag (required)
 * -i     name of input file or folder in assets folder (required)
 * -la    latitude as a String (required when you select to update geotag)
-* -lo    longtitude as a String (required when you select to update geotag)
+* -lo    longitude as a String (required when you select to update geotag)
 * -help  print help menu
 
-## Latitude and Longtitude Format Supported by the Command Line Tool
+## Latitude and Longitude Format Supported by the Command Line Tool
 
 Degree, Minute, Second: 
-* Longtitude: 100 30 40.88 E Latitude: 40 20 20.54 N
-* Longtitude: 100 30 40.88 Latitude: 40 20 20.54 (This means 100 30 40.88 E, 40 20 20.54 N)
-* Longtitude: -100 -30 -40.88 Latitude: -40 -20 -20.54 (This means 100 30 40.88 W, 40 20 20.54 S)
+* Longitude: 100 30 40.88 E Latitude: 40 20 20.54 N
+* Longitude: 100 30 40.88 Latitude: 40 20 20.54 (This means 100 30 40.88 E, 40 20 20.54 N)
+* Longitude: -100 -30 -40.88 Latitude: -40 -20 -20.54 (This means 100 30 40.88 W, 40 20 20.54 S)
 
 Degree, Minute:
-* Longtitude: 100 30.88 E Latitude: 40 20.66 N
-* Longtitude: 100 30.88 Latitude: 40 20.66 (This means 100 30.88 E, 40 20.66 N)
-* Longtitude: -100 -30.88 Latitude: -40 -20.66 (This means 100 30.88 W, 40 20.66 S)
+* Longitude: 100 30.88 E Latitude: 40 20.66 N
+* Longitude: 100 30.88 Latitude: 40 20.66 (This means 100 30.88 E, 40 20.66 N)
+* Longitude: -100 -30.88 Latitude: -40 -20.66 (This means 100 30.88 W, 40 20.66 S)
 
 Degree Only:
-* Longtitude: 100.87 E Latitude: 40.66 N
-* Longtitude: 100.87 Latitude: 40.66 (This means 100.87 E, 40.66 N)
-* Longtitude: -100.87 Latitude: -40.66 (This means 100.87 W, 40.66 S)
+* Longitude: 100.87 E Latitude: 40.66 N
+* Longitude: 100.87 Latitude: 40.66 (This means 100.87 E, 40.66 N)
+* Longitude: -100.87 Latitude: -40.66 (This means 100.87 W, 40.66 S)
 * Notice: -100.87 W is not allowed here. Please use either direction reference or negative value to represent W and S.
 
 ## Command Format:

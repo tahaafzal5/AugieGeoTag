@@ -64,7 +64,7 @@ public class Jpeg
 				remainSegment.add(segment);
 		}
 		
-		//finish remianing segment reading
+		//finish remaining segment reading
 		notFinishSegmentReading = true;
 		while (notFinishSegmentReading) {
 			byte[] segment = readSegment(buff);

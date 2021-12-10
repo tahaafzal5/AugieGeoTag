@@ -12,7 +12,7 @@ import lib.jpeg.Jpeg;
 	   verify for verify whether file is a jpeg, and print to print geotag (required)
 	-i name of input file or folder in assets folder (required)
 	-la latitude as a String (required when you select to update geotag)
-	-lo longtitude as a String (required when you select to update geotag)
+	-lo longitude as a String (required when you select to update geotag)
 	-help print help menu
 	
 	**input flag order does not matter**
@@ -104,7 +104,7 @@ public class Tool {
 					break;
 				} 
 				if(longitude == 0) {
-					console.println("Longtitude information missing");
+					console.println("Longitude information missing");
 					break;
 				}
 				for (File f : assetsFolder.listFiles())
@@ -120,7 +120,7 @@ public class Tool {
 			}
 	}
 
-	//Output: information print on the sreen based on user choice
+	//Output: information print on the screen based on user choice
 	//		  image output based on user choice
 	public static void processFile()
 	{
@@ -143,7 +143,7 @@ public class Tool {
 					break;
 				} 
 				if(longitude == 0) {
-					console.println("Longtitude information missing");
+					console.println("Longitude information missing");
 					break;
 				}
 				if (GeoTagFunctions.updateGeoTagData(jpeg, latitude, longitude))
@@ -207,7 +207,7 @@ public class Tool {
 						else if(temp.isDirectory())
 							assetsFolder = temp;
 						else {
-							console.println("Error on anaylyse file type");
+							console.println("Error on analyse file type");
 							System.exit(0);
 						}
 					}
@@ -234,7 +234,7 @@ public class Tool {
 					break;
 				case "-lo":
 					if (mode.equals("remove")) {
-						console.println("Remove mode error: Error argument longtitude received.");
+						console.println("Remove mode error: Error argument longitude received.");
 						System.exit(0);
 					}
 					String longitude_info = "";
@@ -244,7 +244,7 @@ public class Tool {
 					}
 					longitude = GeoTagFunctions.getLongitude(longitude_info.trim());
 					if(longitude == null) {
-						console.println("Error longtitude format.");
+						console.println("Error longitude format.");
 						System.exit(0);
 					}
 					
@@ -267,7 +267,7 @@ public class Tool {
 		console.println("-i name of input file or folder in assets folder");
 		console.println("-o output file name (only for single file processing)");
 		console.println("-la latitude as a String");
-		console.println("-lo longtitude as a String");
+		console.println("-lo longitude as a String");
 		console.println("remove geotag:");
 		console.println("-m remove -i <file path under assets>");
 		console.println("update geotag:");
