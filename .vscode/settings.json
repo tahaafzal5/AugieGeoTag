@@ -2,5 +2,20 @@
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
         "lib/*.jar"
+    ],
+    "cSpell.words": [
+        "Augie",
+        "exif",
+        "geotag",
+        "geotagfunctions",
+        "hamcrest",
+        "javac",
+        "jfif",
+        "notag",
+        "returnvalue",
+        "Sicheng",
+        "Taha",
+        "Taire",
+        "Zemenu"
     ]
 }

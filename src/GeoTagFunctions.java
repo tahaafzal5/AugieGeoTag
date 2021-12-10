@@ -226,7 +226,7 @@ public class GeoTagFunctions {
     		String direction = coordScanner.next();
     		
             if (result < 0) {
-    			System.err.println("Please use either negative value or directon reference.");
+    			System.err.println("Please use either negative value or direction reference.");
     			coordScanner.close();
     			
                 return null;

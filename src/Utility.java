@@ -74,7 +74,7 @@ public class Utility {
                 System.err.print("Please enter a numerical value(1-8): ");
             }
             catch (Exception exception) {
-                System.err.println("Exception occured");
+                System.err.println("Exception occurred");
             }
         }
     } 

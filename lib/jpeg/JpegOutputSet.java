@@ -5,7 +5,7 @@ import java.util.*;
 
 /*
 	JpegOutputSet is the output routine. To create a JpegOutputSet, the user should pass  Jpeg object
-	to the constructor. This output rontine offers removeGeotag() and updateGeotag().
+	to the constructor. This output routine offers removeGeotag() and updateGeotag().
 */
 
 public class JpegOutputSet {
@@ -210,7 +210,7 @@ public class JpegOutputSet {
 		return true;
 	}
 
-	//Output: a jpeg is written based on the information in outpu set
+	//Output: a jpeg is written based on the information in output set
 	private boolean write(File output) throws IOException
 	{
 		DataOutputStream outputStream = new DataOutputStream (new BufferedOutputStream (new FileOutputStream(output)));
