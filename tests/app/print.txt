@@ -60,6 +60,20 @@ Augie GeoTag Menu:
 
 Please enter selection (1-8): Enter the file name (including the extension): Finding file...
 Success: File opened successfully
+Error: Check that you uploaded an acceptable file format (JPEG/JPG).
+
+Augie GeoTag Menu:
+	1. Open an image
+	2. Add GeoTag
+	3. Update GeoTag
+	4. Remove GeoTag
+	5. Clear Program State
+	6. Help Menu
+	7. About
+	8. Exit
+
+Please enter selection (1-8): Enter the file name (including the extension): Finding file...
+Success: File opened successfully
 internet.jpg has the following GeoTagData:
 Latitude & Longitude: 43° 28' 2.814" N 11° 53' 6.456" E
 
@@ -73,7 +87,19 @@ Augie GeoTag Menu:
 	7. About
 	8. Exit
 
-Please enter selection (1-8): Are you sure you want to remove the GeoTag?
+Please enter selection (1-8): Error: You are attempting to open more than 1 image, please open only one image at a time or clear program state to open another image.
+
+Augie GeoTag Menu:
+	1. Open an image
+	2. Add GeoTag
+	3. Update GeoTag
+	4. Remove GeoTag
+	5. Clear Program State
+	6. Help Menu
+	7. About
+	8. Exit
+
+Please enter selection (1-8): Please enter a numerical value(1-8): Are you sure you want to remove the GeoTag?
 'Y' for Yes & 'N' for No: 
 Augie GeoTag Menu:
 	1. Open an image

@@ -2,5 +2,3 @@ Error: Check that you uploaded an acceptable file format (JPEG/JPG).
 Error: Check that you uploaded an acceptable file format (JPEG/JPG).
 Error: Check that you uploaded an acceptable file format (JPEG/JPG).
 Error: Check that you uploaded an acceptable file format (JPEG/JPG).
-Error: Check that you uploaded an acceptable file format (JPEG/JPG).
-Error: Check that you uploaded an acceptable file format (JPEG/JPG).
