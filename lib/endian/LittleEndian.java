@@ -1,12 +1,12 @@
 /*
-	class SmallEndian contains some useful methods to deal with small endian calculation
+	class LittleEndian contains some useful methods to deal with little endian calculation
  */
 
 package lib.endian;
 
 public class LittleEndian
 {
-	//Pre: this returned unsigned integer is small endian version
+	//Pre: this returned unsigned integer is little endian version
 	//Return: an int represent a unsigned 16 bit int.
 	public static int getInt16(byte data1, byte data2)
 	{
@@ -17,7 +17,7 @@ public class LittleEndian
 		return result;
 	}
 
-	//Pre: this returned unsigned integer is small endian version
+	//Pre: this returned unsigned integer is little endian version
 	//Return: an long represent a unsigned 32 bit long.
 	public static int getInt32(byte data1, byte data2, byte data3, byte data4)
 	{
@@ -32,7 +32,7 @@ public class LittleEndian
 		return result;
 	}
 
-	//Pre: this returned unsigned integer is small endian version
+	//Pre: this returned unsigned integer is little endian version
 	//Return: an long represent a unsigned 32 bit integer.
 	public static long getLong32(byte data1, byte data2, byte data3, byte data4)
 	{
@@ -47,7 +47,7 @@ public class LittleEndian
 		return result;
 	}
 
-	//Pre: this returned unsigned integer is small endian version
+	//Pre: this returned unsigned integer is little endian version
 	//Return: a signed short which 2 bytes of data represent
 	public static short getSignedShort(byte data1, byte data2)
 	{
