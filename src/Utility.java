@@ -53,31 +53,30 @@ public class Utility {
 
     // Pre: an open and working Scanner object
     // Desc: depending on the user's choice from the main menu, this method calls the appropriate function
-    public static int handleUserMenuChoice(Scanner input) { 
+    public static Integer handleUserMenuChoice(Scanner input) { 
         System.out.print("\nPlease enter selection (1-8): ");
         Integer choice = 0;
         
-        try {
-            while (true) {
-                choice = Integer.parseInt(String.valueOf(input.nextLine().strip()));
-
-                while (choice < 1 || choice > 8) {
-                    System.out.print("Invalid option. Please enter option 1-8: ");
+        while(true){
+            try {
+                while (true) {
                     choice = Integer.parseInt(String.valueOf(input.nextLine().strip()));
-                }
 
-                return choice;
+                    while (choice < 1 || choice > 8) {
+                        System.out.print("Invalid option. Please enter option 1-8: ");
+                        choice = Integer.parseInt(String.valueOf(input.nextLine().strip()));
+                    }
+
+                    return choice;
+                }
+            }
+            catch (NumberFormatException exception) {
+                System.err.print("Please enter a numerical value(1-8):");
+            }
+            catch (Exception exception) {
+                System.err.println("Exception occured");
             }
         }
-        catch (NumberFormatException exception) {
-            System.err.println("NumberFormatException occured");
-        }
-        catch (Exception exception) {
-            System.err.println("Exception occured");
-        }
-
-        // base case is exiting the program 
-        return 8;
     } 
 
     // Output: a meaningful message asking user for confirmation before performing the action
