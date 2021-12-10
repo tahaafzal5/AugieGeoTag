@@ -16,7 +16,7 @@ The workspace contains the following folders:
 # Getting Started
 
 ## How to Clone this Repo
-- Using the terminal, `cd` into the diretory where you want to clone this repo
+- Using the terminal, `cd` into the directory where you want to clone this repo
 - Run `git clone https://github.com/tahaafzal5/AugieGeoTag.git`
 - Open the project in your favorite IDE (we recommend Visual Studio Code)
 
@@ -26,7 +26,7 @@ The workspace contains the following folders:
 You will face no (or the least) issues if a Long Term Support (LTS) version of Java is used.
 We strongly recommend `17.0.1 2021-10-19 LTS`.
 
-If you have multiple Java Developmenent Kits (JDKs) installed on your machine, your IDE might default to a version other than `17.0.1 2021-10-19 LTS`.
+If you have multiple Java Development Kits (JDKs) installed on your machine, your IDE might default to a version other than `17.0.1 2021-10-19 LTS`.
 Make sure your IDE is using the correct JDK. Each IDE has different steps to do this. Since we recommend using Visual Studio Code, here are the steps to update the java version for `AugieGeoTag`:
 
 - Open VS Code's Command Palette by:
