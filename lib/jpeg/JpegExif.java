@@ -129,7 +129,7 @@ public class JpegExif {
 	}
 
 	//Return: endian info represented by a boolean. If return value is true, exif is big endian. 
-	//		  Exif is in small endian otherwise.
+	//		  Exif is in little endian otherwise.
 	public boolean isBigEndian()
 	{
 		return bigEndian;
