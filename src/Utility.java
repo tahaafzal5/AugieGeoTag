@@ -57,7 +57,7 @@ public class Utility {
         System.out.print("\nPlease enter selection (1-8): ");
         Integer choice = 0;
         
-        while(true){
+        while (true) {
             try {
                 while (true) {
                     choice = Integer.parseInt(String.valueOf(input.nextLine().strip()));
@@ -71,7 +71,7 @@ public class Utility {
                 }
             }
             catch (NumberFormatException exception) {
-                System.err.print("Please enter a numerical value(1-8):");
+                System.err.print("Please enter a numerical value(1-8): ");
             }
             catch (Exception exception) {
                 System.err.println("Exception occured");
