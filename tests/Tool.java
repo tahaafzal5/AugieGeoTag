@@ -186,8 +186,8 @@ public class Tool {
 	public static void analyseInput(String[] args)
 	{
 		//Analyse input string
-		if( !args[position].equals("-help") && position + 1 >= args.length) {
-			if(position + 1 >= args.length) {
+		for(int position = 0; position < args.length; ) {
+			if(!args[position].equals("-help") && position + 1 >= args.length) {
 				console.println("Missing argument after flag " + args[position]);
 				System.exit(0);
 			}
